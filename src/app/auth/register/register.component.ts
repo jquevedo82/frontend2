@@ -15,6 +15,7 @@ export class RegisterComponent implements OnInit {
   username: any;
   email: any;
   password: any;
+  password2: any;
 
   constructor(
     private authService: AuthService,
@@ -25,6 +26,7 @@ export class RegisterComponent implements OnInit {
   ngOnInit(): void {}
 
   onRegister(): void {
+    
     this.usuario = new NuevoUsuarioDto(
       this.nombre,
       this.username,

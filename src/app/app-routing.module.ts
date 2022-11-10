@@ -8,7 +8,8 @@ import { PagesRoutingModule } from './pages/pages-routing.module';
 const routes: Routes = [
   //{ path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: '', loadChildren: () => import('./auth/auth.module').then( m => m.AuthModule) },
-  { path: '**', redirectTo: '', pathMatch: 'full' },
+  
+  //{ path: '**', redirectTo: '', pathMatch: 'full' },
 ];
 
 @NgModule({

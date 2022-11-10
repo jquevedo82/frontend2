@@ -13,12 +13,12 @@ const routes: Routes = [
   { path: '', component: PagesComponent},
   { path: 'login', component: LoginComponent, canActivate: [LoginGuard] },
   { path: 'register', component: RegisterComponent, canActivate: [LoginGuard] },
-    { path: '**', component: NopageFoundComponent },
+  { path: '**', redirectTo:'login'},
 ];
 
 
 @NgModule({ 
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
 export class AuthRoutingModule { }

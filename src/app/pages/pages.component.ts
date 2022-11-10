@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { TokenService } from '../services/token.service';
 
 @Component({
   selector: 'app-pages',
@@ -6,10 +8,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./pages.component.css']
 })
 export class PagesComponent implements OnInit {
+  isLogged: boolean = false;
+  isAdmin: boolean = false;
 
-  constructor() { }
+  constructor(private tokenService: TokenService, private router: Router) { }
 
   ngOnInit(): void {
+    this.isLogged = this.tokenService.isLogged();
+
+    this.isAdmin = this.tokenService.isAdmin();
   }
 
 }

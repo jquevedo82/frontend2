@@ -1,0 +1,34 @@
+<div class="container" *ngIf="!listaVacia">
+  <button class="btn btn-outline-primary" routerLink="/cliente/nuevo"><i class="far fa-eye"></i>
+    Nuevo</button>
+  <table class="table table-dark text-center">
+    <thead>
+      <tr>
+        <th scope="col">Id</th>
+        <th scope="col">Nombre</th>
+        <th scope="col">Dni</th>
+        <th scope="col">Ver</th>
+        <th scope="col" *ngIf="isAdmin">Editar</th>
+        <th scope="col" *ngIf="isAdmin">Borrar</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let cliente of clientes">
+        <td>{{ cliente.id }}</td>
+        <td>{{ cliente.nombre }}</td>
+        <td>{{ cliente.dni }}</td>
+        <td><button class="btn btn-outline-primary" routerLink="/cliente/detalle/{{ cliente.id }}"><i class="far fa-eye"></i>
+            Ver</button></td>
+        <td *ngIf="isAdmin"><button class="btn btn-outline-warning" routerLink="/cliente/editar/{{ cliente.id }}"><i class="far fa-edit"></i>
+            Editar</button></td>
+        <td *ngIf="isAdmin"><button class="btn btn-outline-danger" (click)="borrar(cliente.id)"><i class="far fa-trash-alt"></i>
+            Eliminar</button></td>
+      </tr>
+    </tbody>
+  </table>
+
+</div>
+<div class="container" *ngIf="listaVacia">
+  <div class="p- mb- bg-dark text-white text-center"><h2>{{ listaVacia }}</h2></div>
+</div>
+
