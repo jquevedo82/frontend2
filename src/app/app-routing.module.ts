@@ -6,8 +6,9 @@ import { NopageFoundComponent } from './nopage-found/nopage-found.component';
 import { PagesRoutingModule } from './pages/pages-routing.module';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/login', pathMatch: 'full' },
-  { path: '**', component: NopageFoundComponent },
+  //{ path: '', redirectTo: '/login', pathMatch: 'full' },
+  { path: '', loadChildren: () => import('./auth/auth.module').then( m => m.AuthModule) },
+  { path: '**', redirectTo: '', pathMatch: 'full' },
 ];
 
 @NgModule({
