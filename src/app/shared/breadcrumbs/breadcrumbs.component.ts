@@ -11,13 +11,17 @@ import { map, filter } from 'rxjs/operators';
 export class BreadcrumbsComponent implements OnDestroy {
 
   public titulo?:string;
+  public urltitulo?:string;
+  public Subtitulo?:string;
   public tituloSubs$:Subscription;
 
   constructor(private router: Router ) {
 
-    this.tituloSubs$ = this.getArguments().subscribe(({titulo})=>
+    this.tituloSubs$ = this.getArguments().subscribe(({titulo,Subtitulo,urltitulo})=>
       {
         this.titulo = titulo;
+        this.Subtitulo = Subtitulo;
+        this.urltitulo = urltitulo;
         document.title = `Neumen - ${titulo}`;
 
       })

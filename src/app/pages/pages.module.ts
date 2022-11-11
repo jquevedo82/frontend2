@@ -7,6 +7,7 @@ import { RouterModule } from '@angular/router';
 import { SharedModule } from '../shared/shared.module';
 import { UsuarioComponent } from './usuario/usuario.component';
 import { ProductosComponent } from './productos/productos.component';
+import { FacturasComponent } from './facturas/facturas.component';
 
 
 
@@ -17,6 +18,7 @@ import { ProductosComponent } from './productos/productos.component';
     PagesComponent,
     UsuarioComponent,
     ProductosComponent,
+    FacturasComponent,
 
   ],
   imports: [

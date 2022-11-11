@@ -7,7 +7,8 @@ export const environment = {
   //clienteURL: 'http://localhost:8080/cliente/',
   //authURL: 'http://localhost:8080/auth/'
   clienteURL: 'http://192.168.0.123:8081/cliente/',
-  authURL: 'http://192.168.0.123:8081/auth/'
+  authURL: 'http://192.168.0.123:8081/auth/',
+  usuURL: 'http://192.168.0.123:8081/usuario/'
 };
 
 /*

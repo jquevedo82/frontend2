@@ -7,8 +7,9 @@
         </div>
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
-            <li class="breadcrumb-item"><a href="#">Home</a></li>
-            <li class="breadcrumb-item active">{{titulo}}</li>
+            <li class="breadcrumb-item"><a routerLink="/">Home</a></li>
+            <li *ngIf="titulo != 'Home'" class="breadcrumb-item active"><a *ngIf="urltitulo != 'no' " routerLink="{{urltitulo}}">{{titulo}}</a><span  *ngIf="urltitulo == 'no' ">{{titulo}}</span></li>
+            <li *ngIf="Subtitulo" class="breadcrumb-item active">{{Subtitulo}}</li>
           </ol>
         </div>
       </div>
