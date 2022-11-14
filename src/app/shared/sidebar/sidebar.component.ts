@@ -47,4 +47,9 @@ export class SidebarComponent implements OnInit {
 //console.log(this.usuario);
     
   }
+
+  logOut(): void {
+    this.tokenService.logOut();
+    this.router.navigate(['/login']);
+  }
 }

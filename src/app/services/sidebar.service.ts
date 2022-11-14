@@ -16,7 +16,7 @@ export class SidebarService {
     submenu:[
       {titulo:'Clientes',url:'cliente',icono:'fa fa-users'},
       {titulo:'Productos',url:'productos',icono:'fa fa-cubes'},
-      {titulo:'Usuarios',url:'usuarios',icono:'fa fa-calendar-alt'},
+      {titulo:'Usuarios',url:'usuarios',icono:'fa fa-user-circle'},
       {titulo:'Facturas',url:'facturas',icono:'fa fa-calendar-alt'}
       
     ]

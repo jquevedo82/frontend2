@@ -60,20 +60,13 @@
 
         <li class="nav-header">EXAMPLES</li>
         <li class="nav-item">
-          <a href="../calendar.html" class="nav-link">
-            <i class="nav-icon far fa-calendar-alt"></i>
-            <p>
-              Calendar
-              <span class="badge badge-info right">2</span>
-            </p>
+          <a class="nav-link" data-widget="control-sidebar" data-slide="true" *ngIf="isLogged" (click)="logOut()" href="#" role="button">
+            <i class="fas fa-sign-out-alt"></i>
+            <p class="ml-2">Logout</p>
           </a>
-        </li>
-        <li class="nav-item">
-          <a href="../gallery.html" class="nav-link">
-            <i class="nav-icon far fa-image"></i>
-            <p>
-              Gallery
-            </p>
+          <a class="nav-link" data-widget="control-sidebar" data-slide="true" routerLink="/login" *ngIf="!isLogged" role="button">
+            <i class="fas fa-sign-in-alt"></i> 
+            <p class="ml-2">Login</p>
           </a>
         </li>
       </ul>
