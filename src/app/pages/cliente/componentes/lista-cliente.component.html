@@ -1,5 +1,5 @@
 <div class="container" *ngIf="!listaVacia">
-  <button class="btn btn-outline-primary" routerLink="/cliente/nuevo"><i class="far fa-eye"></i>
+  <button *ngIf="isAdmin" class="btn btn-outline-primary" routerLink="/cliente/nuevo"><i class="far fa-eye"></i>
     Nuevo</button>
   <table class="table table-dark text-center">
     <thead>
@@ -29,7 +29,7 @@
 
 </div>
 <div class="container" *ngIf="listaVacia">
-  <button class="btn btn-outline-primary" routerLink="/cliente/nuevo"><i class="far fa-eye"></i>
+  <button  *ngIf="isAdmin" class="btn btn-outline-primary" routerLink="/cliente/nuevo"><i class="far fa-eye"></i>
     Nuevo</button>
   <div class="p- mb- bg-dark text-white text-center"><h2>{{ listaVacia }}</h2></div>
 </div>

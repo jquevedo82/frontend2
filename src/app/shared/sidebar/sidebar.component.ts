@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { NuevoUsuarioDto } from 'src/app/models/nuevo-usuario.dto';
 import { SidebarService } from 'src/app/services/sidebar.service';
 import { TokenService } from 'src/app/services/token.service';
 

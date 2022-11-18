@@ -26,6 +26,7 @@ export class ListaClienteComponent implements OnInit {
   ngOnInit(): void {
     this.cargarClientes();
     this.isAdmin=this.tokenService.isAdmin();
+    console.log(this.isAdmin)
   }
 
   cargarClientes(): void {

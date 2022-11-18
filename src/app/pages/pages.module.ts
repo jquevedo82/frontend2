@@ -5,7 +5,6 @@ import { ClienteComponent } from './cliente/cliente.component';
 import { PagesComponent } from './pages.component';
 import { RouterModule } from '@angular/router';
 import { SharedModule } from '../shared/shared.module';
-import { UsuarioComponent } from './usuario/usuario.component';
 import { ProductosComponent } from './productos/productos.component';
 import { FacturasComponent } from './facturas/facturas.component';
 
@@ -16,7 +15,6 @@ import { FacturasComponent } from './facturas/facturas.component';
     DashboardComponent,
     ClienteComponent,
     PagesComponent,
-    UsuarioComponent,
     ProductosComponent,
     FacturasComponent,
 
@@ -30,7 +28,6 @@ import { FacturasComponent } from './facturas/facturas.component';
     DashboardComponent,
     ClienteComponent,
     PagesComponent,
-    UsuarioComponent,
     ProductosComponent,
   ]
 })
