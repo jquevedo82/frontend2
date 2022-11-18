@@ -7,6 +7,8 @@ import { RouterModule } from '@angular/router';
 import { SharedModule } from '../shared/shared.module';
 import { ProductosComponent } from './productos/productos.component';
 import { FacturasComponent } from './facturas/facturas.component';
+import { MaterialModule } from '../material/material.module';
+import { TabsComponent } from './usuario/components/tabs.component';
 
 
 
@@ -17,18 +19,21 @@ import { FacturasComponent } from './facturas/facturas.component';
     PagesComponent,
     ProductosComponent,
     FacturasComponent,
+    TabsComponent,
 
   ],
   imports: [
     CommonModule,
     RouterModule,
     SharedModule,
+    MaterialModule
   ],
   exports: [
     DashboardComponent,
     ClienteComponent,
     PagesComponent,
     ProductosComponent,
+    FacturasComponent,
   ]
 })
 export class PagesModule { }

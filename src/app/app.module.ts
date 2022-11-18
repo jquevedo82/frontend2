@@ -10,7 +10,8 @@ import { interceptorProviders } from './interceptor/cliente.interceptor';
 import { MaterialModule } from './material/material.module';
 import { NopageFoundComponent } from './nopage-found/nopage-found.component';
 import { PagesModule } from './pages/pages.module';
-import { HeaderComponent } from './shared/header/header.component';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [AppComponent, NopageFoundComponent],
@@ -21,9 +22,12 @@ import { HeaderComponent } from './shared/header/header.component';
     AuthModule,
     PagesModule,
     HttpClientModule,
-    MaterialModule
+    MaterialModule,
+    BrowserAnimationsModule,
+    FormsModule, 
+    ReactiveFormsModule
   ],
-  exports: [HttpClientModule],
+  exports: [HttpClientModule,MaterialModule,FormsModule],
   providers: [interceptorProviders],
   bootstrap: [AppComponent],
 })
