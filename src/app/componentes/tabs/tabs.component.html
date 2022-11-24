@@ -1,0 +1,17 @@
+<div class="container">
+  <div class="card card-primary card-outline card-outline-tabs">
+
+    <mat-tab-group [selectedIndex]="selected.value" (selectedIndexChange)="selected.setValue($event)">
+      <mat-tab *ngFor="let tab of tabs; let index = index" [label]="tab">
+        Contents for {{ tab }} tab
+        <button *ngIf="index > 0" mat-raised-button class="example-add-tab-button" (click)="antTabs(index)">
+          Anterior
+        </button>
+        <button *ngIf="index < tabs.length-1" mat-raised-button class="example-add-tab-button" (click)="sigTabs(index)">
+          Siguiente
+        </button>
+      </mat-tab>
+    </mat-tab-group>
+  </div>
+</div>
+

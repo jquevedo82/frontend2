@@ -8,6 +8,7 @@ import { PagesComponent } from './pages.component';
 import { ProductosComponent } from './productos/productos.component';
 import { UsuarioComponent } from './usuario/usuario.component';
 
+
 const routes: Routes = [
   { path: '', component: PagesComponent,  data:{titulo:'Home', urltitulo:'no'},
   children: [

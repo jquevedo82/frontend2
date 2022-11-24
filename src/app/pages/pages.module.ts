@@ -8,7 +8,9 @@ import { SharedModule } from '../shared/shared.module';
 import { ProductosComponent } from './productos/productos.component';
 import { FacturasComponent } from './facturas/facturas.component';
 import { MaterialModule } from '../material/material.module';
-import { TabsComponent } from './usuario/components/tabs.component';
+import { ComponentesModule } from '../componentes/componentes.module';
+import { UsuarioComponent } from './usuario/usuario.component';
+
 
 
 
@@ -19,14 +21,16 @@ import { TabsComponent } from './usuario/components/tabs.component';
     PagesComponent,
     ProductosComponent,
     FacturasComponent,
-    TabsComponent,
+    UsuarioComponent,
+    
 
   ],
   imports: [
     CommonModule,
     RouterModule,
     SharedModule,
-    MaterialModule
+    MaterialModule,
+    ComponentesModule
   ],
   exports: [
     DashboardComponent,
@@ -34,6 +38,8 @@ import { TabsComponent } from './usuario/components/tabs.component';
     PagesComponent,
     ProductosComponent,
     FacturasComponent,
+  
+    
   ]
 })
 export class PagesModule { }
