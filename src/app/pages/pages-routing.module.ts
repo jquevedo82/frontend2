@@ -14,8 +14,8 @@ const routes: Routes = [
   children: [
     {path:'dashboard' , component:DashboardComponent, data:{titulo:'Home',urltitulo:'no'}},
     {path: 'cliente', loadChildren: () => import('../pages/cliente/cliente.module').then( m => m.ClienteModule) },
-    {path:'productos' , component:ProductosComponent, data:{titulo:'Producto',urltitulo:'no'}},
-    {path:'usuarios' , component:UsuarioComponent, data:{titulo:'Usuario',urltitulo:'no'}},
+    {path:'productos' , component:ProductosComponent, data:{titulo:'Productos',urltitulo:'no'}},
+    {path:'usuarios' , component:UsuarioComponent, data:{titulo:'Usuarios',urltitulo:'no'}},
     {path:'facturas' , component:FacturasComponent, data:{titulo:'Facturas',urltitulo:'no'}},
   ]
 },

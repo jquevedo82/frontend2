@@ -1,0 +1,16 @@
+    <mat-form-field>
+        <mat-label>
+            Cliente:
+        </mat-label>
+        <input  type="text"
+                matInput
+                #search
+                [formControl]="control"
+                [matAutocomplete]="auto">
+        <mat-autocomplete autoActivFirsOption #auto="matAutocomplete">
+            <mat-option *ngFor="let cliente of filClientes | async" [value]="cliente">
+                {{ cliente }}
+            </mat-option>
+        </mat-autocomplete>
+        <button (click)="getMovies(search.value)">hola</button>
+    </mat-form-field>

@@ -11,6 +11,7 @@ export class TabsComponent implements OnInit {
 
   ngOnInit(): void {}
   tabs = ['Home', 'Uno', 'Dos', 'Tres'];
+  
   selected = new FormControl(0);
 
   sigTabs(index: number) {

@@ -1,5 +1,5 @@
 import {COMMA, ENTER} from '@angular/cdk/keycodes';
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { MatChipInputEvent } from '@angular/material/chips';
@@ -9,25 +9,29 @@ import {map, startWith} from 'rxjs/operators';
 @Component({
   selector: 'app-chips',
   templateUrl: './chips.component.html',
-  styleUrls: ['./chips.component.css']
+  styleUrls: ['./chips.component.css']  ,
+  encapsulation: ViewEncapsulation.None
 })
-export class ChipsComponent {
+export class ChipsComponent implements OnInit {
   separatorKeysCodes: number[] = [ENTER, COMMA];
   opcionCtrl = new FormControl('');
   opcionesfiltradas: Observable<string[]>;
   opciones_seleccionadas: string[]=[];
   //allFruits: string[] = ['Apple', 'Lemon', 'Lime', 'Orange', 'Strawberry'];
-  opciones: string[] = ['Apple', 'Lemon', 'Lime', 'Orange', 'Strawberry'];
+  opciones: string[] = ['Promo 15', 'Promo 25', 'Promo 23', 'Promo 14', 'Promo 52'];
 
   @ViewChild('opcionInput') opcionInput!: ElementRef<HTMLInputElement>;
 
   constructor() {
     this.opcionesfiltradas = this.opcionCtrl.valueChanges.pipe(
       startWith(null),
-      map((fruit: string | null) => (fruit ? this._filter(fruit) : this.opciones.slice())),
+      map((val: string | null) => (val ? this._filter(val) : this.opciones.slice())),
     );
   }
 
+  ngOnInit() {
+
+  }
   add(event: MatChipInputEvent): void {
     const value = (event.value || '').trim();
 
@@ -59,6 +63,6 @@ export class ChipsComponent {
   private _filter(value: string): string[] {
     const filterValue = value.toLowerCase();
 
-    return this.opciones.filter(fruit => fruit.toLowerCase().includes(filterValue));
+    return this.opciones.filter(opcion => opcion.toLowerCase().includes(filterValue));
   }
 }

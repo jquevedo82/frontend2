@@ -12,10 +12,13 @@
               </button>
             </mat-chip>
           </mat-chip-list>
-          <input placeholder="Nueva Promo..." #opcionInput [formControl]="opcionCtrl" [matChipInputFor]="chipGrid"
-            [matAutocomplete]="auto" />
-          <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
-            <mat-option *ngFor="let opcion of opcionesfiltradas | async" [value]="opcion">
+          <input placeholder="Nueva Promo..." 
+                 #opcionInput 
+                 [formControl]="opcionCtrl" 
+                 [matChipInputFor]="chipGrid"
+                 [matAutocomplete]="auto" />
+          <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)" >
+            <mat-option *ngFor="let opcion of opcionesfiltradas | async" [value]="opcion" >
               {{ opcion }}
             </mat-option>
           </mat-autocomplete>

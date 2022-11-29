@@ -30,7 +30,8 @@ import { UsuarioComponent } from './usuario/usuario.component';
     RouterModule,
     SharedModule,
     MaterialModule,
-    ComponentesModule
+    ComponentesModule,
+    
   ],
   exports: [
     DashboardComponent,
@@ -38,7 +39,6 @@ import { UsuarioComponent } from './usuario/usuario.component';
     PagesComponent,
     ProductosComponent,
     FacturasComponent,
-  
     
   ]
 })

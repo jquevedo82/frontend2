@@ -1,3 +1,6 @@
-.example-chip-list {
+.example-chip {
     width: 100%;
   }
+  .cdk-global-overlay-wrapper, .cdk-overlay-container {
+    z-index: 10000 !important;
+    }

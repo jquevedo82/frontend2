@@ -8,6 +8,7 @@ import { ClienteRoutingModule } from './cliente-routing.module';
 import { FormsModule } from '@angular/forms';
 import { ComponentesModule } from 'src/app/componentes/componentes.module';
 import { MaterialModule } from 'src/app/material/material.module';
+import { BusquedaComponent } from '../../componentes/busqueda/busqueda.component';
 
 
 
@@ -17,13 +18,17 @@ import { MaterialModule } from 'src/app/material/material.module';
     NuevoClienteComponent,
     EditarClienteComponent,
     DetalleClienteComponent,
+    
   ],
   imports: [
     CommonModule,
     ClienteRoutingModule,
     FormsModule,
     ComponentesModule,
-    MaterialModule
+    MaterialModule,
+  ],
+  exports: [
+    
   ]
 })
 export class ClienteModule { }

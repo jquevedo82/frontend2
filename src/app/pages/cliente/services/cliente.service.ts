@@ -10,6 +10,8 @@ import { environment } from 'src/environments/environment';
 export class ClienteService {
 
   clienteURL= environment.clienteURL;
+  private API_URL2: string = 'https://www.omdbapi.com/?i=tt3896198&apikey=3ea2d6cd&';
+  private API_URL: string = 'http://www.omdbapi.com/?apikey=3ea2d6cd';
 
   constructor(private httpClient: HttpClient) { }
 
@@ -33,4 +35,9 @@ export class ClienteService {
   public delete(id: number): Observable<any> {
     return this.httpClient.delete<any>(`${this.clienteURL}${id}`);
   }
+
+  public peliculas(search: string):Observable<any> {
+    return this.httpClient.get(`${this.API_URL}&s=${search}`);
+  }
+
 }
