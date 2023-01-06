@@ -10,9 +10,10 @@ import { interceptorProviders } from './interceptor/cliente.interceptor';
 import { MaterialModule } from './material/material.module';
 import { NopageFoundComponent } from './nopage-found/nopage-found.component';
 import { PagesModule } from './pages/pages.module';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {FormsModule} from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ComponentesModule } from './componentes/componentes.module';
+import { FilterPipe } from './pipes/filter.pipe';
 
 @NgModule({
   declarations: [AppComponent, NopageFoundComponent],
@@ -26,7 +27,8 @@ import { ComponentesModule } from './componentes/componentes.module';
     MaterialModule,
     BrowserAnimationsModule,
     FormsModule, 
-    ComponentesModule
+    ComponentesModule,
+    
   ],
   exports: [HttpClientModule,MaterialModule,FormsModule],
   providers: [interceptorProviders],
