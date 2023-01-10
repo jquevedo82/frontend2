@@ -6,6 +6,7 @@ import { BusquedaComponent } from '../../componentes/busqueda/busqueda.component
 
 @NgModule({
   declarations: [
+    
   ],
   imports: [
     CommonModule,
