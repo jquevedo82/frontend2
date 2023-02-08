@@ -8,7 +8,9 @@ import { BusquedaClienteComponent } from './busqueda-cliente2/busqueda-cliente2.
 import { FilterPipe } from '../pipes/filter.pipe';
 import { FormsModule } from '@angular/forms';
 import { PaginadorMaterialComponent } from './paginador-material/paginador-material.component';
-import { TablaMaterialComponent } from './tabla-material/tabla-material.component';
+import { TablaMaterialComponent } from './tabla/tabla-material/tabla-material.component';
+import { ColumnValuePipe } from './tabla/pipes/column-value.pipe';
+import { TablaSeleccionComponent } from './tabla/tabla-seleccion/tabla-seleccion.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +20,9 @@ import { TablaMaterialComponent } from './tabla-material/tabla-material.componen
     BusquedaClienteComponent,
     FilterPipe,
     PaginadorMaterialComponent,
-    TablaMaterialComponent
+    TablaMaterialComponent,
+    ColumnValuePipe,
+    TablaSeleccionComponent
   ],
   imports: [
     CommonModule,
@@ -32,7 +36,10 @@ import { TablaMaterialComponent } from './tabla-material/tabla-material.componen
     BusquedaComponent,
     BusquedaClienteComponent,
     FilterPipe,
-    PaginadorMaterialComponent
+    PaginadorMaterialComponent,
+    TablaMaterialComponent,
+    TablaSeleccionComponent
+    //ColumnValuePipe
   ]
 })
 export class ComponentesModule { }

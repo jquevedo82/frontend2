@@ -1,0 +1,33 @@
+
+<!-- <DIV>
+  <ul>
+    <li *ngFor="let item of data$ | filtro:filtrado:page">
+      <span>
+        {{ item.denominacion }} |
+        {{ item.entidad }}|
+        {{ item.codigo }}
+      </span>
+    </li>
+  </ul>
+</DIV> -->
+<table mat-table #table [dataSource]="data$ | filtro:filtrado:page">
+
+    <ng-container *ngFor="let column of tableColumns" [matColumnDef]="column.def">
+        <th mat-header-cell *matHeaderCellDef>{{ column.label }}</th>
+        <td mat-cell *matCellDef="let row"> {{ row | columnValue: column }} </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="tableDisplayColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: tableDisplayColumns"></tr>
+</table>
+<button class="btn btn-primary" (click)="previusPage()"
+[disabled]="page === 0">
+  Previus
+</button>
+<button class="btn btn-primary" 
+    (click)="nextPage()" 
+    [disabled]="((data$ | filtro:filtrado:page).length <= 13)">
+  Next
+</button>
+<input type="text" [value]="(data$ | filtro:filtrado:page).length">
+{{filtrado}}

@@ -14,6 +14,7 @@ import {FormsModule} from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ComponentesModule } from './componentes/componentes.module';
 import { FilterPipe } from './pipes/filter.pipe';
+import { ColumnValuePipe } from './componentes/tabla/pipes/column-value.pipe';
 
 @NgModule({
   declarations: [AppComponent, NopageFoundComponent],

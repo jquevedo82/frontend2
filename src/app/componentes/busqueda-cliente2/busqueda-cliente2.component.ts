@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl } from '@angular/forms';
-import { debounceTime, map, Observable, startWith } from 'rxjs';
-import { Operadores } from 'src/app/models/operadores';
+
 import { ClienteService } from 'src/app/pages/cliente/services/cliente.service';
+import { TableConfig } from '../tabla/models/table-configs';
 
 @Component({
   selector: 'app-busqueda-cliente',
@@ -11,34 +10,50 @@ import { ClienteService } from 'src/app/pages/cliente/services/cliente.service';
 })
 //62ae3252 key
 export class BusquedaClienteComponent implements OnInit {
-  title = 'Buscador de Cliente';
+  /*title = 'Buscador de Cliente';
   clientes: string[] = [
     'Jose Quevedo', 'Pedro Juan', 'Juan Somoza', 'Facundo Pisani', 'Sergio Flores', 'Oscar Dominguez'
-  ];
+  ];*/
   
 
-  control = new FormControl('');
-  filClientes!: Observable<string[]>;
+  //control = new FormControl('');
+  //filClientes!: Observable<string[]>;
 
-  public data$: Operadores[] = [];
-  public page: number = 0;
+  //public data$: Operadores[] = [];
+ // public page: number = 0;
 
 
   filtrado = '';
-  //public data$: any;
+  public data$: any=[];
+  tableColumns : any = [];
+  tableConfig : TableConfig = {
+    isSelectable: true
+  };
   //public operadores : Operadores[] = [];
 
   constructor(private clienteService: ClienteService) { }
 
   ngOnInit(): void {
-    this.filClientes = this.control.valueChanges.pipe(
+   /* this.filClientes = this.control.valueChanges.pipe(
       debounceTime(500),
       startWith(''),
       map( valor  => this._filter(valor!))
     );
-    this.getMovies('');
+    this.getMovies('');*/
+    this.setTableColumns();
   }
-
+  setTableColumns(){
+    this.tableColumns =[
+      {label:'Denominacion', def:'denominacion', dataKey:'denominacion'},
+      {label:'Entidad', def:'entidad', dataKey:'entidad'},
+      {label:'Codigo', def:'codigo', dataKey:'codigo'/*,dataType:'date',formatt:'dd MM yyyy'*/},
+      {label:'Domicilio', def:'domicilio', dataKey:'domicilio'},
+    ]
+  }
+  onSelect(data: any){
+    console.log(data);
+  }
+/*
   private _filter(val: string): string[]{
     const formatVal = val.toLocaleLowerCase();
     
@@ -47,8 +62,9 @@ export class BusquedaClienteComponent implements OnInit {
     return this.clientes.filter( cliente => cliente.toLocaleLowerCase().indexOf(formatVal) === 0);
 
   }
+  */
   getMovies(search: string){
-    this.page=0;
+    //this.page=0;
     if(search.length < 3)return;
     this.clienteService.lista2(search.toUpperCase())
     /*.pipe(
@@ -67,12 +83,12 @@ export class BusquedaClienteComponent implements OnInit {
       }
     )
   }
-
+/*
   nextPage(){
     this.page+=15;
   }
   previusPage(){
     if(this.page > 0)
       this.page-=15;
-  }
+  }*/
 }

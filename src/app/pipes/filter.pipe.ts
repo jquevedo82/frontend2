@@ -1,12 +1,11 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { Operadores } from '../models/operadores';
 
 @Pipe({
   name: 'filtro',
 })
 export class FilterPipe implements PipeTransform {
-  transform(operador: Operadores[], arg: string = '', page: number = 0): Operadores[] {
-      let resultado: Operadores[] = [];
+  transform(operador: any[], arg: string = '', page: number = 0): any[] {
+      let resultado: any[] = [];
 
     if (arg === '' || arg.length < 3)return operador.slice(page, page + 15);
 
