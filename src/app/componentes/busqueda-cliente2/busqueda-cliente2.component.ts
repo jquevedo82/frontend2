@@ -14,7 +14,7 @@ export class BusquedaClienteComponent implements OnInit {
   clientes: string[] = [
     'Jose Quevedo', 'Pedro Juan', 'Juan Somoza', 'Facundo Pisani', 'Sergio Flores', 'Oscar Dominguez'
   ];*/
-  
+
 
   //control = new FormControl('');
   //filClientes!: Observable<string[]>;
@@ -56,8 +56,8 @@ export class BusquedaClienteComponent implements OnInit {
 /*
   private _filter(val: string): string[]{
     const formatVal = val.toLocaleLowerCase();
-    
-    
+
+
 
     return this.clientes.filter( cliente => cliente.toLocaleLowerCase().indexOf(formatVal) === 0);
 
@@ -66,18 +66,19 @@ export class BusquedaClienteComponent implements OnInit {
   getMovies(search: string){
     //this.page=0;
     if(search.length < 3)return;
+
     this.clienteService.lista2(search.toUpperCase())
     /*.pipe(
       debounceTime(500),
      // startWith(''),
      //map(valor => valor)
-      
-    );    
+
+    );
     */
 
     .subscribe(
       data => {
-        //console.log(data);
+        console.log(data);
         this.data$=data;
         //this.filClientes = this.clientes.filter( data => data.toLocaleLowerCase());
       }

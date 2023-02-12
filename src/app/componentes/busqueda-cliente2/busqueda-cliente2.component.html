@@ -16,7 +16,7 @@
         <button (click)="getMovies(search.value)">hola</button>
     </mat-form-field>-->
 <input type="text" class="form-control" name="filtrado" [(ngModel)]="filtrado" (ngModelChange)="getMovies($event) ">
-<!-- 
+<!--
 <DIV>
   <ul>
     <li *ngFor="let item of data$ | filtro:filtrado:page">
@@ -32,13 +32,13 @@
 [disabled]="page === 0">
   Previus
 </button>
-<button class="btn btn-primary" 
-    (click)="nextPage()" 
+<button class="btn btn-primary"
+    (click)="nextPage()"
     [disabled]="((data$ | filtro:filtrado:page).length <= 13)">
   Next
 </button>
 <input type="text" [value]="(data$ | filtro:filtrado:page).length">
 -->
-<app-tabla-material [data]="data$" [filtradi]="filtrado" [columns]="tableColumns"></app-tabla-material> 
+<!-- <app-tabla-material [data]="data$" [filtradi]="filtrado" [columns]="tableColumns"></app-tabla-material>  -->
 
-<!-- <app-tabla-seleccion [data]="data$" [filtradi]="filtrado" [columns]="tableColumns" [config]="tableConfig" (select)="onSelect($event)"></app-tabla-seleccion>  -->
+<app-tabla-seleccion [data]="data$" [filtradi]="filtrado" [columns]="tableColumns" [config]="tableConfig" (select)="onSelect($event)"></app-tabla-seleccion>

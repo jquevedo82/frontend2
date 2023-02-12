@@ -11,7 +11,7 @@ import { environment } from 'src/environments/environment';
 export class ClienteService {
 
   clienteURL= environment.clienteURL;
-  
+
 
   constructor(private httpClient: HttpClient) { }
 
@@ -37,7 +37,7 @@ export class ClienteService {
   }
 
   public lista2(dato: string): Observable<Operadores[]> {
-    return this.httpClient.get<Operadores[]>(`${this.clienteURL}?dato=${dato}&order=codigo`);
+    return this.httpClient.get<Operadores[]>(`${this.clienteURL}?dato=${dato}&limit=${100}`);
   }
 
 }

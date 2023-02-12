@@ -24,6 +24,7 @@ export class TablaSeleccionComponent implements OnInit {
     this.page=0;
     this.data$ = data;
     this.selection.clear();
+
   }
   @Input() set filtradi(filtrado: any){
     this.filtrado = filtrado;
@@ -33,10 +34,10 @@ export class TablaSeleccionComponent implements OnInit {
     this.tableColumns=columns;
     this.tableDisplayColumns= this.tableColumns.map((col: { def: any; }) => col.def);
 
-  
+
   }
   @Input() set config(config: TableConfig){
-    this.setConfig(config); 
+    this.setConfig(config);
   }
   @Output() select: EventEmitter<any> = new EventEmitter()
 
@@ -48,7 +49,7 @@ export class TablaSeleccionComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    
+
   }
   setConfig(config: TableConfig){
     this.tableConfig = config;
