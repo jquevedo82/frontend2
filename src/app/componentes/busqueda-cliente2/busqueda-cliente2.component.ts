@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { ClienteService } from 'src/app/pages/cliente/services/cliente.service';
+import { TableColumn } from '../tabla/models/table-column';
 import { TableConfig } from '../tabla/models/table-configs';
 
 @Component({
@@ -24,10 +25,14 @@ export class BusquedaClienteComponent implements OnInit {
 
 
   filtrado = '';
+
   public data$: any=[];
-  tableColumns : any = [];
+
+  tableColumns : TableColumn[] = [];
+
   tableConfig : TableConfig = {
-    isSelectable: true
+    isSelectable: true,
+    optionsPag: [5,10,20],
   };
   //public operadores : Operadores[] = [];
 
@@ -44,13 +49,14 @@ export class BusquedaClienteComponent implements OnInit {
   }
   setTableColumns(){
     this.tableColumns =[
-      {label:'Denominacion', def:'denominacion', dataKey:'denominacion'},
-      {label:'Entidad', def:'entidad', dataKey:'entidad'},
-      {label:'Codigo', def:'codigo', dataKey:'codigo'/*,dataType:'date',formatt:'dd MM yyyy'*/},
-      {label:'Domicilio', def:'domicilio', dataKey:'domicilio'},
+      {label:'denominacion', def:'denominacion', dataKey:'denominacion'},
+      {label:'entidad', def:'entidad', dataKey:'entidad'},
+      {label:'codigo', def:'codigo', dataKey:'codigo'/*,dataType:'date',formatt:'dd MM yyyy'*/},
+      {label:'domicilio', def:'domicilio', dataKey:'domicilio' },
+      //{label:'domicilio', def:'domicilio', dataKey:'domicilio.name' , dataType:'object'},
     ]
   }
-  onSelect(data: any){
+ onSelect(data: any){
     console.log(data);
   }
 /*
@@ -65,7 +71,7 @@ export class BusquedaClienteComponent implements OnInit {
   */
   getMovies(search: string){
     //this.page=0;
-    if(search.length < 3)return;
+    if(search.length < 3){ return;}
 
     this.clienteService.lista2(search.toUpperCase())
     /*.pipe(
@@ -78,7 +84,7 @@ export class BusquedaClienteComponent implements OnInit {
 
     .subscribe(
       data => {
-        console.log(data);
+        //console.log(data);
         this.data$=data;
         //this.filClientes = this.clientes.filter( data => data.toLocaleLowerCase());
       }

@@ -1,5 +1,8 @@
 import { SelectionModel } from '@angular/cdk/collections';
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { AfterViewInit, Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatTableDataSource } from '@angular/material/table';
+import { TableColumn } from '../models/table-column';
 import { TableConfig } from '../models/table-configs';
 
 @Component({
@@ -7,39 +10,54 @@ import { TableConfig } from '../models/table-configs';
   templateUrl: './tabla-seleccion.component.html',
   styleUrls: ['./tabla-seleccion.component.css']
 })
-export class TablaSeleccionComponent implements OnInit {
+export class TablaSeleccionComponent implements OnInit, AfterViewInit {
 
-  public data$: any = [];
-  public page: number = 0;
+
+  public dataSource: MatTableDataSource<Array<any>> = new MatTableDataSource();
+  //public data$: any = [];
   tableDisplayColumns: string[] =[];
 
-  tableColumns: any=[];
+  public page: number = 0;
+
+  //tableColumns: any=[];
+  tableColumns: TableColumn[] = [];
+
   selection = new SelectionModel<any>(true, []);
 
   tableConfig: TableConfig | undefined;
 
   filtrado = '';
 
-  @Input() set data(data: any){
-    this.page=0;
-    this.data$ = data;
-    this.selection.clear();
+  options=[5,10,20];
 
+  @Input() set data(data: Array<any>){
+    //this.data$ = data;
+    this.dataSource.data = (data);
+    this.selection.clear();
   }
+
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+
+
   @Input() set filtradi(filtrado: any){
     this.filtrado = filtrado;
   }
-  @Input() set columns(columns: any){
+
+  @Input() set paginado(options: any){
+    this.options = options;
+  }
+
+  @Input() set columns(columns: TableColumn[]){
     //alert(columns);
     this.tableColumns=columns;
     this.tableDisplayColumns= this.tableColumns.map((col: { def: any; }) => col.def);
-
 
   }
   @Input() set config(config: TableConfig){
     this.setConfig(config);
   }
   @Output() select: EventEmitter<any> = new EventEmitter()
+
 
 
   constructor() { }
@@ -49,25 +67,26 @@ export class TablaSeleccionComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
+    
   }
+
+  ngAfterViewInit() {
+    this.dataSource.paginator = this.paginator;
+  }
+
   setConfig(config: TableConfig){
     this.tableConfig = config;
+    this.options=this.tableConfig.optionsPag;
     if(this.tableConfig.isSelectable){
       this.tableDisplayColumns.unshift('select');
     }
   }
-  nextPage(){
-    this.page+=15;
-  }
-  previusPage(){
-    if(this.page > 0)
-      this.page-=15;
-  }
+
   /** Whether the number of selected elements matches the total number of rows. */
   isAllSelected() {
     const numSelected = this.selection.selected.length;
-    const numRows = this.data$.length;
+    //const numRows = this.data$.length;
+    const numRows = this.dataSource.data.length;
     return numSelected === numRows;
   }
 
@@ -80,7 +99,7 @@ export class TablaSeleccionComponent implements OnInit {
       return;
     }
 
-    this.selection.select(...this.data$);
+    this.selection.select(...this.dataSource.data);
     this.onSelect();
   }
 

@@ -37,7 +37,7 @@ export class ClienteService {
   }
 
   public lista2(dato: string): Observable<Operadores[]> {
-    return this.httpClient.get<Operadores[]>(`${this.clienteURL}?dato=${dato}&limit=${100}`);
+    return this.httpClient.get<Operadores[]>(`${this.clienteURL}?dato=${dato}&limit=${1000}`);
   }
 
 }

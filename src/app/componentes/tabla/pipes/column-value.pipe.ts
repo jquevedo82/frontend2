@@ -15,6 +15,19 @@ export class ColumnValuePipe implements PipeTransform {
             column.formatt
           );
         break;
+      case 'object':
+          const arrayKeys = column.dataKey.split('.')
+          let currentValue: any
+
+          arrayKeys.forEach((key: string)=>{
+            if(currentValue === undefined){
+              currentValue= row[key]
+              return 
+            }
+            currentValue = currentValue[key]
+          });
+          displayValue = currentValue;
+        break;
       default:
         break;
     }

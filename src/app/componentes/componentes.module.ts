@@ -22,7 +22,8 @@ import { TablaSeleccionComponent } from './tabla/tabla-seleccion/tabla-seleccion
     PaginadorMaterialComponent,
     TablaMaterialComponent,
     ColumnValuePipe,
-    TablaSeleccionComponent
+    TablaSeleccionComponent,
+    
   ],
   imports: [
     CommonModule,
@@ -38,8 +39,8 @@ import { TablaSeleccionComponent } from './tabla/tabla-seleccion/tabla-seleccion
     FilterPipe,
     PaginadorMaterialComponent,
     TablaMaterialComponent,
-    TablaSeleccionComponent
-    //ColumnValuePipe
+    TablaSeleccionComponent,
+    
   ]
 })
 export class ComponentesModule { }
