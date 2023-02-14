@@ -9,33 +9,53 @@
     </li>
   </ul>
 </DIV> -->
-<!-- <table mat-table #table [dataSource]="dataSource | filtro:filtrado:page"> -->
-<table mat-table #table [dataSource]="dataSource">
-  <!-- Checkbox Column -->
-  <ng-container matColumnDef="select">
-    <th mat-header-cell *matHeaderCellDef>
-      <mat-checkbox (change)="$event ? toggleAllRows() : null" [checked]="selection.hasValue() && isAllSelected()"
-        [indeterminate]="selection.hasValue() && !isAllSelected()" [aria-label]="checkboxLabel()">
-      </mat-checkbox>
-    </th>
-    <td mat-cell *matCellDef="let row">
-      <mat-checkbox (click)="$event.stopPropagation()" (change)="$event ? selection.toggle(row) : null; onSelect()"
-        [checked]="selection.isSelected(row)" [aria-label]="checkboxLabel(row)">
-      </mat-checkbox>
-    </td>
-  </ng-container>
-  <ng-container *ngFor="let column of tableColumns" [matColumnDef]="column.def">
-    <th mat-header-cell *matHeaderCellDef>{{ column.label }}</th>
-    <td mat-cell *matCellDef="let row"> {{ row | columnValue: column }} </td>
-  </ng-container>
+<div class="mat-elevation-z8">
+  <!-- <table mat-table #table [dataSource]="dataSource | filtro:filtrado:page"> -->
+  <table mat-table #table [dataSource]="dataSource" matSort>
+    <!-- Checkbox Column -->
+    <ng-container matColumnDef="select">
+      <th mat-header-cell *matHeaderCellDef width="10%">
+        <mat-checkbox (change)="$event ? toggleAllRows() : null" [checked]="selection.hasValue() && isAllSelected()"
+          [indeterminate]="selection.hasValue() && !isAllSelected()" [aria-label]="checkboxLabel()">
+        </mat-checkbox>
+      </th>
+      <td mat-cell *matCellDef="let row">
+        <mat-checkbox (click)="$event.stopPropagation()" (change)="$event ? selection.toggle(row) : null; onSelect()"
+          [checked]="selection.isSelected(row)" [aria-label]="checkboxLabel(row)">
+        </mat-checkbox>
+      </td>
+    </ng-container>
+    <ng-container *ngFor="let column of tableColumns" [matColumnDef]="column.def">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ column.label }}</th>
+      <td mat-cell *matCellDef="let row"> {{ row | columnValue: column }} </td>
+    </ng-container>
 
-  <tr mat-header-row *matHeaderRowDef="tableDisplayColumns"></tr>
-  <tr mat-row *matRowDef="let row; columns: tableDisplayColumns"></tr>
-</table>
-<mat-paginator [pageSizeOptions]="options" 
-    showFirstLastButtons aria-label="Select page of clients">
-</mat-paginator>
-<!-- 
+    <tr mat-header-row *matHeaderRowDef="tableDisplayColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: tableDisplayColumns"></tr>
+
+    <ng-container matColumnDef="acciones"> 
+      <th mat-header-cell *matHeaderCellDef></th>
+      <td mat-cell *matCellDef="let row">
+        <a class="pointer" style="color: #1878b0" matTooltip="Ver">
+          <mat-icon>search</mat-icon>
+        </a>
+        <a class="pointer" style="color: #1f516f" matTooltip="Editar">
+          <mat-icon>edit</mat-icon>
+        </a>
+        <a class="pointer" style="color: #e195e1" (click)="eliminarUsuario(row)" matTooltip="Eliminar">
+          <mat-icon>delete</mat-icon>
+        </a>
+      </td>
+    </ng-container>
+
+    <tr class="mat-row" *matNoDataRow>
+      <td class="mat-cell" colspan="6" align="center">No data matching the filter </td>
+    </tr>
+
+  </table>
+  <mat-paginator [pageSizeOptions]="options" showFirstLastButtons aria-label="Select page of clients">
+  </mat-paginator>
+  <!-- 
 <button class="btn btn-primary" (click)="previusPage()"
 [disabled]="page === 0">
   Previus
@@ -47,3 +67,4 @@
 </button>
 <input type="text" [value]="(data$ | filtro:filtrado:page).length">
 {{ filtrado }} -->
+</div>

@@ -4,11 +4,12 @@
 
 export const environment = {
   production: false,
-  clienteURL: 'http://localhost:8081/cliente/',
-  authURL: 'http://localhost:8081/auth/',
-  //clienteURL: 'http://192.168.0.123:8081/cliente',
- // authURL: 'http://192.168.0.123:8081/auth/',
-  usuURL: 'http://192.168.0.123:8081/usuario/'
+  //clienteURL: 'http://localhost:8081/cliente/',
+  //authURL: 'http://localhost:8081/auth/',
+  clienteURL: 'http://192.168.0.123:8081/cliente',
+  authURL: 'http://192.168.0.123:8081/auth/',
+  usuURL: 'http://192.168.0.123:8081/usuario/',
+  busquedaURL: 'http://192.168.0.123:8081/busqueda/'
 };
 
 /*

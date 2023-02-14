@@ -1,6 +1,7 @@
 import { SelectionModel } from '@angular/cdk/collections';
 import { AfterViewInit, Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { TableColumn } from '../models/table-column';
 import { TableConfig } from '../models/table-configs';
@@ -37,7 +38,7 @@ export class TablaSeleccionComponent implements OnInit, AfterViewInit {
   }
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
-
+  @ViewChild(MatSort) sort!: MatSort;
 
   @Input() set filtradi(filtrado: any){
     this.filtrado = filtrado;
@@ -58,7 +59,7 @@ export class TablaSeleccionComponent implements OnInit, AfterViewInit {
   }
   @Output() select: EventEmitter<any> = new EventEmitter()
 
-
+  @Output() borrar: EventEmitter<any> = new EventEmitter()
 
   constructor() { }
 
@@ -72,11 +73,13 @@ export class TablaSeleccionComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
   }
 
   setConfig(config: TableConfig){
     this.tableConfig = config;
     this.options=this.tableConfig.optionsPag;
+    this.tableDisplayColumns.push('acciones')
     if(this.tableConfig.isSelectable){
       this.tableDisplayColumns.unshift('select');
     }
@@ -109,5 +112,9 @@ export class TablaSeleccionComponent implements OnInit, AfterViewInit {
       return `${this.isAllSelected() ? 'deselect' : 'select'} all`;
     }
     return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.position + 1}`;
+  }
+
+  eliminarUsuario(row?: any){
+    this.select.emit(row)
   }
 }
