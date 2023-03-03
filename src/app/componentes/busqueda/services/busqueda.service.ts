@@ -15,10 +15,10 @@ export class BusquedaService {
 
   constructor(private httpClient: HttpClient) {}
 
-  public lista(datos: any) : Observable<any>  {
-    const { tabla, busca, id, busca2, id2, limit } = datos;
-    if(tabla==='cliente'){
-
+  public lista(dato: string,tabla: string) : Observable<any>  {
+    //const { tabla, busca, id, busca2, id2, limit } = datos;
+    if(tabla==='clientes'){
+      return this.httpClient.get<any>(`${this.clienteURL}?dato=${dato}`);
     }
     if(tabla==='articulos'){
       
@@ -26,10 +26,12 @@ export class BusquedaService {
     if(tabla==='facturas'){
       
     }
-    console.log(`${this.busquedaURL}?dato=${busca}`);
-    return this.httpClient.get<any>(`${this.busquedaURL}?dato=${busca}`);
+    //console.log(`${this.busquedaURL}?dato=${busca}`);
+    return this.httpClient.get<any>(`${this.clienteURL}?dato=${dato}undo`);
+   
   }
-  public lista2(dato: string): Observable<Operadores[]> {
-    return this.httpClient.get<Operadores[]>(`${this.clienteURL}?dato=${dato}&limit=${10}`);
+  public lista2(dato: string,tabla: string): Observable<any[]> {
+    
+    return this.httpClient.get<any[]>(`${this.clienteURL}?dato=${dato}&limit=${10}`);
   }
 }

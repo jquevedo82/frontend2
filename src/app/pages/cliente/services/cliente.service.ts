@@ -15,8 +15,8 @@ export class ClienteService {
 
   constructor(private httpClient: HttpClient) { }
 
-  public lista(): Observable<Cliente[]> {
-    return this.httpClient.get<Cliente[]>(`${this.clienteURL}/`);
+  public lista(): Observable<Operadores[]> {
+    return this.httpClient.get<Operadores[]>(`${this.clienteURL}/`);
   }
 
   public detail(id: number): Observable<Cliente> {
@@ -32,7 +32,7 @@ export class ClienteService {
     //return this.httpClient.put<any>(`${this.clienteURL}${id}`, cliente);
   }
 
-  public delete(id: number): Observable<any> {
+  public delete(id: string): Observable<any> {
     return this.httpClient.delete<any>(`${this.clienteURL}/${id}`);
   }
 

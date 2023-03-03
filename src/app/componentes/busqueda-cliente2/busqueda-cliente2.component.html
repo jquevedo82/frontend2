@@ -1,45 +1,4 @@
-<!--    <mat-form-field>
-        <mat-label>
-            Cliente:
-        </mat-label>
-        <input  type="text"
-                matInput
-                #search
-                [formControl]="control"
-                [matAutocomplete]="auto"
-                (ngModelChange)="getMovies(search.value)">
-        <mat-autocomplete autoActivFirsOption #auto="matAutocomplete">
-            <mat-option *ngFor="let cliente of filClientes | async" [value]="cliente">
-                {{ cliente }}
-            </mat-option>
-        </mat-autocomplete>
-        <button (click)="getMovies(search.value)">hola</button>
-    </mat-form-field>-->
 <input type="text" class="form-control" name="filtrado" [(ngModel)]="filtrado" (ngModelChange)="getMovies($event) ">
-<!--
-<DIV>
-  <ul>
-    <li *ngFor="let item of data$ | filtro:filtrado:page">
-      <span>
-        {{ item.denominacion }} |
-        {{ item.entidad }}|
-        {{ item.codigo }}
-      </span>
-    </li>
-  </ul>
-</DIV>
-<button class="btn btn-primary" (click)="previusPage()"
-[disabled]="page === 0">
-  Previus
-</button>
-<button class="btn btn-primary"
-    (click)="nextPage()"
-    [disabled]="((data$ | filtro:filtrado:page).length <= 13)">
-  Next
-</button>
-<input type="text" [value]="(data$ | filtro:filtrado:page).length">
--->
-<!-- <app-tabla-material [data]="data$" [filtradi]="filtrado" [columns]="tableColumns"></app-tabla-material>  -->
 
-<app-tabla-seleccion [data]="data$" [filtradi]="filtrado" [columns]="tableColumns" [config]="tableConfig" 
+<app-tabla-seleccion [data]="data$"  [columns]="tableColumns" [config]="tableConfig" 
 (select)="onSelect($event)" (borrar)="onSelect($event)"></app-tabla-seleccion>

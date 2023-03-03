@@ -11,6 +11,8 @@ import { PaginadorMaterialComponent } from './paginador-material/paginador-mater
 import { TablaMaterialComponent } from './tabla/tabla-material/tabla-material.component';
 import { ColumnValuePipe } from './tabla/pipes/column-value.pipe';
 import { TablaSeleccionComponent } from './tabla/tabla-seleccion/tabla-seleccion.component';
+import { ModalComponent } from './modal/modal.component';
+import { DialogContentExampleDialog} from './busqueda/busqueda.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +25,8 @@ import { TablaSeleccionComponent } from './tabla/tabla-seleccion/tabla-seleccion
     TablaMaterialComponent,
     ColumnValuePipe,
     TablaSeleccionComponent,
+    ModalComponent,
+    DialogContentExampleDialog,
     
   ],
   imports: [
@@ -40,6 +44,7 @@ import { TablaSeleccionComponent } from './tabla/tabla-seleccion/tabla-seleccion
     PaginadorMaterialComponent,
     TablaMaterialComponent,
     TablaSeleccionComponent,
+    ModalComponent,
     
   ]
 })

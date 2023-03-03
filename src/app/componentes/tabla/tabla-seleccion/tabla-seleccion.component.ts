@@ -6,6 +6,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { TableColumn } from '../models/table-column';
 import { TableConfig } from '../models/table-configs';
 
+
 @Component({
   selector: 'app-tabla-seleccion',
   templateUrl: './tabla-seleccion.component.html',
@@ -27,8 +28,8 @@ export class TablaSeleccionComponent implements OnInit, AfterViewInit {
 
   tableConfig: TableConfig | undefined;
 
-  filtrado = '';
-
+  //filtrado = '';
+  isSeleccion = false;
   options=[5,10,20];
 
   @Input() set data(data: Array<any>){
@@ -40,9 +41,9 @@ export class TablaSeleccionComponent implements OnInit, AfterViewInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  @Input() set filtradi(filtrado: any){
+  /*@Input() set filtradi(filtrado: any){
     this.filtrado = filtrado;
-  }
+  }*/
 
   @Input() set paginado(options: any){
     this.options = options;
@@ -59,12 +60,14 @@ export class TablaSeleccionComponent implements OnInit, AfterViewInit {
   }
   @Output() select: EventEmitter<any> = new EventEmitter()
 
+  @Output() selectv: EventEmitter<any> = new EventEmitter()
+
   @Output() borrar: EventEmitter<any> = new EventEmitter()
 
   constructor() { }
 
   onSelect(){
-    this.select.emit(this.selection.selected)
+    this.selectv.emit(this.selection.selected)
   }
 
   ngOnInit(): void {
@@ -77,9 +80,13 @@ export class TablaSeleccionComponent implements OnInit, AfterViewInit {
   }
 
   setConfig(config: TableConfig){
+    this.isSeleccion=config.isSelectable;
     this.tableConfig = config;
     this.options=this.tableConfig.optionsPag;
-    this.tableDisplayColumns.push('acciones')
+    if(this.tableConfig.isSelecion){
+      this.tableDisplayColumns.push('acciones')
+    }
+    
     if(this.tableConfig.isSelectable){
       this.tableDisplayColumns.unshift('select');
     }
@@ -114,7 +121,7 @@ export class TablaSeleccionComponent implements OnInit, AfterViewInit {
     return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.position + 1}`;
   }
 
-  eliminarUsuario(row?: any){
+  selecionarUsuario(row?: any){
     this.select.emit(row)
   }
 }

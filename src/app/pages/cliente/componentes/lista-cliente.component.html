@@ -14,14 +14,14 @@
     </thead>
     <tbody>
       <tr *ngFor="let cliente of clientes">
-        <td>{{ cliente.id }}</td>
-        <td>{{ cliente.nombre }}</td>
-        <td>{{ cliente.dni }}</td>
-        <td><button class="btn btn-outline-primary" routerLink="/cliente/detalle/{{ cliente.id }}"><i class="far fa-eye"></i>
+        <td>{{ cliente.codigo }}</td>
+        <td>{{ cliente.denominacion }}</td>
+        <td>{{ cliente.cuit }}</td>
+        <td><button class="btn btn-outline-primary" routerLink="/cliente/detalle/{{ cliente.codigo }}"><i class="far fa-eye"></i>
             Ver</button></td>
-        <td *ngIf="isAdmin"><button class="btn btn-outline-warning" routerLink="/cliente/editar/{{ cliente.id }}"><i class="far fa-edit"></i>
+        <td *ngIf="isAdmin"><button class="btn btn-outline-warning" routerLink="/cliente/editar/{{ cliente.codigo }}"><i class="far fa-edit"></i>
             Editar</button></td>
-        <td *ngIf="isAdmin"><button class="btn btn-outline-danger" (click)="borrar(cliente.id)"><i class="far fa-trash-alt"></i>
+        <td *ngIf="isAdmin"><button class="btn btn-outline-danger" (click)="borrar(cliente.codigo)"><i class="far fa-trash-alt"></i>
             Eliminar</button></td>
       </tr>
     </tbody>

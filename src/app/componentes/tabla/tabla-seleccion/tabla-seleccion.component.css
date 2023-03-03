@@ -4,3 +4,13 @@ table {
 .pointer{
     cursor: pointer;
 }
+
+  .mat-row .mat-cell {
+    border-bottom: 1px solid transparent;
+    
+    cursor: pointer;
+  }
+  
+  .mat-row:hover .mat-cell {
+    border-color: currentColor;
+  }

@@ -18,8 +18,11 @@ export class BusquedaClienteComponent implements OnInit {
 
   tableColumns: TableColumn[] = [];
 
+  tabla='clientes';
+
   tableConfig: TableConfig = {
     isSelectable: true,
+    isSelecion: true,
     optionsPag: [5, 10, 20],
   };
 
@@ -52,10 +55,15 @@ export class BusquedaClienteComponent implements OnInit {
     if (search.length < 3) {
       return;
     }
-    //this.busquedaService.lista2(search.toUpperCase());
-      this.clienteService.lista2(search.toUpperCase()).subscribe((data) => {
+    this.busquedaService.lista2(search.toUpperCase(),this.tabla).subscribe((data) => {
       //console.log(data);
       this.data$ = data;
     });
+    //console.log(search.toUpperCase());
+
+      /*this.clienteService.lista2(search.toUpperCase()).subscribe((data) => {
+      //console.log(data);
+      this.data$ = data;
+    });*/
   }
 }

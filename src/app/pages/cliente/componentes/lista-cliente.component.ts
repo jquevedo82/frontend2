@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { Cliente } from 'src/app/models/cliente';
 import { ClienteService } from '../services/cliente.service';
 import { TokenService } from 'src/app/services/token.service';
+import { Operadores } from 'src/app/models/operadores';
 
 @Component({
   selector: 'app-lista-cliente',
@@ -12,7 +13,7 @@ import { TokenService } from 'src/app/services/token.service';
 })
 export class ListaClienteComponent implements OnInit {
 
-  clientes: Cliente[] = [];
+  clientes: Operadores[] = [];
   listaVacia=undefined;
 
   isAdmin: boolean = false;
@@ -52,7 +53,7 @@ export class ListaClienteComponent implements OnInit {
     );
   }
 
-  borrar(id: number): void {
+  borrar(id: string): void {
     const swalWithBootstrapButtons = Swal.mixin({
       customClass: {
         confirmButton: 'btn btn-success',
