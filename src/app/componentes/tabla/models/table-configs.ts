@@ -1,5 +1,5 @@
 export interface TableConfig {
-    isSelectable: boolean;
-    isSelecion: boolean;
+    isSelectable: boolean; // check de seleccionar
+    isSelecion: boolean; // boton selecionar
     optionsPag: number[];
 }

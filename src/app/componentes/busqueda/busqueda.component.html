@@ -11,15 +11,10 @@
               (keyup.F4)="busqueda(filtrado)" (keyup.escape)="limpiar()" > 
               <mat-icon matSuffix>mode_edit</mat-icon>
             </mat-form-field>
-            <mat-form-field class="col-md-4">
-              <mat-label>Nombre</mat-label>
+            <mat-form-field class="col-md-8">
+              <mat-label>Denominacion</mat-label>
               <input matInput type="text" class="form-control" name="nombre" [(ngModel)]="nombre" readonly> 
             </mat-form-field>
-            <mat-form-field class="col-md-4">
-              <mat-label>Codigo</mat-label>
-              <input matInput type="text" class="form-control" name="codigo" [(ngModel)]="codigo" readonly > 
-            </mat-form-field>
-
           </div>
           
         </form>

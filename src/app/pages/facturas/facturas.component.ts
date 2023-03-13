@@ -15,13 +15,14 @@ export class FacturasComponent implements OnInit {
   }
   setTableColumns() {
     this.tableColumns = [
-      { label: 'denominacion', def: 'denominacion', dataKey: 'denominacion' },
-      { label: 'entidad', def: 'entidad', dataKey: 'entidad' },
       {
         label: 'codigo',
         def: 'codigo',
         dataKey: 'codigo' /*,dataType:'date',formatt:'dd MM yyyy'*/,
       },
+      { label: 'denominacion', def: 'denominacion', dataKey: 'denominacion' },
+      { label: 'entidad', def: 'entidad', dataKey: 'entidad' },
+
       { label: 'domicilio', def: 'domicilio', dataKey: 'domicilio' },
       //{label:'domicilio', def:'domicilio', dataKey:'domicilio.name' , dataType:'object'},
     ];

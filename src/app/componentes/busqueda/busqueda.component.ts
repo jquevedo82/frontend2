@@ -50,9 +50,9 @@ export class BusquedaComponent implements OnInit {
     dialogRef.afterClosed().subscribe((result) => {
       console.log(result);
 
-        this.codigo = result.codigo;
+        //this.codigo = result.codigo;
         this.nombre = result.denominacion;
-        this.filtrado = '';
+        this.filtrado = result.codigo;
 
     });
   }
@@ -89,7 +89,7 @@ export class BusquedaComponent implements OnInit {
     if (search.length < 3) {
       return;
     }
-    this.busquedaService.lista2(search.toUpperCase(),this.tabla).subscribe((data) => {
+    this.busquedaService.lista(search.toUpperCase(), this.tabla).subscribe((data) => {
       this.data$ = data;
     });
   }
@@ -114,8 +114,8 @@ export class DialogContentExampleDialog {
   data$ = this.data.datos;
 
   tableConfig: TableConfig = {
-    isSelectable: true,
-    isSelecion: true,
+    isSelectable: false, // check de selecionar 
+    isSelecion: true, // boton seleccionar
     optionsPag: [5, 10, 20],
   };
 

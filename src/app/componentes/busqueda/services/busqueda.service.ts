@@ -16,7 +16,8 @@ export class BusquedaService {
   constructor(private httpClient: HttpClient) {}
 
   public lista(dato: string,tabla: string) : Observable<any>  {
-    //const { tabla, busca, id, busca2, id2, limit } = datos;
+    //const { tabla2, busca, id, busca2, id2, limit } = datos;
+
     if(tabla==='clientes'){
       return this.httpClient.get<any>(`${this.clienteURL}?dato=${dato}`);
     }
@@ -27,7 +28,7 @@ export class BusquedaService {
       
     }
     //console.log(`${this.busquedaURL}?dato=${busca}`);
-    return this.httpClient.get<any>(`${this.clienteURL}?dato=${dato}undo`);
+    return this.httpClient.get<any>(`${this.clienteURL}?dato=${dato}`);
    
   }
   public lista2(dato: string,tabla: string): Observable<any[]> {
