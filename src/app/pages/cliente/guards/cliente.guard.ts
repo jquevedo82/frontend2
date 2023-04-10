@@ -16,6 +16,7 @@ export class ClienteGuard implements CanActivate {
   canActivate( next: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
     const expectedRol = next.data['expectedRol'];
     this.realRol = this.tokenService.isAdmin() ? 'admin' : 'user';
+    
     if(!this.tokenService.isLogged() || expectedRol.indexOf(this.realRol) < 0){
       this.router.navigate(['/login']);
       return false;

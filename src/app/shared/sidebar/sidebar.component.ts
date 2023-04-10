@@ -9,42 +9,39 @@ import { TokenService } from 'src/app/services/token.service';
   styleUrls: ['./sidebar.component.css'],
 })
 export class SidebarComponent implements OnInit {
-
   isLogged: boolean = false;
   isAdmin: boolean = false;
   username: string = '';
-  usuario:  any;
+  usuario: any;
 
-  menuItems?:any[];
+  menuItems?: any[];
 
   constructor(
     private tokenService: TokenService,
     private router: Router,
     private sidebarServices: SidebarService
   ) {
-    this.menuItems=this.sidebarServices.menu;
+    this.menuItems = this.sidebarServices.menu;
     //console.log(this.menuItems);
   }
 
   ngOnInit(): void {
     this.isLogged = this.tokenService.isLogged();
+    if (this.isLogged) {
+      this.isAdmin = this.tokenService.isAdmin();
 
-    this.isAdmin = this.tokenService.isAdmin();
+      this.username = this.tokenService.getUserName();
 
-    this.username = this.tokenService.getUserName();
-    
-   // this.usuario = this.sidebarServices.usuario(this.username);
-    this.sidebarServices.usuario(this.username).subscribe(
-      data => {
-        this.usuario = data;
-        console.log(data);
-      },
-      err => {
-        
-      }
-    );
-//console.log(this.usuario);
-    
+      // this.usuario = this.sidebarServices.usuario(this.username);
+      this.sidebarServices.usuario(this.username).subscribe(
+        (data) => {
+          this.usuario = data;
+          console.log(data);
+        },
+        (err) => {}
+      );
+      //console.log(this.usuario);
+    }
   }
 
   logOut(): void {

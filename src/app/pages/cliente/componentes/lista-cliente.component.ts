@@ -46,8 +46,8 @@ export class ListaClienteComponent implements OnInit {
           this.listaVacia = undefined;
         },
         error: err =>{
-          this.listaVacia = err.error.message;
-          //console.log(err);
+          this.listaVacia = err.error.message[0];
+          console.log(err.error.message[0].sqlMessage);
         }
       }
     );

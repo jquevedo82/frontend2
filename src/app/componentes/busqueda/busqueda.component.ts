@@ -1,4 +1,11 @@
-import { Component, Inject, Input, OnInit } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Inject,
+  Input,
+  OnInit,
+  Output,
+} from '@angular/core';
 import { TableColumn } from '../tabla/models/table-column';
 import { TableConfig } from '../tabla/models/table-configs';
 import { BusquedaService } from './services/busqueda.service';
@@ -18,7 +25,7 @@ export class BusquedaComponent implements OnInit {
   nombre = '';
   codigo = '';
 
-  tabla='clientes';
+  tabla: string = '';
 
   mostrarSwitch: boolean = false;
   tableColumns: TableColumn[] = [];
@@ -36,9 +43,16 @@ export class BusquedaComponent implements OnInit {
     //this.data$ = data;
     this.tableColumns = data;
   }
+  @Input() set tablas(data: any) {
+    //this.data$ = data;
+    this.tabla = data;
+  }
   @Input() set setTabla(data: any) {
     this.tabla = data;
   }
+
+  @Output() registro: EventEmitter<any> = new EventEmitter();
+
   openDialog() {
     const dialogRef = this.dialog.open(DialogContentExampleDialog, {
       data: {
@@ -49,11 +63,12 @@ export class BusquedaComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe((result) => {
       console.log(result);
-
+      if (result != undefined) {
         //this.codigo = result.codigo;
         this.nombre = result.denominacion;
         this.filtrado = result.codigo;
-
+        this.prueba();
+      }
     });
   }
   /* setTableColumns() {
@@ -80,24 +95,34 @@ export class BusquedaComponent implements OnInit {
       return;
     }
 
-    this.busquedaService.lista(search.toUpperCase(),this.tabla).subscribe((data) => {
-      this.data$ = data;
-      this.openDialog();
-    });
+    this.busquedaService
+      .lista(search.toUpperCase(), this.tabla)
+      .subscribe((data) => {
+        this.data$ = data;
+        console.log(data.length);
+
+        this.openDialog();
+      });
   }
   busqueda2(search: string) {
     if (search.length < 3) {
       return;
     }
-    this.busquedaService.lista(search.toUpperCase(), this.tabla).subscribe((data) => {
-      this.data$ = data;
-    });
+    this.busquedaService
+      .lista(search.toUpperCase(), this.tabla)
+      .subscribe((data) => {
+        this.data$ = data;
+      });
   }
 
   limpiar() {
     this.data$ = '';
     this.mostrarSwitch = false;
     this.filtrado = '';
+  }
+
+  prueba() {
+    this.registro.emit(this.nombre);
   }
 }
 
@@ -114,7 +139,7 @@ export class DialogContentExampleDialog {
   data$ = this.data.datos;
 
   tableConfig: TableConfig = {
-    isSelectable: false, // check de selecionar 
+    isSelectable: false, // check de selecionar
     isSelecion: true, // boton seleccionar
     optionsPag: [5, 10, 20],
   };

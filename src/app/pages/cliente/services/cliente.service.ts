@@ -16,6 +16,7 @@ export class ClienteService {
   constructor(private httpClient: HttpClient) { }
 
   public lista(): Observable<Operadores[]> {
+    //console.log(`${this.clienteURL}/`);
     return this.httpClient.get<Operadores[]>(`${this.clienteURL}/`);
   }
 

@@ -13,6 +13,7 @@ import { ColumnValuePipe } from './tabla/pipes/column-value.pipe';
 import { TablaSeleccionComponent } from './tabla/tabla-seleccion/tabla-seleccion.component';
 import { ModalComponent } from './modal/modal.component';
 import { DialogContentExampleDialog} from './busqueda/busqueda.component';
+import { ChipsBdComponent } from './chips-bd/chips-bd.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { DialogContentExampleDialog} from './busqueda/busqueda.component';
     TablaSeleccionComponent,
     ModalComponent,
     DialogContentExampleDialog,
+    ChipsBdComponent,
     
   ],
   imports: [
@@ -45,7 +47,7 @@ import { DialogContentExampleDialog} from './busqueda/busqueda.component';
     TablaMaterialComponent,
     TablaSeleccionComponent,
     ModalComponent,
-    
+    ChipsBdComponent,
   ]
 })
 export class ComponentesModule { }

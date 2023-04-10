@@ -12,17 +12,19 @@ export class BusquedaService {
   articulosURL = environment.clienteURL;
   usuarioURL = environment.usuURL;
   busquedaURL = environment.busquedaURL;
+  empresaURL = environment.empresaURL;
+  sucursalURL = environment.sucursalURL;
 
   constructor(private httpClient: HttpClient) {}
 
   public lista(dato: string,tabla: string) : Observable<any>  {
     //const { tabla2, busca, id, busca2, id2, limit } = datos;
-
-    if(tabla==='clientes'){
-      return this.httpClient.get<any>(`${this.clienteURL}?dato=${dato}`);
+console.log(`${this.empresaURL}${dato}`);
+    if(tabla==='empresas'){
+      return this.httpClient.get<any>(`${this.empresaURL}${dato}`);
     }
-    if(tabla==='articulos'){
-      
+    if(tabla==='sucursales'){
+      return this.httpClient.get<any>(`${this.sucursalURL}${dato}`);
     }
     if(tabla==='facturas'){
       

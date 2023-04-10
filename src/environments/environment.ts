@@ -9,7 +9,9 @@ export const environment = {
   clienteURL: 'http://192.168.0.123:8081/cliente',
   authURL: 'http://192.168.0.123:8081/auth/',
   usuURL: 'http://192.168.0.123:8081/usuario/',
-  busquedaURL: 'http://192.168.0.123:8081/busqueda/'
+  busquedaURL: 'http://192.168.0.123:8081/busqueda/',
+  empresaURL: 'http://192.168.0.123:8081/empresas/',
+  sucursalURL: 'http://192.168.0.123:8081/sucursales/'
 };
 
 /*
