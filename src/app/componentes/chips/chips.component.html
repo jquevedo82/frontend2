@@ -1,20 +1,20 @@
 
   <form>
     <div class="container">
-      <div class="card card-primary card-outline card-outline-tabs">
+      <div class="card card-primary card-outline card-outline-tabs  col-md-3">
         <mat-form-field class="example-chip-list" appearance="fill">
           <mat-label>PROMOCIONES</mat-label>
           <mat-chip-list #chipGrid aria-label="Fruit selection">
             <mat-chip *ngFor="let opcion of opciones_seleccionadas" (removed)="remove(opcion)" >
-              {{ opcion }} 
+              {{ opcion }}
               <button matChipRemove [attr.aria-label]="'remove ' + opcion">
                 <mat-icon>cancel</mat-icon>
               </button>
             </mat-chip>
           </mat-chip-list>
-          <input placeholder="Nueva Promo..." 
-                 #opcionInput 
-                 [formControl]="opcionCtrl" 
+          <input placeholder="Nueva Promo..."
+                 #opcionInput
+                 [formControl]="opcionCtrl"
                  [matChipInputFor]="chipGrid"
                  [matAutocomplete]="auto" />
           <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)" >

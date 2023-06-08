@@ -1,0 +1,23 @@
+<form>
+  <div class="container">
+    <div class="card card-primary card-outline card-outline-tabs  col-md-3">
+      <mat-form-field appearance="fill">
+        <mat-label>Seleccionar</mat-label>
+        <mat-select [formControl]="selectM" [multiple]="mult==1" (selectionChange)="seleccionar(selectM)">
+          <mat-select-trigger *ngIf="mult">
+            {{ selectM.value?.[0] || '' }}
+
+            <span *ngIf="(selectM.value?.length || 0) > 1" class="example-additional-selection">
+              (+{{ (selectM.value?.length || 0) - 1 }}
+              <!-- {{ selectM.value?.length === 2 ? 'other' : 'others' }}) -->
+              {{ 'mas' }})
+            </span>
+
+          </mat-select-trigger>
+          <mat-option *ngFor="let selectM of selectMList" [value]="selectM.denominacion">{{ selectM.denominacion }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </div>
+</form>

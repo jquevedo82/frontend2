@@ -14,6 +14,8 @@ import { TablaSeleccionComponent } from './tabla/tabla-seleccion/tabla-seleccion
 import { ModalComponent } from './modal/modal.component';
 import { DialogContentExampleDialog} from './busqueda/busqueda.component';
 import { ChipsBdComponent } from './chips-bd/chips-bd.component';
+import { SelectMComponent } from './select-m/select-m.component';
+import { FechaComponent } from './fecha/fecha.component';
 
 @NgModule({
   declarations: [
@@ -29,13 +31,15 @@ import { ChipsBdComponent } from './chips-bd/chips-bd.component';
     ModalComponent,
     DialogContentExampleDialog,
     ChipsBdComponent,
-    
+    SelectMComponent,
+    FechaComponent,
+
   ],
   imports: [
     CommonModule,
     MaterialModule,
     FormsModule,
-    
+
   ],
   exports: [
     TabsComponent,
@@ -48,6 +52,8 @@ import { ChipsBdComponent } from './chips-bd/chips-bd.component';
     TablaSeleccionComponent,
     ModalComponent,
     ChipsBdComponent,
+    SelectMComponent,
+    FechaComponent,
   ]
 })
 export class ComponentesModule { }
