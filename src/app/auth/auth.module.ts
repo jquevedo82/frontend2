@@ -13,10 +13,11 @@ import { CommonModule } from '@angular/common';
     RegisterComponent
   ],
   imports: [
+    AuthRoutingModule,
     FormsModule,
     CommonModule,
-    AuthRoutingModule,
-   
+
+
   ],
   providers: []
 })

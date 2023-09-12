@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { __makeTemplateObject } from 'tslib';
 import { TokenService } from '../services/token.service';
 
 @Component({
@@ -14,7 +15,9 @@ export class PagesComponent implements OnInit {
   constructor(private tokenService: TokenService, private router: Router) { }
 
   ngOnInit(): void {
+
     this.isLogged = this.tokenService.isLogged();
+
 
     this.isAdmin = this.tokenService.isAdmin();
   }

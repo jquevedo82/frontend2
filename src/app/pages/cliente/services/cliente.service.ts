@@ -16,12 +16,13 @@ export class ClienteService {
   constructor(private httpClient: HttpClient) { }
 
   public lista(): Observable<Operadores[]> {
-    //console.log(`${this.clienteURL}/`);
+    console.log(`${this.clienteURL}/`);
     return this.httpClient.get<Operadores[]>(`${this.clienteURL}/`);
   }
 
-  public detail(id: number): Observable<Cliente> {
-    return this.httpClient.get<Cliente>(`${this.clienteURL}/${id}`);
+  public detail(id: number): Observable<Operadores> {
+    console.log(`${this.clienteURL}/${id}`);
+    return this.httpClient.get<Operadores>(`${this.clienteURL}/${id}`);
   }
 
   public save(cliente: Cliente): Observable<any> {

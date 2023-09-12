@@ -7,6 +7,7 @@ import { FacturasComponent } from './facturas/facturas.component';
 import { PagesComponent } from './pages.component';
 import { ProductosComponent } from './productos/productos.component';
 import { UsuarioComponent } from './usuario/usuario.component';
+import { ClienteGuard } from './cliente/guards/cliente.guard';
 
 
 const routes: Routes = [
@@ -14,8 +15,8 @@ const routes: Routes = [
   children: [
     {path:'dashboard' , component:DashboardComponent, data:{titulo:'Home',urltitulo:'no'}},
     {path: 'cliente', loadChildren: () => import('../pages/cliente/cliente.module').then( m => m.ClienteModule) },
-    {path:'productos' , component:ProductosComponent, data:{titulo:'Productos',urltitulo:'no'}},
-    {path:'usuarios' , component:UsuarioComponent, data:{titulo:'Usuarios',urltitulo:'no'}},
+    {path:'productos' , component:ProductosComponent,   data: {titulo:'Productos',urltitulo:'no'}},
+    {path:'usuarios' , loadChildren: () => import('../pages/usuario/usuario.module').then( m => m.UsuarioModule) },
     {path:'facturas' , component:FacturasComponent, data:{titulo:'Facturas',urltitulo:'no'}},
   ]
 },
@@ -27,7 +28,7 @@ const routes: Routes = [
 const routes: Routes = [
   { path: 'dashboard', component: PagesComponent},
   { path: 'cliente', loadChildren: () => import('../pages/cliente/cliente.module').then( m => m.ClienteModule) },
-  
+
 ];
 */
 @NgModule({

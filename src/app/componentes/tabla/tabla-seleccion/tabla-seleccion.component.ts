@@ -71,7 +71,7 @@ export class TablaSeleccionComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit(): void {
-    
+
   }
 
   ngAfterViewInit() {
@@ -86,7 +86,7 @@ export class TablaSeleccionComponent implements OnInit, AfterViewInit {
     if(this.tableConfig.isSelecion){
       this.tableDisplayColumns.push('acciones')
     }
-    
+
     if(this.tableConfig.isSelectable){
       this.tableDisplayColumns.unshift('select');
     }
@@ -122,6 +122,7 @@ export class TablaSeleccionComponent implements OnInit, AfterViewInit {
   }
 
   selecionarUsuario(row?: any){
+
     this.select.emit(row)
   }
 }

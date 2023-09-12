@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Cliente } from '../models/cliente';
-import { NuevoUsuarioDto } from '../models/nuevo-usuario.dto';
+import { NuevoUsuarioDto } from '../models/usuarios/nuevo-usuario.dto';
 
 @Injectable({
   providedIn: 'root'
@@ -18,7 +18,17 @@ export class SidebarService {
       {titulo:'Productos',url:'productos',icono:'fa fa-cubes'},
       {titulo:'Usuarios',url:'usuarios',icono:'fa fa-user-circle'},
       {titulo:'Facturas',url:'facturas',icono:'fa fa-calendar-alt'}
-      
+
+    ]
+
+  },
+  {
+    titulo:'Usuario',
+    icono:'nav-icon fas fa-tachometer-alt',
+    submenu:[
+      {titulo:'Agregar',url:'register',icono:'fa fa-users'},
+      {titulo:'Modificar',url:'login',icono:'fa fa-cubes'},
+
     ]
 
   }];

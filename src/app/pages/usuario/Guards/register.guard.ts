@@ -10,18 +10,19 @@ import { TokenService } from 'src/app/services/token.service';
 @Injectable({
   providedIn: 'root',
 })
-export class LoginGuard implements CanActivate {
+export class RegisterGuard implements CanActivate {
   constructor(private tokenService: TokenService, private router: Router) {}
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): boolean {
-    if (this.tokenService.isLogged()) {
-      console.log("esta logiado");
-      this.router.navigate(['/']);
+    if (!this.tokenService.isLogged()) {
+      console.log('guard login');
+      this.router.navigate(['/login']);
       return false;
     }
-console.log("guard login");
+
+    console.log('esta logiado');
     return true;
   }
 }

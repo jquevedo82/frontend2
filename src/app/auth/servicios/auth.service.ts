@@ -2,8 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { LoginUsuarioDto } from '../../models/login-usuario.dto';
-import { NuevoUsuarioDto } from '../../models/nuevo-usuario.dto';
+import { LoginUsuarioDto } from '../../models/usuarios/login-usuario.dto';
+import { NuevoUsuarioDto } from '../../models/usuarios/nuevo-usuario.dto';
 import { TokenDto } from '../../models/token.dto';
 
 @Injectable({
@@ -21,7 +21,7 @@ export class AuthService {
   register(dto: NuevoUsuarioDto): Observable<any> {
     return this.httpcClient.post<any>(this.authURL + 'nuevo',dto);
   }
-  
+
   refresh(dto: TokenDto): Observable<any> {
     return this.httpcClient.post<any>(this.authURL + 'refresh',dto);
   }

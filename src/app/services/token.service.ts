@@ -7,9 +7,13 @@ export class TokenService {
   constructor() {}
   isLogged(): boolean {
     if (this.getToken()) {
+
       return true;
+
     }
+
     return false;
+
   }
 
   setToken(token: string): void {
@@ -22,6 +26,7 @@ export class TokenService {
 
   getUserName(): any {
     if (!this.isLogged()) {
+      console.log("aqui");
       return null;
     }
     const token = this.getToken();

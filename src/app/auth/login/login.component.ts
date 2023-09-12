@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastrService,ToastrModule } from 'ngx-toastr';
-import { LoginUsuarioDto } from 'src/app/models/login-usuario.dto';
+import { LoginUsuarioDto } from 'src/app/models/usuarios/login-usuario.dto';
 import { TokenService } from 'src/app/services/token.service';
 import { AuthService } from '../servicios/auth.service';
 
@@ -23,7 +23,9 @@ export class LoginComponent implements OnInit {
   ) {}
 
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+
+  }
 
   onLogin(): void {
     this.usuario = new LoginUsuarioDto(this.username, this.password);

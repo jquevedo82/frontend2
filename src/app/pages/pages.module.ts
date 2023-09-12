@@ -22,7 +22,7 @@ import { UsuarioComponent } from './usuario/usuario.component';
     ProductosComponent,
     FacturasComponent,
     UsuarioComponent,
-    
+
 
   ],
   imports: [
@@ -31,15 +31,16 @@ import { UsuarioComponent } from './usuario/usuario.component';
     SharedModule,
     MaterialModule,
     ComponentesModule,
-    
+
   ],
   exports: [
     DashboardComponent,
     ClienteComponent,
+    UsuarioComponent,
     PagesComponent,
     ProductosComponent,
     FacturasComponent,
-    
+
   ]
 })
 export class PagesModule { }

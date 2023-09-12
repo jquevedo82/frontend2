@@ -5,19 +5,20 @@ import { DashboardComponent } from '../pages/dashboard/dashboard.component';
 import { PagesComponent } from '../pages/pages.component';
 import { LoginGuard } from './login/guards/login.guard';
 import { LoginComponent } from './login/login.component';
+import { RegisterGuard } from './register/guards/register.guard';
 import { RegisterComponent } from './register/register.component';
 
 const routes: Routes = [
-  
+
   //{ path: 'login', component: LoginComponent},
-  { path: '', component: PagesComponent},
+  { path: '', component: PagesComponent, canActivate: [LoginGuard] },
   { path: 'login', component: LoginComponent, canActivate: [LoginGuard] },
-  { path: 'register', component: RegisterComponent, canActivate: [LoginGuard] },
+  { path: 'register', component: RegisterComponent, canActivate: [RegisterGuard]  },
   { path: '**', redirectTo:'login'},
 ];
 
 
-@NgModule({ 
+@NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })

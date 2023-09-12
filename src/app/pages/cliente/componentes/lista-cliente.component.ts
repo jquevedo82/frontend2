@@ -15,7 +15,18 @@ export class ListaClienteComponent implements OnInit {
 
   clientes: Operadores[] = [];
   listaVacia=undefined;
+  tableColumns = [
+    {
+      label: 'codigo',
+      def: 'codigo',
+      dataKey: 'codigo' /*,dataType:'date',formatt:'dd MM yyyy'*/,
+    },
+    { label: 'denominacion', def: 'denominacion', dataKey: 'denominacion' },
+   // { label: 'entidad', def: 'entidad', dataKey: 'entidad' },
 
+    { label: 'cuit', def: 'cuit', dataKey: 'cuit' },
+    //{label:'domicilio', def:'domicilio', dataKey:'domicilio.name' , dataType:'object'},
+  ];
   isAdmin: boolean = false;
 
   constructor(
@@ -61,7 +72,7 @@ export class ListaClienteComponent implements OnInit {
       },
       buttonsStyling: false
     })
-    
+
     swalWithBootstrapButtons.fire({
       title: '¿Estás Seguro?',
       text: "YNo hay vuelta atras!",
@@ -78,7 +89,7 @@ export class ListaClienteComponent implements OnInit {
           'Cliente Eliminado.',
           'success'
         )
-        
+
       } else if (
         /* Read more about handling dismissals below */
         result.dismiss === Swal.DismissReason.cancel
@@ -92,5 +103,8 @@ export class ListaClienteComponent implements OnInit {
       this.router.navigate(['/cliente/lista']);
     })
   }
+  prueba(data: any){
 
+    console.log(data);
+  }
 }
