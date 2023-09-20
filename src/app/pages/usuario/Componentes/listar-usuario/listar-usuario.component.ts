@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { TableConfig } from 'src/app/componentes/tabla/models/table-configs';
 import { Usuario } from 'src/app/models/usuarios/usuario';
 import { TokenService } from 'src/app/services/token.service';
 import { UsuariosService } from '../../services/usuarios.service';
@@ -12,7 +13,7 @@ import { UsuariosService } from '../../services/usuarios.service';
 export class ListarUsuarioComponent implements OnInit {
   isAdmin: boolean = false;
   usuarios: Usuario[] = [];
-  listaVacia=undefined;
+  listaVacia = undefined;
   tableColumns = [
     {
       label: 'Nombre',
@@ -22,10 +23,16 @@ export class ListarUsuarioComponent implements OnInit {
     { label: 'UserName', def: 'username', dataKey: 'username' },
 
     { label: 'Email', def: 'email', dataKey: 'email' },
-   // { label: 'entidad', def: 'entidad', dataKey: 'entidad' },
+    // { label: 'entidad', def: 'entidad', dataKey: 'entidad' },
 
     //{label:'domicilio', def:'domicilio', dataKey:'domicilio.name' , dataType:'object'},
   ];
+  tableConfig: TableConfig = {
+    isSelectable: false, // check de selecionar
+    isSeleccion: true, // boton seleccionar
+    optionsPag: [5, 10, 20],
+    isSearch: true,
+  };
   constructor(
     private usuarioService: UsuariosService,
     private tokenService: TokenService,
@@ -40,7 +47,7 @@ export class ListarUsuarioComponent implements OnInit {
 
   cargarClientes(): void {
     this.usuarioService.lista().subscribe(
-     /* data => {
+      /* data => {
         this.clientes = data;
         this.listaVacia = undefined;
       },
@@ -49,19 +56,32 @@ export class ListarUsuarioComponent implements OnInit {
         //console.log(err);
       }*/
       {
-        next: data =>{
+        next: (data) => {
           this.usuarios = data;
+          console.log(data);
           this.listaVacia = undefined;
         },
-        error: err =>{
+        error: (err) => {
           this.listaVacia = err.error.message[0];
           console.log(err.error.message[0].sqlMessage);
-        }
+        },
       }
     );
   }
-  prueba(data: any){
-
+  prueba(data: any) {
+    //console.log(data);
+  }
+  onSelect(data: any) {
     console.log(data);
+    if (data.action === 'edit') {
+      console.log("ssss");
+      this.router.navigate(['usuarios/edit', data]);
+  }
+    if (data.action === 'new') this.router.navigate(['usuarios/nuevo']);
+  }
+  onSelect2(data: any) {
+    //alert(data.denominacion);
+    //  console.log(data);
+    //console.log(data);
   }
 }

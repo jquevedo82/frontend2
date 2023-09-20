@@ -1,11 +1,13 @@
 
-<div class="container">
+<mat-dialog-content>
 <!-- <app-busqueda-cliente></app-busqueda-cliente> -->
 <!-- <app-paginador-material></app-paginador-material> -->
 
-<app-busqueda [columnas]="tableColumns2" tablas="cliente"></app-busqueda>
+<!-- <app-busqueda [columnas]="tableColumns2" tablas="cliente"></app-busqueda>
+  -->
+  <app-busqueda [columnas]="tableColumns" tablas="empresas" (registro)="prueba($event)"></app-busqueda>
 
-<app-busqueda [columnas]="tableColumns" tablas="empresas" (registro)="prueba($event)"></app-busqueda>
+<app-busqueda2 [columnas]="tableColumns" setTabla="empresas" (registro)="prueba($event)" [config]="tableConfig" ></app-busqueda2>
 
 
-</div>
+</mat-dialog-content>

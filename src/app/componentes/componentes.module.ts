@@ -4,7 +4,6 @@ import { TabsComponent } from './tabs/tabs.component';
 import { MaterialModule } from '../material/material.module';
 import { ChipsComponent } from './chips/chips.component';
 import { BusquedaComponent } from './busqueda/busqueda.component';
-import { BusquedaClienteComponent } from './busqueda-cliente2/busqueda-cliente2.component';
 import { FilterPipe } from '../pipes/filter.pipe';
 import { FormsModule } from '@angular/forms';
 import { PaginadorMaterialComponent } from './paginador-material/paginador-material.component';
@@ -16,13 +15,13 @@ import { DialogContentExampleDialog} from './busqueda/busqueda.component';
 import { ChipsBdComponent } from './chips-bd/chips-bd.component';
 import { SelectMComponent } from './select-m/select-m.component';
 import { FechaComponent } from './fecha/fecha.component';
+import { Busqueda2Component } from './busqueda2/busqueda2.component';
 
 @NgModule({
   declarations: [
     TabsComponent,
     ChipsComponent,
     BusquedaComponent,
-    BusquedaClienteComponent,
     FilterPipe,
     PaginadorMaterialComponent,
     TablaMaterialComponent,
@@ -33,6 +32,7 @@ import { FechaComponent } from './fecha/fecha.component';
     ChipsBdComponent,
     SelectMComponent,
     FechaComponent,
+    Busqueda2Component,
 
   ],
   imports: [
@@ -45,7 +45,7 @@ import { FechaComponent } from './fecha/fecha.component';
     TabsComponent,
     ChipsComponent,
     BusquedaComponent,
-    BusquedaClienteComponent,
+    Busqueda2Component,
     FilterPipe,
     PaginadorMaterialComponent,
     TablaMaterialComponent,

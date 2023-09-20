@@ -11,7 +11,11 @@ export class UsuariosService {
 
   constructor(private httpClient: HttpClient) {}
   public lista(): Observable<any[]> {
-    console.log(`${this.usuarioURL}/`);
+    console.log(`${this.usuarioURL}`);
     return this.httpClient.get<any[]>(`${this.usuarioURL}`);
+  }
+  public detail(id: number): Observable<any> {
+    console.log(`${this.usuarioURL}${id}`);
+    return this.httpClient.get<any>(`${this.usuarioURL}${id}`);
   }
 }

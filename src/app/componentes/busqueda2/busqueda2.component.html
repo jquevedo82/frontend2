@@ -1,0 +1,21 @@
+
+
+  <div class="container"   *ngIf="tableConfig.isSearch==true">
+    <div class="row mt-0">
+      <div class="col-md-12 mx-auto">
+        <form novalidate #f="ngForm">
+          <div class="form-group ">
+            <mat-form-field class="col-md-2">
+              <mat-label>Nombre/Codigo</mat-label>
+              <input matInput type="text" class="form-control" name="filtrado" [(ngModel)]="filtrado" (keyup.Enter)="busqueda(filtrado)"
+              (keyup.F4)="busqueda(filtrado)" (keyup.escape)="limpiar()" >
+              <mat-icon matSuffix>mode_edit</mat-icon>
+            </mat-form-field>
+          </div>
+
+        </form>
+      </div>
+    </div>
+  </div>
+  <app-tabla-seleccion [data]="data$"  [columns]="tableColumns" [config]="tableConfig"
+  (selectv)="onSelect2($event)" (select)="onSelect($event)"></app-tabla-seleccion>

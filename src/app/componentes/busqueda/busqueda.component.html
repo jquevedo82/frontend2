@@ -1,5 +1,5 @@
 
-    
+
   <div class="container">
     <div class="row mt-5">
       <div class="col-md-12 mx-auto">
@@ -8,21 +8,21 @@
             <mat-form-field class="col-md-2">
               <mat-label>Nombre/Codigo</mat-label>
               <input matInput type="text" class="form-control" name="filtrado" [(ngModel)]="filtrado" (keyup.Enter)="busqueda(filtrado)"
-              (keyup.F4)="busqueda(filtrado)" (keyup.escape)="limpiar()" > 
+              (keyup.F4)="busqueda(filtrado)" (keyup.escape)="limpiar()" >
               <mat-icon matSuffix>mode_edit</mat-icon>
             </mat-form-field>
             <mat-form-field class="col-md-10">
               <mat-label>Denominacion</mat-label>
-              <input matInput type="text" class="form-control" name="nombre" [(ngModel)]="nombre"  readonly> 
+              <input matInput type="text" class="form-control" name="nombre" [(ngModel)]="nombre"  readonly>
             </mat-form-field>
           </div>
-          
+
         </form>
       </div>
     </div>
   </div>
 <!-- <div *ngIf="mostrarSwitch == true">
   <app-tabla-seleccion [data]="data$" [filtradi]="filtrado" [columns]="tableColumns" [config]="tableConfig"
-  (select)="onSelect($event)" (borrar)="onSelect($event)"></app-tabla-seleccion> 
+  (select)="onSelect($event)" (borrar)="onSelect($event)"></app-tabla-seleccion>
   </div> -->
 <!-- <input type="text" class="form-control" name="filtrado" [(ngModel)]="filtrado" (ngModelChange)="busqueda($event) "> -->

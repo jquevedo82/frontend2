@@ -7,13 +7,15 @@ import { ListarUsuarioComponent } from './Componentes/listar-usuario/listar-usua
 import { MaterialModule } from 'src/app/material/material.module';
 import { ComponentesModule } from 'src/app/componentes/componentes.module';
 import { FormsModule } from '@angular/forms';
+import { EditarUsuarioComponent } from './Componentes/editar-usuario/editar-usuario.component';
 
 
 
 @NgModule({
   declarations: [
     NuevoUsuarioComponent,
-    ListarUsuarioComponent
+    ListarUsuarioComponent,
+    EditarUsuarioComponent
   ],
   imports: [
     UsuarioRoutingModule,

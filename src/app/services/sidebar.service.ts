@@ -23,11 +23,10 @@ export class SidebarService {
 
   },
   {
-    titulo:'Usuario',
+    titulo:'Administrador',
     icono:'nav-icon fas fa-tachometer-alt',
     submenu:[
-      {titulo:'Agregar',url:'register',icono:'fa fa-users'},
-      {titulo:'Modificar',url:'login',icono:'fa fa-cubes'},
+      {titulo:'Usuarios',url:'usuarios',icono:'fa fa-users'},
 
     ]
 

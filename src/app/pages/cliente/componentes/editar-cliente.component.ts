@@ -47,7 +47,7 @@ export class EditarClienteComponent implements OnInit {
         this.toastr.error(err.error.message, 'Fail', {
           timeOut: 3000,  positionClass: 'toast-top-center',
         });
-        
+
       }
     );
   }

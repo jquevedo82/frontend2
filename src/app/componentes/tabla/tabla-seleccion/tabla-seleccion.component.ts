@@ -1,23 +1,28 @@
 import { SelectionModel } from '@angular/cdk/collections';
-import { AfterViewInit, Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
+  ViewChild,
+} from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { TableColumn } from '../models/table-column';
 import { TableConfig } from '../models/table-configs';
 
-
 @Component({
   selector: 'app-tabla-seleccion',
   templateUrl: './tabla-seleccion.component.html',
-  styleUrls: ['./tabla-seleccion.component.css']
+  styleUrls: ['./tabla-seleccion.component.css'],
 })
 export class TablaSeleccionComponent implements OnInit, AfterViewInit {
-
-
   public dataSource: MatTableDataSource<Array<any>> = new MatTableDataSource();
   //public data$: any = [];
-  tableDisplayColumns: string[] =[];
+  tableDisplayColumns: string[] = [];
 
   public page: number = 0;
 
@@ -30,11 +35,13 @@ export class TablaSeleccionComponent implements OnInit, AfterViewInit {
 
   //filtrado = '';
   isSeleccion = false;
-  options=[5,10,20];
+  isSelectable = false;
+  options = [5, 10, 20];
+  isSearch = false;
 
-  @Input() set data(data: Array<any>){
+  @Input() set data(data: Array<any>) {
     //this.data$ = data;
-    this.dataSource.data = (data);
+    this.dataSource.data = data;
     this.selection.clear();
   }
 
@@ -45,49 +52,51 @@ export class TablaSeleccionComponent implements OnInit, AfterViewInit {
     this.filtrado = filtrado;
   }*/
 
-  @Input() set paginado(options: any){
+  @Input() set paginado(options: any) {
     this.options = options;
   }
 
-  @Input() set columns(columns: TableColumn[]){
+  @Input() set columns(columns: TableColumn[]) {
     //alert(columns);
-    this.tableColumns=columns;
-    this.tableDisplayColumns= this.tableColumns.map((col: { def: any; }) => col.def);
-
+    this.tableColumns = columns;
+    this.tableDisplayColumns = this.tableColumns.map(
+      (col: { def: any }) => col.def
+    );
   }
-  @Input() set config(config: TableConfig){
+  @Input() set config(config: TableConfig) {
     this.setConfig(config);
   }
-  @Output() select: EventEmitter<any> = new EventEmitter()
+  @Output() select: EventEmitter<any> = new EventEmitter();
 
-  @Output() selectv: EventEmitter<any> = new EventEmitter()
+  @Output() selectv: EventEmitter<any> = new EventEmitter();
 
-  @Output() borrar: EventEmitter<any> = new EventEmitter()
+  @Output() borrar: EventEmitter<any> = new EventEmitter();
 
-  constructor() { }
+  constructor() {}
 
-  onSelect(){
-    this.selectv.emit(this.selection.selected)
+  onSelect() {
+    this.selectv.emit(this.selection.selected);
   }
 
-  ngOnInit(): void {
-
-  }
+  ngOnInit(): void {}
 
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
   }
 
-  setConfig(config: TableConfig){
-    this.isSeleccion=config.isSelectable;
+  setConfig(config: TableConfig) {
+    this.isSeleccion = config.isSeleccion;
+    this.isSelectable = config.isSelectable;
+    this.isSearch = config.isSearch;
     this.tableConfig = config;
-    this.options=this.tableConfig.optionsPag;
-    if(this.tableConfig.isSelecion){
-      this.tableDisplayColumns.push('acciones')
+    this.options = config.optionsPag;
+
+    if (this.isSeleccion) {
+      this.tableDisplayColumns.push('acciones');
     }
 
-    if(this.tableConfig.isSelectable){
+    if (this.tableConfig.isSelectable) {
       this.tableDisplayColumns.unshift('select');
     }
   }
@@ -104,7 +113,7 @@ export class TablaSeleccionComponent implements OnInit, AfterViewInit {
   toggleAllRows() {
     if (this.isAllSelected()) {
       this.selection.clear();
-      this.selection.selected.length=0;
+      this.selection.selected.length = 0;
       this.onSelect();
       return;
     }
@@ -118,11 +127,44 @@ export class TablaSeleccionComponent implements OnInit, AfterViewInit {
     if (!row) {
       return `${this.isAllSelected() ? 'deselect' : 'select'} all`;
     }
-    return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.position + 1}`;
+    return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${
+      row.position + 1
+    }`;
   }
 
-  selecionarUsuario(row?: any){
+  newRow() {
+    var reg = {action:'new'}
 
-    this.select.emit(row)
+    this.select.emit(reg);
+  }
+  editRow(row?: any) {
+
+
+    var reg = {
+      action:'edit',
+      codigo: row
+    }
+    //console.log(row);
+    this.select.emit(reg);
+  }
+  deleteRow(row?: any) {
+
+
+    var reg = {
+      action:'delete',
+      codigo: row
+    }
+   // console.log(row);
+    this.select.emit(reg);
+  }
+  selecionarUsuario(row?: any) {
+    //console.log(row);
+
+    var reg = {
+      action:'ver',
+      codigo: row
+    }
+
+    this.select.emit(reg);
   }
 }

@@ -1,4 +1,4 @@
-<p>listar-usuario works!</p>
 <mat-dialog-content>
-  <app-tabla-seleccion [data]="usuarios"  [columns]="tableColumns" (select)="prueba($event)"></app-tabla-seleccion>
-  </mat-dialog-content>
+  <app-tabla-seleccion [data]="usuarios"  [columns]="tableColumns" [config]="tableConfig"
+  (selectv)="onSelect2($event)" (select)="onSelect($event)"></app-tabla-seleccion>
+</mat-dialog-content>

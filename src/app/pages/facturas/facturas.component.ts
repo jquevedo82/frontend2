@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TableColumn } from 'src/app/componentes/tabla/models/table-column';
+import { TableConfig } from 'src/app/componentes/tabla/models/table-configs';
 
 @Component({
   selector: 'app-facturas',
@@ -42,8 +43,16 @@ export class FacturasComponent implements OnInit {
       //{label:'domicilio', def:'domicilio', dataKey:'domicilio.name' , dataType:'object'},
     ];
   }
+
+  tableConfig: TableConfig = {
+    isSelectable: false, // check de selecionar
+    isSeleccion: true, // boton seleccionar
+    optionsPag: [5, 10, 20],
+    isSearch: true,
+  };
+
   prueba(data: any){
-    this.dato2=data;
-    console.log(this.dato2);
+    console.log("data: ", data);
+
   }
 }

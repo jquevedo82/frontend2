@@ -112,6 +112,7 @@ export class BusquedaComponent implements OnInit {
       .lista(search.toUpperCase(), this.tabla)
       .subscribe((data) => {
         this.data$ = data;
+
       });
   }
 
@@ -140,7 +141,8 @@ export class DialogContentExampleDialog {
 
   tableConfig: TableConfig = {
     isSelectable: false, // check de selecionar
-    isSelecion: true, // boton seleccionar
+    isSeleccion: false, // boton seleccionar
+    isSearch: false,    // edit para search
     optionsPag: [5, 10, 20],
   };
 

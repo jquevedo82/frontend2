@@ -1,4 +1,0 @@
-<input type="text" class="form-control" name="filtrado" [(ngModel)]="filtrado" (ngModelChange)="getMovies($event) ">
-
-<app-tabla-seleccion [data]="data$"  [columns]="tableColumns" [config]="tableConfig" 
-(select)="onSelect($event)" (borrar)="onSelect($event)"></app-tabla-seleccion>

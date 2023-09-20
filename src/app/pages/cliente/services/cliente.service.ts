@@ -6,18 +6,16 @@ import { Operadores } from 'src/app/models/operadores';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ClienteService {
+  clienteURL = environment.clienteURL;
 
-  clienteURL= environment.clienteURL;
+  constructor(private httpClient: HttpClient) {}
 
-
-  constructor(private httpClient: HttpClient) { }
-
-  public lista(): Observable<Operadores[]> {
+  public lista(datos : any): Observable<any> {
     console.log(`${this.clienteURL}/`);
-    return this.httpClient.get<Operadores[]>(`${this.clienteURL}/`);
+    return this.httpClient.get<any>(`${this.clienteURL}/`, { params : datos });
   }
 
   public detail(id: number): Observable<Operadores> {
@@ -39,7 +37,8 @@ export class ClienteService {
   }
 
   public lista2(dato: string): Observable<Operadores[]> {
-    return this.httpClient.get<Operadores[]>(`${this.clienteURL}?dato=${dato}&limit=${100}`);
+    return this.httpClient.get<Operadores[]>(
+      `${this.clienteURL}?dato=${dato}&limit=${100}`
+    );
   }
-
 }

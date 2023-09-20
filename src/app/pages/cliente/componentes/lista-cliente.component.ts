@@ -42,7 +42,11 @@ export class ListaClienteComponent implements OnInit {
   }
 
   cargarClientes(): void {
-    this.clienteService.lista().subscribe(
+    let datos ={
+      'selects': ["codigo","denominacion","cuit"],
+      'limit':5
+    }
+    this.clienteService.lista(null).subscribe(
      /* data => {
         this.clientes = data;
         this.listaVacia = undefined;
@@ -54,6 +58,7 @@ export class ListaClienteComponent implements OnInit {
       {
         next: data =>{
           this.clientes = data;
+          console.log(data);
           this.listaVacia = undefined;
         },
         error: err =>{
