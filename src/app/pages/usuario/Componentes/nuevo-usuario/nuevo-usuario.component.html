@@ -30,6 +30,8 @@
             <mat-form-field class="example-full-width">
               <mat-label>Email</mat-label>
               <input matInput formControlName="email">
+              <mat-error *ngIf="myError('email', 'required')">Email is required</mat-error>
+              <mat-error *ngIf="myError('email', 'email')">Email is Error</mat-error>
             </mat-form-field>
           </td>
         </tr>

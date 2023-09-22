@@ -74,7 +74,6 @@ export class ListarUsuarioComponent implements OnInit {
   onSelect(data: any) {
     console.log(data);
     if (data.action === 'edit') {
-      console.log("ssss");
       this.router.navigate(['usuarios/edit', data]);
   }
     if (data.action === 'new') this.router.navigate(['usuarios/nuevo']);

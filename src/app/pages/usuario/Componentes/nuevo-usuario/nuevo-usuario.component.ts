@@ -34,7 +34,10 @@ export class NuevoUsuarioComponent implements OnInit {
 
     }
   }
-  onVolver() {
+  public myError = (controlName: string, errorName: string) =>{
+    return this.miFormulario.controls[controlName].hasError(errorName);
+    }
+  public onVolver = () => {
     this.router.navigate(['usuarios']);
   }
 }

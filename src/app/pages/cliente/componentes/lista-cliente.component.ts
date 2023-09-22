@@ -5,6 +5,7 @@ import { Cliente } from 'src/app/models/cliente';
 import { ClienteService } from '../services/cliente.service';
 import { TokenService } from 'src/app/services/token.service';
 import { Operadores } from 'src/app/models/operadores';
+import { TableConfig } from 'src/app/componentes/tabla/models/table-configs';
 
 @Component({
   selector: 'app-lista-cliente',
@@ -15,6 +16,12 @@ export class ListaClienteComponent implements OnInit {
 
   clientes: Operadores[] = [];
   listaVacia=undefined;
+  tableConfig: TableConfig = {
+    isSelectable: false, // check de selecionar
+    isSeleccion: true, // boton seleccionar
+    optionsPag: [5, 10, 20],
+    isSearch: true,
+  };
   tableColumns = [
     {
       label: 'codigo',
