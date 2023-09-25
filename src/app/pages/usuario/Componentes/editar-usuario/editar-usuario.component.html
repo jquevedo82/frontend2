@@ -9,12 +9,14 @@
             <mat-form-field class="example-full-width">
               <mat-label>Nombre</mat-label>
               <input matInput formControlName="nombre">
+              <mat-error *ngIf="myError('nombre', 'required')">NOMBRE is required</mat-error>
             </mat-form-field>
           </td>
           <td>
             <mat-form-field class="example-full-width">
-              <mat-label>Apellido</mat-label>
-              <input matInput formControlName="apellido">
+              <mat-label>Denominacion</mat-label>
+              <input matInput formControlName="denominacion">
+              <mat-error *ngIf="myError('denominacion', 'required')">La denominacion is required</mat-error>
             </mat-form-field>
           </td>
         </tr>
@@ -24,12 +26,15 @@
             <mat-form-field class="example-full-width">
               <mat-label>User Name</mat-label>
               <input matInput formControlName="username">
+              <mat-error *ngIf="myError('username', 'required')">USERNAME is required</mat-error>
             </mat-form-field>
           </td>
           <td>
             <mat-form-field class="example-full-width">
               <mat-label>Email</mat-label>
               <input matInput formControlName="email">
+              <mat-error *ngIf="myError('email', 'required')">Email is required</mat-error>
+              <mat-error *ngIf="myError('email', 'email')">Email is Error</mat-error>
             </mat-form-field>
           </td>
         </tr>
@@ -38,16 +43,20 @@
           <td>
             <mat-form-field class="example-full-width">
               <mat-label>Password</mat-label>
-              <input matInput>
+              <input matInput formControlName="password" id="password">
+              <mat-error *ngIf="myError('password', 'required')">password is required</mat-error>
             </mat-form-field>
           </td>
           <td>
             <mat-form-field class="example-full-width">
               <mat-label>Re-Password</mat-label>
-              <input matInput>
+              <input matInput formControlName="confirmarPassword" id="confirmarPassword">
+              <mat-error *ngIf="myError('confirmarPassword', 'required')">confirmarPassword is required</mat-error>
             </mat-form-field>
+
           </td>
         </tr>
+        <mat-error *ngIf="miFormulario.hasError('coincidenciaPassword')">xxxxx</mat-error>
         <tr>
           <td>
             <div class="float-sm-left"><button type="submit"  class="btn btn-primary" >Guardar</button></div>

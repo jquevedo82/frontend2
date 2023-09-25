@@ -28,9 +28,13 @@ export class LoginComponent implements OnInit {
   }
 
   onLogin(): void {
+    console.log(this.username);
+
     this.usuario = new LoginUsuarioDto(this.username, this.password);
+
     this.authService.login(this.usuario).subscribe({
       next: (data) => {
+
         if (!data.token) {
           this.toastrService.error(data.response.message, 'Fail', {
             timeOut: 3000,

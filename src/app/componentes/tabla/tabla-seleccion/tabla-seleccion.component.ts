@@ -139,32 +139,21 @@ export class TablaSeleccionComponent implements OnInit, AfterViewInit {
   }
   editRow(row?: any) {
 
+      row.action='edit';
 
-    var reg = {
-      action:'edit',
-      codigo: row
-    }
-    //console.log(row);
-    this.select.emit(reg);
+
+    this.select.emit(row);
   }
   deleteRow(row?: any) {
 
 
-    var reg = {
-      action:'delete',
-      codigo: row
-    }
+    row.action='delete';
    // console.log(row);
-    this.select.emit(reg);
+    this.select.emit(row);
   }
   selecionarUsuario(row?: any) {
     //console.log(row);
-
-    var reg = {
-      action:'ver',
-      codigo: row
-    }
-
-    this.select.emit(reg);
+    row.action='ver';
+    this.select.emit(row);
   }
 }

@@ -6,10 +6,9 @@ import { ClienteService } from '../services/cliente.service';
 @Component({
   selector: 'app-editar-cliente',
   templateUrl: './editar-cliente.component.html',
-  styleUrls: ['./editar-cliente.component.css']
+  styleUrls: ['./editar-cliente.component.css'],
 })
 export class EditarClienteComponent implements OnInit {
-
   cliente: any;
 
   constructor(
@@ -17,39 +16,41 @@ export class EditarClienteComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private toastr: ToastrService,
     private router: Router
-  ) { }
+  ) {}
 
   ngOnInit(): void {
     const id = this.activatedRoute.snapshot.params['id'];
-    this.clienteService.detail(id).subscribe(
-      data => {
+    this.clienteService.detail(id).subscribe({
+      next: (data) => {
         this.cliente = data;
       },
-      err => {
+      error: (err) => {
         this.toastr.error(err.error.message, 'Fail', {
-          timeOut: 3000,  positionClass: 'toast-top-center',
+          timeOut: 3000,
+          positionClass: 'toast-top-center',
         });
         this.volver();
-      }
-    );
+      },
+    });
   }
 
   onUpdate(): void {
     const id = this.activatedRoute.snapshot.params['id'];
-    this.clienteService.update(id, this.cliente).subscribe(
-      data => {
+    this.clienteService.update(id, this.cliente).subscribe({
+      next: (data) => {
         this.toastr.success(data.message, 'OK', {
-          timeOut: 3000, positionClass: 'toast-top-center'
+          timeOut: 3000,
+          positionClass: 'toast-top-center',
         });
         this.volver();
       },
-      err => {
+      error: (err) => {
         this.toastr.error(err.error.message, 'Fail', {
-          timeOut: 3000,  positionClass: 'toast-top-center',
+          timeOut: 3000,
+          positionClass: 'toast-top-center',
         });
-
-      }
-    );
+      },
+    });
   }
   volver(): void {
     this.router.navigate(['/cliente/lista']);

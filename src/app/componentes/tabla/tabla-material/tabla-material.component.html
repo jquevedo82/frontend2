@@ -24,8 +24,8 @@
 [disabled]="page === 0">
   Previus
 </button>
-<button class="btn btn-primary" 
-    (click)="nextPage()" 
+<button class="btn btn-primary"
+    (click)="nextPage()"
     [disabled]="((data$ | filtro:filtrado:page).length <= 13)">
   Next
 </button>
