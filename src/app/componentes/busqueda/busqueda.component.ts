@@ -10,10 +10,10 @@ import { TableColumn } from '../tabla/models/table-column';
 import { TableConfig } from '../tabla/models/table-configs';
 import { BusquedaService } from './services/busqueda.service';
 import {
-  MatDialog,
-  MatDialogRef,
-  MAT_DIALOG_DATA,
-} from '@angular/material/dialog';
+  MatLegacyDialog as MatDialog,
+  MatLegacyDialogRef as MatDialogRef,
+  MAT_LEGACY_DIALOG_DATA as MAT_DIALOG_DATA,
+} from '@angular/material/legacy-dialog';
 
 @Component({
   selector: 'app-busqueda',
