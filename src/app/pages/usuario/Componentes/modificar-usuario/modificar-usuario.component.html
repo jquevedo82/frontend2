@@ -1,0 +1,61 @@
+<div class="container">
+  <mat-card class="example-card">
+
+    <mat-card-title>Editar Contraseña</mat-card-title>
+    <form class="example-form" [formGroup]="miFormulario" (ngSubmit)="guardarDatos()">
+      <table class="example-full-width" cellspacing="0">
+
+        <tr>
+          <td>
+            <mat-form-field class="example-full-width">
+              <mat-label>Password Current</mat-label>
+              <input matInput formControlName="password_current" id="password_current"  autocomplete="off">
+              <mat-error *ngIf="myError('password_current', 'required')">password currend is required</mat-error>
+            </mat-form-field>
+          </td>
+
+        </tr>
+        <tr>
+          <td>
+            <mat-form-field class="example-full-width">
+              <mat-label>Password</mat-label>
+              <input matInput [type]="showPassword ? 'text' : 'password'" formControlName="password" id="password"  autocomplete="off">
+              <button mat-icon-button matSuffix (click)="togglePasswordVisibility()">
+                <mat-icon>
+                  {{ showPassword ? 'visibility_off' : 'visibility' }}
+                </mat-icon>
+              </button>
+              <mat-error *ngIf="myError('password', 'required')">password is required</mat-error>
+            </mat-form-field>
+          </td>
+          <td>
+            <mat-form-field class="example-full-width">
+              <mat-label>Re-Password</mat-label>
+              <input matInput [type]="showPassword ? 'text' : 'password'" formControlName="confirmarPassword"
+                id="confirmarPassword"  autocomplete="off">
+              <mat-error *ngIf="myError('confirmarPassword', 'required')">confirmarPassword is required</mat-error>
+            </mat-form-field>
+
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <mat-error *ngIf="miFormulario.hasError('coincidenciaPassword')">Password No coincide</mat-error>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <div class="float-sm-left"><button type="submit" class="btn btn-primary">Guardar</button></div>
+          </td>
+          <td>
+            <div class="float-sm-right">
+              <button class="btn btn-primary" (click)="onVolver()">
+                Volver
+              </button>
+            </div>
+          </td>
+        </tr>
+      </table>
+    </form>
+  </mat-card>
+</div>

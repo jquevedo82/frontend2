@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { ModPassDto } from 'src/app/models/usuarios/mod-pass.dto';
 import { Usuario } from 'src/app/models/usuarios/usuario';
 import { environment } from 'src/environments/environment';
 
@@ -24,6 +25,9 @@ export class UsuariosService {
   }
   public update(id: number, usuario: Usuario): Observable<any> {
     return this.httpClient.patch<any>(`${this.usuarioURL}${id}`, usuario);
-    //return this.httpClient.put<any>(`${this.clienteURL}${id}`, cliente);
+  }
+  public updatePass(id: string, usuario: ModPassDto): Observable<any> {
+    console.log(`${this.usuarioURL}pass/${id}`);
+    return this.httpClient.patch<any>(`${this.usuarioURL}pass/${id}`, usuario);
   }
 }

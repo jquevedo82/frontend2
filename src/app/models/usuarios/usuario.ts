@@ -1,20 +1,28 @@
 export class Usuario {
-  id!: number;
+  id?: number;
   nombre: string;
+  denominacion: string;
   username: string;
   email: string;
-  password?: string;
+  public password?: string;
+
+  nivel?:boolean;
 
 
   constructor(
     nombre: string,
+    denominacion: string,
     username: string,
     email: string,
-    password?: string
+    password?: string,
   ) {
+
     this.nombre = nombre;
+    this.denominacion= denominacion;
     this.username= username;
     this.email= email;
     this.password= password;
+
   }
+
 }

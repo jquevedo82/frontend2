@@ -16,6 +16,7 @@ export class RegisterComponent implements OnInit {
   email: any;
   password: any;
   password2: any;
+  denominacion: any;
 
   constructor(
     private authService: AuthService,
@@ -32,7 +33,8 @@ export class RegisterComponent implements OnInit {
       this.nombre,
       this.username,
       this.email,
-      this.password
+      this.password,
+      this.denominacion
     );
     this.authService.register(this.usuario).subscribe({
       next: (data) => {

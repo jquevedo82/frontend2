@@ -10,6 +10,7 @@ import { FacturasComponent } from './facturas/facturas.component';
 import { MaterialModule } from '../material/material.module';
 import { ComponentesModule } from '../componentes/componentes.module';
 import { UsuarioComponent } from './usuario/usuario.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -31,6 +32,8 @@ import { UsuarioComponent } from './usuario/usuario.component';
     SharedModule,
     MaterialModule,
     ComponentesModule,
+    ReactiveFormsModule,
+    FormsModule,
 
   ],
   exports: [

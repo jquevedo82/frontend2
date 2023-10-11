@@ -26,7 +26,7 @@ export class TokenService {
 
   getUserName(): any {
     if (!this.isLogged()) {
-      console.log("aqui");
+     // console.log("aqui");
       return null;
     }
     const token = this.getToken();

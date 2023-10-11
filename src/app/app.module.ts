@@ -1,5 +1,10 @@
 import { HttpClientModule } from '@angular/common/http';
-import { CUSTOM_ELEMENTS_SCHEMA, LOCALE_ID, NgModule } from '@angular/core';
+import {
+  CUSTOM_ELEMENTS_SCHEMA,
+  LOCALE_ID,
+  NgModule,
+  NO_ERRORS_SCHEMA,
+} from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { ToastrModule } from 'ngx-toastr';
 
@@ -10,7 +15,7 @@ import { interceptorProviders } from './interceptor/cliente.interceptor';
 import { MaterialModule } from './material/material.module';
 import { NopageFoundComponent } from './nopage-found/nopage-found.component';
 import { PagesModule } from './pages/pages.module';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ComponentesModule } from './componentes/componentes.module';
 
@@ -27,12 +32,13 @@ import { ComponentesModule } from './componentes/componentes.module';
     BrowserAnimationsModule,
     FormsModule,
     ComponentesModule,
+    ReactiveFormsModule,
   ],
   exports: [HttpClientModule, MaterialModule, FormsModule],
-  providers: [interceptorProviders, {provide: LOCALE_ID, useValue: 'es'}],
+  providers: [interceptorProviders, { provide: LOCALE_ID, useValue: 'es' }],
   //{provide: LOCALE_ID, useValue: 'es'} para fecha en español
   bootstrap: [AppComponent],
 
-  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA],
 })
 export class AppModule {}

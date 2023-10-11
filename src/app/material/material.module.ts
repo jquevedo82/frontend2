@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA  } from '@angular/core';
 import { CommonModule, registerLocaleData } from '@angular/common';
 import { MatLegacyProgressSpinnerModule as MatProgressSpinnerModule } from '@angular/material/legacy-progress-spinner';
 import { MatLegacyTabsModule as MatTabsModule } from '@angular/material/legacy-tabs';
@@ -109,6 +109,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     ScrollingModule,
     DialogModule,
     ReactiveFormsModule,
+    MatCheckboxModule
   ],
 })
 export class MaterialModule {}

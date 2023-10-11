@@ -25,6 +25,11 @@ export class SidebarService {
       icono: 'nav-icon fas fa-tachometer-alt',
       submenu: [{ titulo: 'Usuarios', url: 'usuarios', icono: 'fa fa-users' }],
     },
+    {
+      titulo: 'Preferencias',
+      icono: 'nav-icon fas fa-cog',
+      submenu: [{ titulo: 'Cambiar Password', url: 'usuarios/password', icono: 'fa fa-ellipsis-h' }],
+    },
   ];
 
   usuURL = environment.usuURL;
