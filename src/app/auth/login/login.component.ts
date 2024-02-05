@@ -35,17 +35,18 @@ export class LoginComponent implements OnInit {
     this.authService.login(this.usuario).subscribe({
       next: (data) => {
 
-        if (!data.token) {
+        if (!data.data) {
           this.toastrService.error(data.response.message, 'Fail', {
             timeOut: 3000,
             positionClass: 'toast-top-center',
           });
         } else {
-          this.tokenService.setToken(data.token);
+          this.tokenService.setToken(data.data);
           this.router.navigate(['/']);
         }
       },
       error: (err) => {
+
         this.toastrService.error(err.error.message, 'Fail', {
           timeOut: 3000,
           positionClass: 'toast-top-center',

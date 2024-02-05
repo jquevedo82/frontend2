@@ -22,6 +22,7 @@ export class TokenService {
 
   getToken(): any {
     return localStorage.getItem('token');
+
   }
 
   getUserName(): any {
@@ -42,8 +43,11 @@ export class TokenService {
       return false;
     }
     const token = this.getToken();
+    console.log(token);
     const payload = token.split('.')[1];
+    console.log(payload);
     const values = atob(payload);
+    console.log(values);
     const valuesJson = JSON.parse(values);
     const username = valuesJson.username;
     const roles = valuesJson.roles;
