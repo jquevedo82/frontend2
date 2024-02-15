@@ -13,6 +13,7 @@ export class SidebarComponent implements OnInit {
   isAdmin: boolean = false;
   username: string = '';
   usuario: any;
+  descri: any;
 
   menuItems?: any[];
 
@@ -33,13 +34,20 @@ export class SidebarComponent implements OnInit {
       this.username = this.tokenService.getUserName();
 
       // this.usuario = this.sidebarServices.usuario(this.username);
-      this.sidebarServices.usuario(this.username).subscribe(
-        (data) => {
-          this.usuario = data;
-          console.log(data);
+      this.sidebarServices.usuario(this.username).subscribe({
+        next: (data) => {
+          if(data.total>0){
+            this.usuario = data.results[0];
+            this.descri=this.usuario.Nombres;
+          }else{
+           this.descri = this.tokenService.getDescri();
+           console.log(this.descri);
+         }
         },
-        (err) => {}
-      );
+        error: (err) => {
+          console.log(err);
+        },
+      });
       //console.log(this.usuario);
     }
   }
@@ -49,3 +57,4 @@ export class SidebarComponent implements OnInit {
     this.router.navigate(['/login']);
   }
 }
+

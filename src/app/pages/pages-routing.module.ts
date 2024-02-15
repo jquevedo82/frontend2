@@ -8,20 +8,46 @@ import { PagesComponent } from './pages.component';
 import { ProductosComponent } from './productos/productos.component';
 import { UsuarioComponent } from './usuario/usuario.component';
 import { ClienteGuard } from './cliente/guards/cliente.guard';
-
+import { LoginGuard } from '../auth/guards/login.guard';
 
 const routes: Routes = [
-  { path: '', component: PagesComponent,  data:{titulo:'Home', urltitulo:'no'},
-  children: [
-    {path:'dashboard' , component:DashboardComponent, data:{titulo:'Home',urltitulo:'no'}},
-    {path: 'cliente', loadChildren: () => import('../pages/cliente/cliente.module').then( m => m.ClienteModule) },
-    {path:'productos' , component:ProductosComponent,   data: {titulo:'Productos',urltitulo:'no'}},
-    {path:'usuarios' , loadChildren: () => import('../pages/usuario/usuario.module').then( m => m.UsuarioModule) },
-    {path:'facturas' , component:FacturasComponent, data:{titulo:'Facturas',urltitulo:'no'}},
-  ]
-},
-
-
+  {
+    path: '',
+    component: PagesComponent,
+   // canActivate: [LoginGuard],
+    data: { titulo: 'Home', urltitulo: 'no' },
+    children: [
+      {
+        path: 'dashboard',
+        component: DashboardComponent,
+        data: { titulo: 'Home', urltitulo: 'no' },
+      },
+      {
+        path: 'cliente',
+        loadChildren: () =>
+          import('../pages/cliente/cliente.module').then(
+            (m) => m.ClienteModule
+          ),
+      },
+      {
+        path: 'productos',
+        component: ProductosComponent,
+        data: { titulo: 'Productos', urltitulo: 'no' },
+      },
+      {
+        path: 'usuarios',
+        loadChildren: () =>
+          import('../pages/usuario/usuario.module').then(
+            (m) => m.UsuarioModule
+          ),
+      },
+      {
+        path: 'facturas',
+        component: FacturasComponent,
+        data: { titulo: 'Facturas', urltitulo: 'no' },
+      },
+    ],
+  },
 ];
 
 /*

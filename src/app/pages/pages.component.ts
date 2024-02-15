@@ -16,6 +16,7 @@ export class PagesComponent implements OnInit {
 
   ngOnInit(): void {
 
+    console.log("inicio pages");
     this.isLogged = this.tokenService.isLogged();
 
 

@@ -32,13 +32,13 @@ export class SidebarService {
     },
   ];
 
-  usuURL = environment.usuURL;
+  perURL = environment.personalURL;
 
   constructor(private httpcClient: HttpClient) {}
 
-  usuario(username: string): Observable<NuevoUsuarioDto> {
-    return this.httpcClient.get<NuevoUsuarioDto>(`${this.usuURL}name`, {
-      params: {username},
+  usuario(dni: string): Observable<any> {
+    return this.httpcClient.get<any>(`${this.perURL}`, {
+      params: {"where":" NroDni = '"+dni+"'"},
     });
   }
 }

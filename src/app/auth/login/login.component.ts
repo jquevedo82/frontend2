@@ -32,9 +32,10 @@ export class LoginComponent implements OnInit {
 
     this.usuario = new LoginUsuarioDto(this.username, this.password);
 
+
     this.authService.login(this.usuario).subscribe({
       next: (data) => {
-
+        console.log(this.username);
         if (!data.data) {
           this.toastrService.error(data.response.message, 'Fail', {
             timeOut: 3000,
@@ -42,6 +43,7 @@ export class LoginComponent implements OnInit {
           });
         } else {
           this.tokenService.setToken(data.data);
+          console.log("login navigate");
           this.router.navigate(['/']);
         }
       },

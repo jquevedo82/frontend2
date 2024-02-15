@@ -7,13 +7,21 @@ import { PagesRoutingModule } from './pages/pages-routing.module';
 
 const routes: Routes = [
   //{ path: '', redirectTo: '/login', pathMatch: 'full' },
-  { path: '', loadChildren: () => import('./auth/auth.module').then( m => m.AuthModule) },
-  
+  {
+    path: '',
+    loadChildren: () => import('./auth/auth.module').then((m) => m.AuthModule),
+  },
+
   //{ path: '**', redirectTo: '', pathMatch: 'full' },
 ];
 
 @NgModule({
-  imports: [CommonModule, RouterModule.forRoot(routes),PagesRoutingModule,AuthRoutingModule],
+  imports: [
+    CommonModule,
+    RouterModule.forRoot(routes),
+    PagesRoutingModule,
+    AuthRoutingModule,
+  ],
   exports: [RouterModule],
 })
 export class AppRoutingModule {}

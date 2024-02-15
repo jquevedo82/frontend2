@@ -37,17 +37,25 @@ export class TokenService {
     const username = valuesJson.username;
     return username;
   }
-
+  getDescri(): any {
+    if (!this.isLogged()) {
+     // console.log("aqui");
+      return null;
+    }
+    const token = this.getToken();
+    const payload = token.split('.')[1];
+    const values = atob(payload);
+    const valuesJson = JSON.parse(values);
+    const descri = valuesJson.descri;
+    return descri;
+  }
   isAdmin(): boolean {
     if (!this.isLogged()) {
       return false;
     }
     const token = this.getToken();
-    console.log(token);
     const payload = token.split('.')[1];
-    console.log(payload);
     const values = atob(payload);
-    console.log(values);
     const valuesJson = JSON.parse(values);
     const username = valuesJson.username;
     const roles = valuesJson.roles;
