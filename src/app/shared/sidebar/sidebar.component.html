@@ -18,7 +18,7 @@
       </div>
       <div class="info">
         <a href="#" class="d-block" *ngIf="!descri">Hello, Invitado</a>
-        <a href="#" class="d-block" *ngIf="descri">Hello, {{descri}}</a>
+        <a href="#" class="d-block" *ngIf="descri">Hello, {{ descri }}</a>
       </div>
     </div>
 
@@ -27,9 +27,9 @@
       <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
         <!-- Add icons to the links using the .nav-icon class
              with font-awesome or any other icon font library -->
-        <div *ngIf="isLogged" >
+        <div *ngIf="isLogged">
           <li class="nav-item" *ngFor="let item of menuItems">
-            <a class="nav-link"  style="cursor: pointer;">
+            <a class="nav-link" style="cursor: pointer;">
               <i class="{{ item.icono }}"></i>
               <p>
                 {{ item.titulo }}
@@ -39,8 +39,8 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item" *ngFor="let submenu of item.submenu">
-                <a [routerLink]="submenu.url" style="cursor: pointer;" routerLinkActive="router-link-active"
-                  class="nav-link">
+                <a [routerLink]="submenu.url" style="cursor: pointer;"
+                  routerLinkActive="router-link-active" class="nav-link">
                   <i class="{{ submenu.icono }}"></i>&nbsp;
                   <p>{{ submenu.titulo }}</p>
                 </a>
@@ -60,11 +60,13 @@
 
         <li class="nav-header">EXAMPLES</li>
         <li class="nav-item">
-          <a class="nav-link" data-widget="control-sidebar" data-slide="true" *ngIf="isLogged" (click)="logOut()" href="#" role="button">
+          <a class="nav-link" data-widget="control-sidebar" data-slide="true" *ngIf="isLogged" (click)="logOut()"
+            href="#" role="button">
             <i class="fas fa-sign-out-alt"></i>
             <p class="ml-2">Logout</p>
           </a>
-          <a class="nav-link" data-widget="control-sidebar" data-slide="true" routerLink="/login" *ngIf="!isLogged" role="button">
+          <a class="nav-link" data-widget="control-sidebar" data-slide="true" routerLink="/login" *ngIf="!isLogged"
+            role="button">
             <i class="fas fa-sign-in-alt"></i>
             <p class="ml-2">Login</p>
           </a>

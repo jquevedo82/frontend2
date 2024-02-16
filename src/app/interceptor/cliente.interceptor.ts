@@ -35,9 +35,11 @@ export class ClienteInterceptor implements HttpInterceptor {
     let intReq = request;
     const token = this.tokenService.getToken();
     intReq = this.addToken(request, token);
+    // console.log(token, 2);
     return next.handle(intReq).pipe(
       catchError((err: HttpErrorResponse) => {
-        if (err.status === 401) {
+        // console.log('ss');
+        if (err.status === 401 && this.tokenService.tokenExpired(token)) {
           // se vencio el token
 
           const swalWithBootstrapButtons = Swal.mixin({
@@ -46,6 +48,7 @@ export class ClienteInterceptor implements HttpInterceptor {
               cancelButton: 'btn btn-danger',
             },
             buttonsStyling: false,
+            allowOutsideClick: false, // Evitar que el usuario haga clic fuera del modal para cerrarlo
           });
 
           swalWithBootstrapButtons
@@ -65,6 +68,22 @@ export class ClienteInterceptor implements HttpInterceptor {
                   'Sesion Continua.',
                   'success'
                 );
+                console.log(token, 44);
+                const dto: TokenDto = new TokenDto(token);
+                this.authService.refresh(dto).subscribe({
+                  next: (data) => {
+                    // console.log(data.data,4);
+                    // console.log(data.data, 3);
+                    this.tokenService.setToken(data.data);
+                    window.location.reload();
+                  },
+                  error: (err) => {
+                    console.log(err);
+                    this.tokenService.logOut();
+                    this.router.navigate(['/']);
+                  },
+                });
+
                 //this.router.navigate(['/cliente/lista']);
               } else if (
                 /* Read more about handling dismissals below */
@@ -75,23 +94,26 @@ export class ClienteInterceptor implements HttpInterceptor {
                   'Sesion Finalizada :)',
                   'error'
                 );
+                console.log("object fuera");
                 this.tokenService.logOut();
                 this.router.navigate(['/']);
+                window.location.reload();
               }
             });
 
-          const dto: TokenDto = new TokenDto(token);
-          return this.authService.refresh(dto).pipe(
-            concatMap((data: any) => {
-              console.log('refreshing..');
-              this.tokenService.setToken(data.token);
-              intReq = this.addToken(request, data.token);
-              return next.handle(intReq);
-            })
-          );
+          // const dto: TokenDto = new TokenDto(token);
+          // return this.authService.refresh(dto).pipe(
+          //   concatMap((data: any) => {
+          //     console.log(data,1);
+          //     this.tokenService.setToken(data.token);
+          //     intReq = this.addToken(request, data.token);
+          //     return next.handle(intReq);
+          //   })
+          // );
+          return next.handle(intReq);
         } else {
-          //console.log('chao..',err.status);
           //this.tokenService.logOut();
+          //this.router.navigate(['/']);
           return throwError(err);
         }
       })

@@ -33,6 +33,7 @@ export class SidebarService {
   ];
 
   perURL = environment.personalURL;
+  menuURL = environment.menuURL;
 
   constructor(private httpcClient: HttpClient) {}
 
@@ -40,5 +41,12 @@ export class SidebarService {
     return this.httpcClient.get<any>(`${this.perURL}`, {
       params: {"where":" NroDni = '"+dni+"'"},
     });
+  }
+  getMenu(id: string): Observable<any> {
+    const dato= this.httpcClient.get<any>(`${this.menuURL}`, {
+      params: {id},
+    });
+
+    return dato;
   }
 }

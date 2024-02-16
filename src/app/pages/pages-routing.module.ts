@@ -9,14 +9,20 @@ import { ProductosComponent } from './productos/productos.component';
 import { UsuarioComponent } from './usuario/usuario.component';
 import { ClienteGuard } from './cliente/guards/cliente.guard';
 import { LoginGuard } from '../auth/guards/login.guard';
+import { NopageFoundComponent } from '../nopage-found/nopage-found.component';
 
 const routes: Routes = [
   {
     path: '',
     component: PagesComponent,
-   // canActivate: [LoginGuard],
-    data: { titulo: 'Home', urltitulo: 'no' },
+    // canActivate: [LoginGuard],
+    data: { titulo: 'Home', urltitulo: '/' },
     children: [
+      {
+        path: '',
+        component: DashboardComponent,
+        data: { titulo: 'Home', urltitulo: 'no' },
+      },
       {
         path: 'dashboard',
         component: DashboardComponent,
@@ -46,6 +52,12 @@ const routes: Routes = [
         component: FacturasComponent,
         data: { titulo: 'Facturas', urltitulo: 'no' },
       },
+      {
+        path: 'not-found',
+        component: NopageFoundComponent,
+        data: { titulo: 'Facturas', urltitulo: 'no' },
+      },
+      { path: '**', redirectTo: 'not-found' },
     ],
   },
 ];

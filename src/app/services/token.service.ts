@@ -7,27 +7,37 @@ export class TokenService {
   constructor() {}
   isLogged(): boolean {
     if (this.getToken()) {
-
       return true;
-
     }
 
     return false;
-
   }
 
   setToken(token: string): void {
+
     localStorage.setItem('token', token);
   }
 
   getToken(): any {
     return localStorage.getItem('token');
-
   }
-
-  getUserName(): any {
+  tokenExpired(token: any): boolean {
     if (!this.isLogged()) {
-     // console.log("aqui");
+      // console.log("aqui");
+      return true;
+    }
+    const payload = token.split('.')[1];
+    const values = atob(payload);
+    const valuesJson = JSON.parse(values);
+    const currentTime = Date.now();
+    //console.log(valuesJson,currentTime);
+    if (valuesJson.exp * 1000 < currentTime) return true;
+    return false; // Devuelve true si el token está vencido, de lo contrario, false
+  }
+  getUserName(): any {
+    //localStorage.clear();
+    if (!this.isLogged()) {
+      // console.log("aqui");
       return null;
     }
     const token = this.getToken();
@@ -39,7 +49,7 @@ export class TokenService {
   }
   getDescri(): any {
     if (!this.isLogged()) {
-     // console.log("aqui");
+      // console.log("aqui");
       return null;
     }
     const token = this.getToken();

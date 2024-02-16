@@ -16,33 +16,35 @@ export class SidebarComponent implements OnInit {
   descri: any;
 
   menuItems?: any[];
+  menuItems2?: any;
 
   constructor(
     private tokenService: TokenService,
     private router: Router,
     private sidebarServices: SidebarService
   ) {
-    this.menuItems = this.sidebarServices.menu;
-    //console.log(this.menuItems);
+    this.menuItems2 = this.sidebarServices.menu;
+    this.username = this.tokenService.getUserName();
+    this.cargarMenu(this.username);
+
   }
 
   ngOnInit(): void {
+
     this.isLogged = this.tokenService.isLogged();
     if (this.isLogged) {
       this.isAdmin = this.tokenService.isAdmin();
 
-      this.username = this.tokenService.getUserName();
-
       // this.usuario = this.sidebarServices.usuario(this.username);
       this.sidebarServices.usuario(this.username).subscribe({
         next: (data) => {
-          if(data.total>0){
-            this.usuario = data.results[0];
-            this.descri=this.usuario.Nombres;
-          }else{
-           this.descri = this.tokenService.getDescri();
-           console.log(this.descri);
-         }
+          console.log(data.data,55);
+          if (data.data) {
+            this.usuario = data.data;
+            this.descri = this.usuario.Nombres;
+          } else {
+            this.descri = this.tokenService.getDescri();
+          }
         },
         error: (err) => {
           console.log(err);
@@ -56,5 +58,38 @@ export class SidebarComponent implements OnInit {
     this.tokenService.logOut();
     this.router.navigate(['/login']);
   }
-}
+  cargarMenu(id: string): any {
+    this.sidebarServices.getMenu(id).subscribe({
+      next: (data) => {
+        let menuItems = data.data;
+        const uniquePadres = menuItems.filter(
+          (menuItem: any, index: number, self: any[]) =>
+            index === self.findIndex((t) => t.Padre === menuItem.Padre)
+        );
 
+        const hijosx = uniquePadres.map((padre: any) => {
+          const hijos = menuItems.filter(
+            (menuItem: any) => menuItem.Padre === padre.Padre
+          );
+
+          return { ...padre, hijos };
+        });
+        let menus: any[] = [];
+        let hijos: any[] = [];
+        hijosx.map((padre: any) => {
+          padre.hijos.map((hijo: any) => {
+            if (hijo.Padre == padre.Padre){
+              hijos.push({ titulo: hijo.Descri, url:hijo.Descri /*hijo.Lnk*/, icono: 'fa fa-ellipsis-h'  });}
+          });
+          menus.push({ titulo: padre.Padre,icono: 'nav-icon fas fa-tachometer-alt', submenu:hijos });
+          hijos= [];
+        });
+        //console.log(menus);
+        this.menuItems= menus;
+      },
+      error: (err) => {
+        console.log(err);
+      },
+    });
+  }
+}
