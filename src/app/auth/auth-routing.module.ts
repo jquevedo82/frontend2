@@ -11,7 +11,8 @@ import { RegisterComponent } from './register/register.component';
 const routes: Routes = [
 
   //{ path: 'login', component: LoginComponent},
-  { path: '', component: PagesComponent, canActivate: [LoginGuard] },
+  //{ path: '', component: PagesComponent,/* canActivate: [LoginGuard]*/ },
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent, canActivate: [LoginGuard] },
   { path: 'register', component: RegisterComponent, canActivate: [RegisterGuard]  },
   { path: '**', redirectTo:'login'},

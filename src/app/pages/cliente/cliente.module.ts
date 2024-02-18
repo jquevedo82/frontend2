@@ -13,11 +13,11 @@ import { MaterialModule } from 'src/app/material/material.module';
 
 @NgModule({
   declarations: [
-    ListaClienteComponent, 
+    ListaClienteComponent,
     NuevoClienteComponent,
     EditarClienteComponent,
     DetalleClienteComponent,
-    
+
   ],
   imports: [
     CommonModule,
@@ -27,7 +27,7 @@ import { MaterialModule } from 'src/app/material/material.module';
     MaterialModule,
   ],
   exports: [
-    
+
   ]
 })
 export class ClienteModule { }

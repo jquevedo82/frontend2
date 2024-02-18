@@ -5,8 +5,8 @@ import { TokenService } from 'src/app/services/token.service';
 @Injectable({
   providedIn: 'root',
 })
-export class LoginGuard  {
-  constructor(private tokenService: TokenService, private router: Router) {}
+export class LoginGuard {
+  constructor(private tokenService: TokenService, private router: Router) { }
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
@@ -16,7 +16,7 @@ export class LoginGuard  {
       this.router.navigate(['/']);
       return false;
     }
-console.log("guard login");
+    console.log("guard login");
     return true;
   }
 }

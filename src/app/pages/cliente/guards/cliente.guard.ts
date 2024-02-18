@@ -23,8 +23,10 @@ export class ClienteGuard  {
       expectedRol.indexOf(this.realRol) < 0
     ) {
       this.router.navigate(['/login']);
+      console.log("1");
       return false;
     }
+    console.log("2");
     return true;
   }
 }

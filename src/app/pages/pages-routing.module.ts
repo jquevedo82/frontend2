@@ -52,12 +52,7 @@ const routes: Routes = [
         component: FacturasComponent,
         data: { titulo: 'Facturas', urltitulo: 'no' },
       },
-      {
-        path: 'not-found',
-        component: NopageFoundComponent,
-        data: { titulo: 'Facturas', urltitulo: 'no' },
-      },
-      { path: '**', redirectTo: 'not-found' },
+
     ],
   },
 ];
