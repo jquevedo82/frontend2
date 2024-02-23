@@ -9,10 +9,10 @@ export class ColumnValuePipe implements PipeTransform {
     let displayValue = row[column.dataKey];
     switch (column.dataType) {
       case 'date':
-        if (column.formatt != undefined)
+        if (column.format != undefined)
           displayValue = new DatePipe('en').transform(
             displayValue,
-            column.formatt
+            column.format
           );
         break;
       case 'object':
@@ -22,7 +22,7 @@ export class ColumnValuePipe implements PipeTransform {
           arrayKeys.forEach((key: string)=>{
             if(currentValue === undefined){
               currentValue= row[key]
-              return 
+              return
             }
             currentValue = currentValue[key]
           });
@@ -32,6 +32,6 @@ export class ColumnValuePipe implements PipeTransform {
         break;
     }
 
-    return row[column.dataKey];
+    return displayValue;
   }
 }

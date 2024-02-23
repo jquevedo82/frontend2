@@ -18,6 +18,7 @@ import { PagesModule } from './pages/pages.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ComponentesModule } from './componentes/componentes.module';
+import { ConfirmationModalComponent } from './componentes/confirmation-modal/confirmation-modal.component';
 
 @NgModule({
   declarations: [AppComponent, NopageFoundComponent],

@@ -13,17 +13,30 @@ export class TokenService {
     return false;
   }
 
-  setToken(token: string): void {
+  setToken(token: string,usuario: string): void {
 
     localStorage.setItem('token', token);
+    localStorage.setItem('usuario', JSON.stringify(usuario));
+
   }
 
   getToken(): any {
     return localStorage.getItem('token');
   }
+  getUsuario(): any {
+
+    const usuario = localStorage.getItem('usuario');
+     //console.log(JSON.parse(usuario),1);
+     if (usuario !== null) {
+      // El valor no es null, por lo que es seguro asignarlo a una variable de tipo string
+      const usuarioString: string = usuario;
+      console.log(JSON.parse(usuarioString));
+      return JSON.parse(usuarioString);
+  }
+
+  }
   tokenExpired(token: any): boolean {
     if (!this.isLogged()) {
-      // console.log("aqui");
       return true;
     }
     const payload = token.split('.')[1];

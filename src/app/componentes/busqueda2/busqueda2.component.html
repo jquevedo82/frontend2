@@ -1,21 +1,22 @@
-
-
-  <div class="container"   *ngIf="tableConfig.isSearch==true">
-    <div class="row mt-0">
-      <div class="col-md-12 mx-auto">
-        <form novalidate #f="ngForm">
-          <div class="form-group ">
-            <mat-form-field class="col-md-2">
-              <mat-label>Nombre/Codigo</mat-label>
-              <input matInput type="text" class="form-control" name="filtrado" [(ngModel)]="filtrado" (keyup.Enter)="busqueda(filtrado)"
-              (keyup.F4)="busqueda(filtrado)" (keyup.escape)="limpiar()" >
-              <mat-icon matSuffix>mode_edit</mat-icon>
-            </mat-form-field>
-          </div>
-
-        </form>
-      </div>
+<div class="container" *ngIf="tableConfig.isSearch==true">
+  <div class="row mt-0">
+    <div class="col-md-12 mx-auto">
+      <form novalidate #f="ngForm">
+        <div class="form-group ">
+          <mat-form-field class="col-md-3" appearance="fill">
+            <mat-label>Nombre</mat-label>
+            <input matInput type="text" class="form-control" name="filtrado" [(ngModel)]="filtrado"
+              (keyup.Enter)="busqueda(filtrado)" (keyup.F4)="busqueda(filtrado)" (keyup.escape)="limpiar()">
+            <mat-icon matSuffix>mode_edit</mat-icon>
+          </mat-form-field>
+          <app-fecha setTitulo="Fecha Desde"  [setRead]="true" setMin="2022-01-01"
+            (fechaSeleccionada)="onFechaD($event)" setMax="2023-12-31" *ngIf="tableConfig.isFechaD==true" ></app-fecha>
+            <app-fecha setTitulo="Fecha Hasta" [setRead]="true" setMin="2022-01-01"
+            (fechaSeleccionada)="onFechaH($event)" setMax="2023-12-31" *ngIf="tableConfig.isFechaH==true"></app-fecha>
+        </div>
+      </form>
     </div>
   </div>
-  <app-tabla-seleccion [data]="data$"  [columns]="tableColumns" [config]="tableConfig"
-  (selectv)="onSelect2($event)" (select)="onSelect($event)"></app-tabla-seleccion>
+</div>
+<app-tabla-seleccion [data]="data$" [columns]="tableColumns" [config]="tableConfig" (selectv)="onSelect2($event)"
+  (select)="onSelect($event)"></app-tabla-seleccion>

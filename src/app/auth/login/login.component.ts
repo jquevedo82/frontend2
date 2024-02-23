@@ -35,14 +35,14 @@ export class LoginComponent implements OnInit {
 
     this.authService.login(this.usuario).subscribe({
       next: (data) => {
-        console.log(this.username);
+        console.log(this.username,2);
         if (!data.data) {
           this.toastrService.error(data.response.message, 'Fail', {
             timeOut: 3000,
             positionClass: 'toast-top-center',
           });
         } else {
-          this.tokenService.setToken(data.data);
+          this.tokenService.setToken(data.data,this.usuario.username);
           console.log("login navigate");
           this.router.navigate(['/']);
         }

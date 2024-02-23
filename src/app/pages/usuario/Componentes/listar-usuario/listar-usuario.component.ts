@@ -30,9 +30,12 @@ export class ListarUsuarioComponent implements OnInit {
   ];
   tableConfig: TableConfig = {
     isSelectable: false, // check de selecionar
+    isNuevo:true,
     isSeleccion: true, // boton seleccionar
     optionsPag: [5, 10, 20],
     isSearch: true,
+    isFechaD:true,
+    isFechaH:true
   };
   constructor(
     private usuarioService: UsuariosService,

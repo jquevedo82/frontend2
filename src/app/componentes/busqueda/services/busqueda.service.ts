@@ -14,27 +14,24 @@ export class BusquedaService {
   busquedaURL = environment.busquedaURL;
   empresaURL = environment.empresaURL;
   sucursalURL = environment.sucursalURL;
+  personalURL = environment.personalURL;
 
   constructor(private httpClient: HttpClient) {}
 
-  public lista(dato: string,tabla: string) : Observable<any>  {
+  public lista(datos: any, tabla: string): Observable<any> {
     //const { tabla2, busca, id, busca2, id2, limit } = datos;
-console.log(`${this.empresaURL}${dato}`);
-    if(tabla==='empresas'){
-      return this.httpClient.get<any>(`${this.empresaURL}${dato}`);
-    }
-    if(tabla==='sucursales'){
-      return this.httpClient.get<any>(`${this.sucursalURL}${dato}`);
-    }
-    if(tabla==='facturas'){
-      
+    console.log(datos, 5);
+
+    if (tabla === 'personal/prueba') {
+      return this.httpClient.get<any>(`${this.personalURL}/prueba`, { params: datos });
     }
     //console.log(`${this.busquedaURL}?dato=${busca}`);
-    return this.httpClient.get<any>(`${this.clienteURL}?dato=${dato}`);
-   
+    return this.httpClient.get<any>(`${this.clienteURL}`);
+    //return ;
   }
-  public lista2(dato: string,tabla: string): Observable<any[]> {
-    
-    return this.httpClient.get<any[]>(`${this.clienteURL}?dato=${dato}&limit=${10}`);
+  public lista2(dato: string, tabla: string): Observable<any[]> {
+    return this.httpClient.get<any[]>(
+      `${this.clienteURL}?dato=${dato}&limit=${10}`
+    );
   }
 }

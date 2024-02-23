@@ -74,7 +74,7 @@ export class ClienteInterceptor implements HttpInterceptor {
                   next: (data) => {
                     // console.log(data.data,4);
                     // console.log(data.data, 3);
-                    this.tokenService.setToken(data.data);
+                    this.tokenService.setToken(data.data,this.tokenService.getUsuario());
                     window.location.reload();
                   },
                   error: (err) => {

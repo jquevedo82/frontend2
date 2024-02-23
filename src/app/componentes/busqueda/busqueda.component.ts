@@ -141,9 +141,12 @@ export class DialogContentExampleDialog {
 
   tableConfig: TableConfig = {
     isSelectable: false, // check de selecionar
+    isNuevo:false, // boton nuevo
     isSeleccion: false, // boton seleccionar
     isSearch: false,    // edit para search
     optionsPag: [5, 10, 20],
+    isFechaD:false,
+    isFechaH:false
   };
 
   onSelect(data: any) {

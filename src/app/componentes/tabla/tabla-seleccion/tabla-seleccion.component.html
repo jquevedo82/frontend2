@@ -15,7 +15,7 @@
     <div class="container">
       <div class="row mt-1">
             <div class="form-group ">
-                <div *ngIf="isSeleccion==true">
+                <div *ngIf="isNuevo==true">
                   <button class="btn btn-primary" (click)="newRow()">
                     Nuevo
                   </button>
@@ -26,7 +26,7 @@
         <div class="col-md-12 mx-auto">
           <form novalidate #f="ngForm">
             <div class="form-group ">
-              <table mat-table #table [dataSource]="dataSource" matSort>
+              <table mat-table #table [dataSource]="dataSource" matSort >
                 <!-- Checkbox Column -->
                 <ng-container matColumnDef="select">
                   <th mat-header-cell *matHeaderCellDef width="10%">
@@ -34,7 +34,7 @@
                       [indeterminate]="selection.hasValue() && !isAllSelected()" [aria-label]="checkboxLabel()">
                     </mat-checkbox>
                   </th>
-                  <td mat-cell *matCellDef="let row">
+                  <td mat-cell *matCellDef="let row" class="border 1">
                     <mat-checkbox (click)="$event.stopPropagation()" (change)="$event ? selection.toggle(row) : null;"
                       [checked]="selection.isSelected(row)" [aria-label]="checkboxLabel(row)">
                     </mat-checkbox>

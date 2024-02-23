@@ -18,9 +18,12 @@ export class ListaClienteComponent implements OnInit {
   listaVacia=undefined;
   tableConfig: TableConfig = {
     isSelectable: false, // check de selecionar
+    isNuevo: true, // boton nuevo
     isSeleccion: true, // boton seleccionar
     optionsPag: [5, 10, 20],
     isSearch: true,
+    isFechaD:true,
+    isFechaH:true
   };
   tableColumns = [
     {

@@ -1,13 +1,9 @@
-<form>
-  <div class="container">
-    <div class="card card-primary card-outline card-outline-tabs col-md-3">
-      <mat-form-field class="example-full-width" appearance="fill">
-        <mat-label>{{titulo}}</mat-label>
-        <input matInput [matDatepicker]="picker" [min]="minDate" [max]="maxDate"  [readonly]="read">
-        <mat-hint>DD/MM/YYYY</mat-hint>
-        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-        <mat-datepicker touchUi #picker></mat-datepicker>
-      </mat-form-field>
-    </div>
-  </div>
-</form>
+
+
+<mat-form-field  class="col-md-3" appearance="fill">
+  <mat-label>{{ titulo }}</mat-label>
+  <input matInput [matDatepicker]="picker" name="nameDate" [(ngModel)]="nameDate" [min]="minDate" [max]="maxDate" [readonly]="read"  (keyup.escape)="limpiar1()">
+  <mat-hint>DD/MM/YYYY</mat-hint>
+  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+  <mat-datepicker touchUi #picker (closed)="onSelect(nameDate)"></mat-datepicker>
+</mat-form-field>

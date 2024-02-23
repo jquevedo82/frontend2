@@ -24,7 +24,9 @@ export class SidebarComponent implements OnInit {
     private sidebarServices: SidebarService
   ) {
     this.menuItems2 = this.sidebarServices.menu;
-    this.username = this.tokenService.getUserName();
+    this.username = this.tokenService.getUsuario();
+
+
     this.cargarMenu(this.username);
 
   }
@@ -34,23 +36,7 @@ export class SidebarComponent implements OnInit {
     this.isLogged = this.tokenService.isLogged();
     if (this.isLogged) {
       this.isAdmin = this.tokenService.isAdmin();
-
-      // this.usuario = this.sidebarServices.usuario(this.username);
-      this.sidebarServices.usuario(this.username).subscribe({
-        next: (data) => {
-          console.log(data.data,55);
-          if (data.data) {
-            this.usuario = data.data;
-            this.descri = this.usuario.Nombres;
-          } else {
-            this.descri = this.tokenService.getDescri();
-          }
-        },
-        error: (err) => {
-          console.log(err);
-        },
-      });
-      //console.log(this.usuario);
+       this.descri = this.tokenService.getDescri();
     }
   }
 

@@ -2,37 +2,46 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { TableColumn } from '../tabla/models/table-column';
 import { BusquedaService } from '../busqueda/services/busqueda.service';
 import { TableConfig } from '../tabla/models/table-configs';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-busqueda2',
   templateUrl: './busqueda2.component.html',
-  styleUrls: ['./busqueda2.component.css']
+  styleUrls: ['./busqueda2.component.css'],
 })
 export class Busqueda2Component implements OnInit {
-
   filtrado = '';
   nombre = '';
-  codigo = '';
+  fechad = '';
+  fechah = '';
+
+  minDate: Date;
+  maxDate: Date;
+  read = true;
 
   usuarios: any;
 
   tabla: string = '';
 
-  mostrarSwitch: boolean = false;
   tableColumns: TableColumn[] = [];
 
   tableConfig: TableConfig = {
     isSelectable: false, // check de selecionar
+    isNuevo: false, //borton nuevo
     isSeleccion: false, // boton seleccionar
-    isSearch: false,   // edit para search
+    isSearch: false, // edit para search
     optionsPag: [5, 10, 20],
+    isFechaD: false,
+    isFechaH: false,
   };
 
   public data$: any = [];
 
-  constructor(
-    private busquedaService: BusquedaService,
-  ) {}
+  constructor(private busquedaService: BusquedaService) {
+    const currentYear = new Date().getFullYear();
+    this.minDate = new Date(currentYear - 10, 0, 1);
+    this.maxDate = new Date(currentYear + 10, 11, 31);
+  }
 
   ngOnInit(): void {
     this.cargarTabla();
@@ -46,9 +55,29 @@ export class Busqueda2Component implements OnInit {
   @Input() set setTabla(data: any) {
     this.tabla = data;
   }
+  @Input() set setRead(read: boolean) {
+    this.read = read;
+  }
+  @Input() set setMin(read: string) {
+    let x1 = read.split('-');
+    this.minDate = new Date(
+      parseInt(x1[0]),
+      parseInt(x1[1]) - 1,
+      parseInt(x1[2])
+    );
+    console.log(this.minDate);
+  }
+  @Input() set setMax(xx: string) {
+    let x2 = xx.split('-');
+    this.maxDate = new Date(
+      parseInt(x2[0]),
+      parseInt(x2[1]) - 1,
+      parseInt(x2[2])
+    );
+    console.log(this.maxDate);
+  }
 
   @Output() registro: EventEmitter<any> = new EventEmitter();
-
 
   busqueda(search: string) {
     /*const query = (event.target as HTMLInputElement).value;
@@ -56,39 +85,46 @@ export class Busqueda2Component implements OnInit {
     if (search.length < 3) {
       return;
     }
-    this.busquedaService
-      .lista(search.toUpperCase(), this.tabla)
-      .subscribe((data) => {
-        this.data$ = data;
-        console.log(data.length);
+    let datos = {
+      dato: search.toUpperCase(),
+      fechad: this.fechad,
+      fechah: this.fechah,
+    };
 
-      });
+    console.log(datos);
+    this.busquedaService.lista(datos, this.tabla).subscribe((data) => {
+      this.data$ = data.data;
+      console.log(data);
+    });
   }
 
   busqueda2(search: string) {
     if (search.length < 3) {
       return;
     }
-    this.busquedaService
-      .lista(search.toUpperCase(), this.tabla)
-      .subscribe((data) => {
-        this.data$ = data;
-      });
+    let datos = {
+      dato: search.toUpperCase(),
+    };
+
+    this.busquedaService.lista(datos, this.tabla).subscribe((data) => {
+      this.data$ = data.data;
+    });
   }
 
   limpiar() {
     this.cargarTabla();
-    this.mostrarSwitch = false;
     this.filtrado = '';
+    this.fechad = '';
+    this.fechah = '';
   }
+  cargarTabla() {
+    let datos = {
+      dato: '',
+    };
 
-  cargarTabla(){
-    this.busquedaService
-    .lista('', this.tabla)
-    .subscribe((data) => {
-      this.data$ = data;
-      console.log(data.length);
-
+    this.busquedaService.lista(datos, this.tabla).subscribe((data) => {
+      this.data$ = data.data;
+      console.log(data);
     });
   }
 
@@ -97,7 +133,7 @@ export class Busqueda2Component implements OnInit {
   }
 
   onSelect(data: any) {
-   // console.log(data);
+    // console.log(data);
     this.registro.emit(data);
   }
 
@@ -107,5 +143,12 @@ export class Busqueda2Component implements OnInit {
     this.registro.emit(data);
     //console.log(data);
   }
+  onFechaD(data: string) {
+    console.log(data);
+    this.fechad = data;
+  }
+  onFechaH(data: string) {
+    console.log(data);
+    this.fechah = data;
+  }
 }
-

@@ -48,6 +48,13 @@ const routes: Routes = [
           ),
       },
       {
+        path: 'personal',
+        loadChildren: () =>
+          import('../pages/personal/personal.module').then(
+            (m) => m.PersonalModule
+          ),
+      },
+      {
         path: 'facturas',
         component: FacturasComponent,
         data: { titulo: 'Facturas', urltitulo: 'no' },

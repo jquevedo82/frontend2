@@ -34,9 +34,10 @@ export class TablaSeleccionComponent implements OnInit, AfterViewInit {
   tableConfig: TableConfig | undefined;
 
   //filtrado = '';
+  isNuevo = false;
   isSeleccion = false;
   isSelectable = false;
-  options = [5, 10, 20];
+  options = [10, 15, 20];
   isSearch = false;
 
   @Input() set data(data: Array<any>) {
@@ -86,6 +87,7 @@ export class TablaSeleccionComponent implements OnInit, AfterViewInit {
   }
 
   setConfig(config: TableConfig) {
+    this.isNuevo = config.isNuevo;
     this.isSeleccion = config.isSeleccion;
     this.isSelectable = config.isSelectable;
     this.isSearch = config.isSearch;
@@ -133,27 +135,23 @@ export class TablaSeleccionComponent implements OnInit, AfterViewInit {
   }
 
   newRow() {
-    var reg = {action:'new'}
+    var reg = { action: 'new' };
 
     this.select.emit(reg);
   }
   editRow(row?: any) {
-
-      row.action='edit';
-
+    row.action = 'edit';
 
     this.select.emit(row);
   }
   deleteRow(row?: any) {
-
-
-    row.action='delete';
-   // console.log(row);
+    row.action = 'delete';
+    // console.log(row);
     this.select.emit(row);
   }
   selecionarUsuario(row?: any) {
     //console.log(row);
-    row.action='ver';
+    row.action = 'ver';
     this.select.emit(row);
   }
 }

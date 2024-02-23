@@ -28,7 +28,13 @@ export class SidebarService {
     {
       titulo: 'Preferencias',
       icono: 'nav-icon fas fa-cog',
-      submenu: [{ titulo: 'Cambiar Password', url: 'usuarios/password', icono: 'fa fa-ellipsis-h' }],
+      submenu: [
+        {
+          titulo: 'Cambiar Password',
+          url: 'usuarios/password',
+          icono: 'fa fa-ellipsis-h',
+        },
+      ],
     },
   ];
 
@@ -39,12 +45,21 @@ export class SidebarService {
 
   usuario(dni: string): Observable<any> {
     return this.httpcClient.get<any>(`${this.perURL}`, {
-      params: {"where":" NroDni = '"+dni+"'"},
+      params: { where: " NroDni = '" + dni + "'" },
     });
   }
-  getMenu(id: string): Observable<any> {
-    const dato= this.httpcClient.get<any>(`${this.menuURL}`, {
-      params: {id},
+  getMenu(id2: string): Observable<any> {
+    console.log(id2);
+    let id ;
+    if (id2 != undefined) {
+       id = id2.replace('"', '').replace('"', '');
+      console.log(id);
+    } else {
+      id = id2;
+    }
+
+    const dato = this.httpcClient.get<any>(`${this.menuURL}`, {
+      params: { id },
     });
 
     return dato;
