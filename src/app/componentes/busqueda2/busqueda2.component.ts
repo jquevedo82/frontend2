@@ -14,6 +14,7 @@ export class Busqueda2Component implements OnInit {
   nombre = '';
   fechad = '';
   fechah = '';
+  cargando = false;
 
   minDate: Date;
   maxDate: Date;
@@ -90,11 +91,13 @@ export class Busqueda2Component implements OnInit {
       fechad: this.fechad,
       fechah: this.fechah,
     };
+    this.cargando = true;
+      this.busquedaService.lista(datos, this.tabla).subscribe((data) => {
+        console.log(data.data,1);
+        console.log(this.data$,2);
+      if (this.data$ != data.data){ this.data$ = data.data;}
 
-    console.log(datos);
-    this.busquedaService.lista(datos, this.tabla).subscribe((data) => {
-      this.data$ = data.data;
-      console.log(data);
+      this.cargando = false;
     });
   }
 
@@ -105,9 +108,10 @@ export class Busqueda2Component implements OnInit {
     let datos = {
       dato: search.toUpperCase(),
     };
-
+    this.cargando = true;
     this.busquedaService.lista(datos, this.tabla).subscribe((data) => {
-      this.data$ = data.data;
+      if (this.data$ != data.data) this.data$ = data.data;
+      this.cargando = false;
     });
   }
 

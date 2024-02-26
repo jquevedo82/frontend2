@@ -53,7 +53,7 @@ export class PeriodoPruebaComponent {
     isNuevo: false,
     isSelectable: false, // check de selecionar
     isSeleccion: false, // boton seleccionar
-    optionsPag: [5, 30, 50],
+    optionsPag: [20, 30, 50],
     isSearch: true,
     isFechaD: true,
     isFechaH: true
