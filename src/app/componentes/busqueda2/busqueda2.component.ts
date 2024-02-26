@@ -3,6 +3,7 @@ import { TableColumn } from '../tabla/models/table-column';
 import { BusquedaService } from '../busqueda/services/busqueda.service';
 import { TableConfig } from '../tabla/models/table-configs';
 import * as moment from 'moment';
+import { BotonesConfig } from '../tabla/models/table-configs copy';
 
 @Component({
   selector: 'app-busqueda2',
@@ -36,6 +37,15 @@ export class Busqueda2Component implements OnInit {
     isFechaH: false,
   };
 
+
+  botones: BotonesConfig = {
+    isVer:false,
+    isDelete:false,
+    isEdit:false,
+    isApproved:false,
+
+  };
+
   public data$: any = [];
 
   constructor(private busquedaService: BusquedaService) {
@@ -49,6 +59,9 @@ export class Busqueda2Component implements OnInit {
   }
   @Input() set config(config: TableConfig) {
     this.tableConfig = config;
+  }
+  @Input() set configBotones(config: BotonesConfig) {
+    this.botones = config;
   }
   @Input() set columnas(data: any) {
     this.tableColumns = data;

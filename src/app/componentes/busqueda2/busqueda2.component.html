@@ -19,5 +19,5 @@
     </div>
   </div>
   <mat-spinner  *ngIf="cargando"  class="spinner"></mat-spinner>
-<app-tabla-seleccion [data]="data$" [columns]="tableColumns" [config]="tableConfig" (selectv)="onSelect2($event)"
+<app-tabla-seleccion [data]="data$" [columns]="tableColumns" [config]="tableConfig" [setBotones]="botones" (selectv)="onSelect2($event)"
   (select)="onSelect($event)"></app-tabla-seleccion>

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { TableColumn } from 'src/app/componentes/tabla/models/table-column';
 import { TableConfig } from 'src/app/componentes/tabla/models/table-configs';
+import { BotonesConfig } from 'src/app/componentes/tabla/models/table-configs copy';
 
 @Component({
   selector: 'app-periodo-prueba',
@@ -48,11 +49,17 @@ export class PeriodoPruebaComponent {
       { label: 'Sucursal', def: 'S2', dataKey: 'S2' },
     ];
   }
+  botones: BotonesConfig = {
+    isVer:false,
+    isDelete:true,
+    isEdit:false,
+    isApproved:true,
 
+  };
   tableConfig: TableConfig = {
     isNuevo: false,
     isSelectable: false, // check de selecionar
-    isSeleccion: false, // boton seleccionar
+    isSeleccion: true, // boton seleccionar
     optionsPag: [20, 30, 50],
     isSearch: true,
     isFechaD: true,

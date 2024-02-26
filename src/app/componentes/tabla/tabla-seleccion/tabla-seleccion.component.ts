@@ -13,6 +13,7 @@ import { MatSort } from '@angular/material/sort';
 import { MatLegacyTableDataSource as MatTableDataSource } from '@angular/material/legacy-table';
 import { TableColumn } from '../models/table-column';
 import { TableConfig } from '../models/table-configs';
+import { BotonesConfig } from '../models/table-configs copy';
 
 @Component({
   selector: 'app-tabla-seleccion',
@@ -28,6 +29,14 @@ export class TablaSeleccionComponent implements OnInit, AfterViewInit {
 
   //tableColumns: any=[];
   tableColumns: TableColumn[] = [];
+
+  botones: BotonesConfig = {
+    isVer:false,
+    isDelete:false,
+    isEdit:false,
+    isApproved:false,
+
+  };
 
   selection = new SelectionModel<any>(true, []);
 
@@ -67,6 +76,9 @@ export class TablaSeleccionComponent implements OnInit, AfterViewInit {
   @Input() set config(config: TableConfig) {
     this.setConfig(config);
   }
+  @Input() set setBotones(config: BotonesConfig) {
+    this.setConfigBotones(config);
+  }
   @Output() select: EventEmitter<any> = new EventEmitter();
 
   @Output() selectv: EventEmitter<any> = new EventEmitter();
@@ -86,6 +98,11 @@ export class TablaSeleccionComponent implements OnInit, AfterViewInit {
     this.dataSource.sort = this.sort;
   }
 
+  setConfigBotones(config: BotonesConfig) {
+    this.botones = config;
+
+
+  }
   setConfig(config: TableConfig) {
     this.isNuevo = config.isNuevo;
     this.isSeleccion = config.isSeleccion;
@@ -151,7 +168,17 @@ export class TablaSeleccionComponent implements OnInit, AfterViewInit {
   }
   selecionarUsuario(row?: any) {
     //console.log(row);
+    row.action = 'seleccionar';
+    this.select.emit(row);
+  }
+  verRow(row?: any) {
+    //console.log(row);
     row.action = 'ver';
+    this.select.emit(row);
+  }
+  approvedRow(row?: any) {
+    row.action = 'approved';
+    // console.log(row);
     this.select.emit(row);
   }
 }
