@@ -1,1 +1,13 @@
-<app-busqueda2 [columnas]="tableColumns" setTabla="personal/prueba"  [configBotones]="botones"  (registro)="prueba($event)"  [config]="tableConfig" ></app-busqueda2>
+<app-busqueda2 [columnas]="tableColumns" setTabla="personal/prueba" [configBotones]="botones"
+  (registro)="prueba($event)" [config]="tableConfig"></app-busqueda2>
+<div class="container">
+  <div class="col-md-4">
+    <app-busqueda [columnas]="tableColumns" setTabla="personal/prueba"></app-busqueda>
+  </div>
+  <div class="col-md-4">
+    <app-busqueda [columnas]="tableColumns" setTabla="personal/prueba"></app-busqueda>
+  </div>
+  <div class="col-md-4">
+    <app-busqueda [columnas]="tableColumns" setTabla="personal/prueba"></app-busqueda>
+  </div>
+</div>

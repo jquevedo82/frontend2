@@ -1,3 +1,8 @@
-.container{
-    width: 100%;
+.tarjeta-container {
+  display: flex;
+  gap: 10px; /* Espacio entre las tarjetas */
+  background-color: #f0f0f0; /* Color de fondo de la tarjeta */
+  padding: 12px; /* Espacio interno de la tarjeta */
+  border-radius: 8px; /* Bordes redondeados */
+  margin: 0 0; /* Márgenes superior e inferior para reducir la distancia */
 }

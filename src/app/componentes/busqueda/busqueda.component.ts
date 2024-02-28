@@ -65,8 +65,8 @@ export class BusquedaComponent implements OnInit {
       console.log(result);
       if (result != undefined) {
         //this.codigo = result.codigo;
-        this.nombre = result.denominacion;
-        this.filtrado = result.codigo;
+        this.nombre = result.Apellido+' '+result.Nombres;
+        this.filtrado = result.Nombres;
         this.prueba();
       }
     });
@@ -95,11 +95,12 @@ export class BusquedaComponent implements OnInit {
       return;
     }
 
+    let datos= {dato : search.toUpperCase()};
     this.busquedaService
-      .lista(search.toUpperCase(), this.tabla)
+      .lista(datos, this.tabla)
       .subscribe((data) => {
-        this.data$ = data;
-        console.log(data.length);
+        this.data$ = data.data;
+      //  console.log(data.length);
 
         this.openDialog();
       });
@@ -108,10 +109,11 @@ export class BusquedaComponent implements OnInit {
     if (search.length < 3) {
       return;
     }
+    let datos= {dato : search.toUpperCase()};
     this.busquedaService
-      .lista(search.toUpperCase(), this.tabla)
+      .lista(datos, this.tabla)
       .subscribe((data) => {
-        this.data$ = data;
+        this.data$ = data.data;
 
       });
   }
