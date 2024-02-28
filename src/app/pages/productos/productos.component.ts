@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ConfirmationModalComponent } from 'src/app/componentes/confirmation-modal/confirmation-modal.component';
+import { ModalComponent } from 'src/app/componentes/modal/modal.component';
 declare var $:any;
 @Component({
   selector: 'app-productos',
@@ -7,7 +8,8 @@ declare var $:any;
   styleUrls: ['./productos.component.css']
 })
 export class ProductosComponent implements OnInit {
-  constructor(private swalModal: ConfirmationModalComponent ) { }
+  constructor(private swalModal: ConfirmationModalComponent,
+    private modal: ModalComponent ) { }
   id: any='Home';
 
   dato2!:string;
@@ -45,6 +47,10 @@ export class ProductosComponent implements OnInit {
        console.log('Resultado del modal:',result);
         // Cancela la eliminación
       }
+    }
+    async onOpenSwal2() {
+      const result = await this.modal.openModal('HOLA');
+
     }
     async onDelete() {
       const isConfirmed = await this.swalModal.confirm('¿Estás seguro de que deseas eliminar este elemento?');

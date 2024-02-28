@@ -57,8 +57,8 @@ export class PeriodoPruebaComponent {
 
   };
   tableConfig: TableConfig = {
-    isNuevo: false,
-    isSelectable: false, // check de selecionar
+    isNuevo: true,
+    isSelectable: true, // check de selecionar
     isSeleccion: true, // boton seleccionar
     optionsPag: [20, 30, 50],
     isSearch: true,

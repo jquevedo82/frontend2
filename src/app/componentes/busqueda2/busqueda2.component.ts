@@ -13,8 +13,9 @@ import { BotonesConfig } from '../tabla/models/table-configs copy';
 export class Busqueda2Component implements OnInit {
   filtrado = '';
   nombre = '';
-  fechad = '';
-  fechah = '';
+  fechad !: Date;
+  fechah !: Date;
+
   cargando = false;
 
   minDate: Date;
@@ -37,13 +38,11 @@ export class Busqueda2Component implements OnInit {
     isFechaH: false,
   };
 
-
   botones: BotonesConfig = {
-    isVer:false,
-    isDelete:false,
-    isEdit:false,
-    isApproved:false,
-
+    isVer: false,
+    isDelete: false,
+    isEdit: false,
+    isApproved: false,
   };
 
   public data$: any = [];
@@ -93,22 +92,29 @@ export class Busqueda2Component implements OnInit {
 
   @Output() registro: EventEmitter<any> = new EventEmitter();
 
-  busqueda(search: string) {
+  busqueda() {
+    //busqueda(search: string) {
     /*const query = (event.target as HTMLInputElement).value;
     console.log(event.target.value);*/
-    if (search.length < 3) {
+    // if (search.length < 3) {
+    //   return;
+    // }
+    console.log(this.fechad);
+    if (this.filtrado.length < 3 && this.fechad === undefined  && this.fechah === undefined ) {
       return;
     }
     let datos = {
-      dato: search.toUpperCase(),
+      dato: this.filtrado.toUpperCase(),
       fechad: this.fechad,
       fechah: this.fechah,
     };
     this.cargando = true;
-      this.busquedaService.lista(datos, this.tabla).subscribe((data) => {
-        console.log(data.data,1);
-        console.log(this.data$,2);
-      if (this.data$ != data.data){ this.data$ = data.data;}
+    this.busquedaService.lista(datos, this.tabla).subscribe((data) => {
+      console.log(data.data, 1);
+      console.log(this.data$, 2);
+      if (this.data$ != data.data) {
+        this.data$ = data.data;
+      }
 
       this.cargando = false;
     });
@@ -131,12 +137,12 @@ export class Busqueda2Component implements OnInit {
   limpiar() {
     this.cargarTabla();
     this.filtrado = '';
-    this.fechad = '';
-    this.fechah = '';
   }
   cargarTabla() {
     let datos = {
       dato: '',
+      fechad: this.fechad,
+      fechah: this.fechah,
     };
 
     this.busquedaService.lista(datos, this.tabla).subscribe((data) => {
@@ -160,12 +166,31 @@ export class Busqueda2Component implements OnInit {
     this.registro.emit(data);
     //console.log(data);
   }
-  onFechaD(data: string) {
+  onFechaD() {
+
+    /*let data=this.fechad;
     console.log(data);
-    this.fechad = data;
+    //if (this.fechah != '' && this.fechah < data)
+    if (data=='Fecha') return;
+    data = moment(data).format('DD/MM/YYYY');*/
+    this.busqueda();
   }
-  onFechaH(data: string) {
+  onFechaH() {
+    /*let data=this.fechah;
     console.log(data);
-    this.fechah = data;
+    if (data=='Fecha') return;
+   // data = moment(data).format('DD/MM/YYYY');
+    this.fechah = data;*/
+    this.busqueda();
+  }
+  limpiar1() {
+   // this.fechad = '';
+    console.log("aqui");
+
+  }
+  limpiar2() {
+    //this.fechah = '';
+    console.log("aqui");
+
   }
 }

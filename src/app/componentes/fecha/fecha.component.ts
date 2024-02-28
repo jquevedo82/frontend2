@@ -16,7 +16,7 @@ export class FechaComponent implements OnInit {
   constructor() {
     const currentYear = new Date().getFullYear();
     this.minDate = new Date(currentYear - 10, 0, 1);
-    this.maxDate = new Date(currentYear + 10, 11, 31);
+    this.maxDate = new Date(currentYear + 20, 11, 31);
     this.nameDate = 'Fecha';
   }
 
@@ -56,6 +56,8 @@ export class FechaComponent implements OnInit {
   }
   limpiar1() {
     this.nameDate = '';
+    console.log("aqui");
+    this.fechaSeleccionada.emit();
   }
 
 }

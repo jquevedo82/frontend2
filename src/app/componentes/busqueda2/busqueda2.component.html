@@ -5,19 +5,35 @@
         <div class="form-group ">
           <mat-form-field class="col-md-3" appearance="fill">
             <mat-label>Nombre</mat-label>
-            <input matInput type="text" class="form-control" name="filtrado" [(ngModel)]="filtrado"
-              (keyup)="busqueda(filtrado)" (keyup.F4)="busqueda(filtrado)" (keyup.escape)="limpiar()">
+            <input matInput type="text" class="form-control" name="filtrado" [(ngModel)]="filtrado" (keyup)="busqueda()"
+              (keyup.F4)="busqueda()" (keyup.escape)="limpiar()">
             <mat-icon matSuffix>mode_edit</mat-icon>
           </mat-form-field>
-          <app-fecha setTitulo="Fecha Desde" [setRead]="true" setMin="2022-01-01" (fechaSeleccionada)="onFechaD($event)"
-            setMax="2023-12-31" *ngIf="tableConfig.isFechaD==true"></app-fecha>
-          <app-fecha setTitulo="Fecha Hasta" [setRead]="true" setMin="2022-01-01" (fechaSeleccionada)="onFechaH($event)"
-            setMax="2023-12-31" *ngIf="tableConfig.isFechaH==true"></app-fecha>
-          </div>
-        </form>
-      </div>
+          <!-- <app-fecha setTitulo="Fecha Desde" [setRead]="true" (fechaSeleccionada)="onFechaD($event)"
+            *ngIf="tableConfig.isFechaD==true"></app-fecha>
+          <app-fecha setTitulo="Fecha Hasta" [setRead]="true" (fechaSeleccionada)="onFechaH($event)"
+            *ngIf="tableConfig.isFechaH==true"></app-fecha> -->
+
+          <mat-form-field class="col-md-3" appearance="fill" *ngIf="tableConfig.isFechaD==true">
+            <mat-label> Fecha Desde </mat-label>
+            <input matInput [matDatepicker]="picker" name="fechad" [(ngModel)]="fechad"
+              [readonly]="read" (keyup.escape)="limpiar1()">
+            <mat-hint>DD/MM/YYYY</mat-hint>
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker touchUi #picker (closed)="onFechaD()"></mat-datepicker>
+          </mat-form-field>
+          <mat-form-field  class="col-md-3" appearance="fill" *ngIf="tableConfig.isFechaH==true">
+            <mat-label> Fecha Hasta </mat-label>
+            <input matInput [matDatepicker]="picker2" name="fechah" [(ngModel)]="fechah" [readonly]="read"  (keyup.escape)="limpiar2()">
+            <mat-hint>DD/MM/YYYY</mat-hint>
+            <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+            <mat-datepicker touchUi #picker2 (closed)="onFechaH()"></mat-datepicker>
+          </mat-form-field>
+        </div>
+      </form>
     </div>
   </div>
-  <mat-spinner  *ngIf="cargando"  class="spinner"></mat-spinner>
-<app-tabla-seleccion [data]="data$" [columns]="tableColumns" [config]="tableConfig" [setBotones]="botones" (selectv)="onSelect2($event)"
-  (select)="onSelect($event)"></app-tabla-seleccion>
+</div>
+<mat-spinner *ngIf="cargando" class="spinner"></mat-spinner>
+<app-tabla-seleccion [data]="data$" [columns]="tableColumns" [config]="tableConfig" [setBotones]="botones"
+  (selectv)="onSelect2($event)" (select)="onSelect($event)"></app-tabla-seleccion>

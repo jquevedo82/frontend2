@@ -2,5 +2,5 @@
   position: fixed;
   top: 50%;
   right: 20px; /* Ajusta esta propiedad según sea necesario */
-  transform: translateY(-200%);
+  transform: translateY(-100%);
 }
