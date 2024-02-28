@@ -19,7 +19,20 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ComponentesModule } from './componentes/componentes.module';
 import { ConfirmationModalComponent } from './componentes/confirmation-modal/confirmation-modal.component';
+import { MAT_DATE_FORMATS } from '@angular/material/core';
+import { MAT_DATE_LOCALE } from '@angular/material/core';
 
+export const MY_FORMATS = {
+  parse: {
+    dateInput: 'dd-MM-yyyy',
+  },
+  display: {
+    dateInput: 'dd-MM-yyyy',
+    monthYearLabel: 'MMM yyyy',
+    dateA11yLabel: 'dd-MM-yyyy',
+    monthYearA11yLabel: 'MMMM yyyy',
+  },
+};
 @NgModule({
   declarations: [AppComponent, NopageFoundComponent],
   imports: [
@@ -36,7 +49,12 @@ import { ConfirmationModalComponent } from './componentes/confirmation-modal/con
     ReactiveFormsModule,
   ],
   exports: [HttpClientModule, MaterialModule, FormsModule],
-  providers: [interceptorProviders, { provide: LOCALE_ID, useValue: 'es' }],
+  providers: [
+    interceptorProviders,
+    { provide: LOCALE_ID, useValue: 'es' },
+    { provide: MAT_DATE_FORMATS, useValue: MY_FORMATS },
+    { provide: MAT_DATE_LOCALE, useValue: 'es-ES' }, // Cambia 'es-ES' por el código de tu idioma si es diferente
+  ],
   //{provide: LOCALE_ID, useValue: 'es'} para fecha en español
   bootstrap: [AppComponent],
 
