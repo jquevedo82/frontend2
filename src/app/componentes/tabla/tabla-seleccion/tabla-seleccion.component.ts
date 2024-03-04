@@ -133,12 +133,12 @@ export class TablaSeleccionComponent implements OnInit, AfterViewInit {
     if (this.isAllSelected()) {
       this.selection.clear();
       this.selection.selected.length = 0;
-      this.onSelect();
+     // this.onSelect();
       return;
     }
 
     this.selection.select(...this.dataSource.data);
-    this.onSelect();
+ //   this.onSelect();
   }
 
   /** The label for the checkbox on the passed row */

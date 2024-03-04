@@ -5,7 +5,7 @@ import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
 
-  { path: 'prueba', component: PeriodoPruebaComponent, data: { titulo: 'Personal', urltitulo:'/personal', Subtitulo: 'Periodo Prueba'} },
+  { path: 'periodo-prueba', component: PeriodoPruebaComponent, data: { titulo: 'Personal', urltitulo:'/personal', Subtitulo: 'Periodo Prueba'} },
   { path: '**', redirectTo: 'prueba' },
 ];
 

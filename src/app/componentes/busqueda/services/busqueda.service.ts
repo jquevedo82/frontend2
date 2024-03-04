@@ -20,10 +20,10 @@ export class BusquedaService {
 
   public lista(datos: any, tabla: string): Observable<any> {
     //const { tabla2, busca, id, busca2, id2, limit } = datos;
-    console.log(datos, 5);
+    //console.log(datos, 5);
 
-    if (tabla === 'personal/prueba') {
-      return this.httpClient.get<any>(`${this.personalURL}/prueba`, { params: datos });
+    if (tabla === 'personal/periodo-prueba') {
+      return this.httpClient.get<any>(`${this.personalURL}/periodo-prueba`, { params: datos });
     }
     //console.log(`${this.busquedaURL}?dato=${busca}`);
     return this.httpClient.get<any>(`${this.clienteURL}`);

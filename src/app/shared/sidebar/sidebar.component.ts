@@ -65,7 +65,7 @@ export class SidebarComponent implements OnInit {
         hijosx.map((padre: any) => {
           padre.hijos.map((hijo: any) => {
             if (hijo.Padre == padre.Padre){
-              hijos.push({ titulo: hijo.Descri, url:hijo.Descri /*hijo.Lnk*/, icono: 'fa fa-ellipsis-h'  });}
+              hijos.push({ titulo: hijo.Descri, url:hijo.Lnk, icono: 'fa fa-ellipsis-h'  });}
           });
           menus.push({ titulo: padre.Padre,icono: 'nav-icon fas fa-tachometer-alt', submenu:hijos });
           hijos= [];
