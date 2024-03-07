@@ -1,29 +1,32 @@
 export class NuevoUsuarioDto {
-  nombre: string;
+  //nombre: string;
 
   username: string;
 
-  email: string;
+  email?: string;
 
   password: string;
 
-  denominacion: string;
+  Descri: string;
 
   nivel:boolean;
 
+  Estado: boolean;
+
   constructor(
-    nombre: string,
+   // nombre: string,
     username: string,
-    email: string,
     password: string,
-    denominacion: string
+    denominacion: string,
+    email?: string,
 
   ) {
-    this.nombre = nombre;
+    //this.nombre = nombre;
     this.username = username;
     this.password = password;
     this.email = email;
-    this.denominacion = denominacion;
+    this.Descri = denominacion;
     this.nivel = true;
+    this.Estado = true;
   }
 }

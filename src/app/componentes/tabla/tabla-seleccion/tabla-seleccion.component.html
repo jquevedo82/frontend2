@@ -57,7 +57,7 @@
                     <a  *ngIf="botones.isEdit" class="pointer" style="color: #1f516f" (click)="editRow(row)" matTooltip="Editar">
                       <mat-icon>edit</mat-icon>
                     </a>
-                    <a  *ngIf="botones.isDelete" class="pointer" style="color: #1878b0"  (click)="deleteRow(row)" matTooltip="Borrar">
+                    <a  *ngIf="botones.isDelete && row.Estado==1" class="pointer" style="color: #1878b0"  (click)="deleteRow(row)" matTooltip="Borrar">
                      <mat-icon>delete</mat-icon>
                    </a>
                     <a  *ngIf="botones.isVer" class="pointer" style="color: #e195e1" (click)="verRow(row)" matTooltip="Ver">

@@ -54,7 +54,9 @@ this.myParam=tokenService.getUserName();
     );
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    console.log("object");
+  }
   onVolver() {
     this.router.navigate(['usuarios']);
   }

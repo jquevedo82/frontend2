@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Injectable, OnInit, ViewChild } from '@angular/core';
 import {
   AbstractControl,
   FormBuilder,
@@ -9,8 +9,10 @@ import {
   Validators,
 } from '@angular/forms';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatSlideToggle } from '@angular/material/slide-toggle';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { ConfirmationModalComponent } from 'src/app/componentes/confirmation-modal/confirmation-modal.component';
 import { Usuario } from 'src/app/models/usuarios/usuario';
 import { TokenService } from 'src/app/services/token.service';
 import { UsuariosService } from '../../services/usuarios.service';
@@ -28,7 +30,6 @@ const coincidirPassword: ValidatorFn = (
 
   return null;
 };
-
 @Component({
   selector: 'app-editar-usuario',
   templateUrl: './editar-usuario.component.html',
@@ -40,6 +41,7 @@ export class EditarUsuarioComponent implements OnInit {
   myParam: any;
   mostrarCambiarContrasena = false;
   showPassword: boolean = false;
+  activated: boolean = false;
 
   constructor(
     private router: Router,
@@ -48,20 +50,19 @@ export class EditarUsuarioComponent implements OnInit {
     private usuarioService: UsuariosService,
     private tokenService: TokenService,
     private toastrService: ToastrService,
+    private swalModal: ConfirmationModalComponent
   ) {
 
     routex.params.subscribe((params: Params) => (this.myParam = params));
-    console.log('x: ', this.myParam);
-
     this.miFormulario = this.fb.group(
       {
-        nombre: ['', Validators.required],
-        denominacion: ['', Validators.required],
+        Descri: ['', Validators.required],
         username: ['', Validators.required],
-        email: ['', [Validators.required, Validators.email]],
+        email: ['', [/*Validators.required,*/ Validators.email]],
         //   password_current: [''],
         password: [''],
         confirmarPassword: [''],
+        habilitado: [''],
       },
       {
         validators: coincidirPassword,
@@ -77,12 +78,12 @@ export class EditarUsuarioComponent implements OnInit {
   cargarDatos(): void {
     this.usuarioService.detail(this.myParam.id).subscribe({
       next: (data) => {
-        // console.log(data);
+
         this.miFormulario.patchValue({
-          nombre: data.nombre,
-          denominacion: data.denominacion,
-          username: data.username,
-          email: data.email,
+          Descri: data.data[0].Descri,
+          username: data.data[0].username,
+          email: data.data[0].email,
+          habilitado: data.data[0].Estado,
         });
       },
       error: (err) => {},
@@ -93,33 +94,34 @@ export class EditarUsuarioComponent implements OnInit {
     if (this.miFormulario.valid) {
       let user: Usuario;
       user = {
-        nombre: this.miFormulario.value.nombre,
-        denominacion: this.miFormulario.value.denominacion,
+        // nombre: this.miFormulario.value.Descri,
+        Descri: this.miFormulario.value.Descri,
         username: this.miFormulario.value.username,
         email: this.miFormulario.value.email,
+        Estado: this.miFormulario.value.habilitado,
       };
       if (this.mostrarCambiarContrasena) {
         const passControl = this.miFormulario.get('password')!.value;
         user.password = passControl;
       }
       console.log(user);
-       this.usuarioService.update(this.myParam.id, user).subscribe({
-         next: (data) => {
-           console.log(data);
-           this.toastrService.success(data.message, 'OK', {
+      this.usuarioService.update(this.myParam.id, user).subscribe({
+        next: (data) => {
+          console.log(data);
+          this.toastrService.success(data.message, 'OK', {
             timeOut: 3000,
             positionClass: 'toast-top-center',
           });
-           this.router.navigate(['usuarios']);
-         },
-         error: (err) => {
-           console.log(err);
-           this.toastrService.error(err.error.message, 'Fail', {
+          this.router.navigate(['usuarios']);
+        },
+        error: (err) => {
+          console.log(err);
+          this.toastrService.error(err.error.message, 'Fail', {
             timeOut: 3000,
             positionClass: 'toast-top-center',
           });
-         },
-       });
+        },
+      });
     } else {
       this.miFormulario.markAllAsTouched();
     }
@@ -131,7 +133,6 @@ export class EditarUsuarioComponent implements OnInit {
     this.router.navigate(['usuarios']);
   }
   public myError = (controlName: string, errorName: string) => {
-
     return this.miFormulario.controls[controlName].hasError(errorName);
   };
   toggleContrasena(): void {
@@ -163,4 +164,5 @@ export class EditarUsuarioComponent implements OnInit {
     passControl.updateValueAndValidity();
     confPassControl.updateValueAndValidity();
   }
+
 }

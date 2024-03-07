@@ -7,25 +7,21 @@
         <tr>
           <td>
             <mat-form-field class="example-full-width">
-              <mat-label>Nombre</mat-label>
-              <input matInput formControlName="nombre">
+              <mat-label>User Name</mat-label>
+              <input matInput formControlName="username">
+              <mat-error *ngIf="myError('username', 'required')">UserName is required</mat-error>
             </mat-form-field>
           </td>
           <td>
             <mat-form-field class="example-full-width">
-              <mat-label>Apellido</mat-label>
-              <input matInput formControlName="apellido">
+              <mat-label>Descripcion</mat-label>
+              <input matInput formControlName="nombre">
+              <mat-error *ngIf="myError('nombre', 'required')">Descripcion is required</mat-error>
             </mat-form-field>
           </td>
         </tr>
 
         <tr>
-          <td>
-            <mat-form-field class="example-full-width">
-              <mat-label>User Name</mat-label>
-              <input matInput formControlName="username">
-            </mat-form-field>
-          </td>
           <td>
             <mat-form-field class="example-full-width">
               <mat-label>Email</mat-label>
@@ -34,20 +30,36 @@
               <mat-error *ngIf="myError('email', 'email')">Email is Error</mat-error>
             </mat-form-field>
           </td>
+          <td>
+
+          </td>
         </tr>
 
         <tr>
           <td>
             <mat-form-field class="example-full-width">
               <mat-label>Password</mat-label>
-              <input matInput>
+              <input matInput [type]="showPassword ? 'text' : 'password'" formControlName="password" id="password"  autocomplete="off">
+              <button mat-icon-button matSuffix (click)="togglePasswordVisibility()">
+                <mat-icon>
+                  {{ showPassword ? 'visibility_off' : 'visibility' }}
+                </mat-icon>
+              </button>
+              <mat-error *ngIf="myError('password', 'required')">password is required</mat-error>
             </mat-form-field>
           </td>
           <td>
             <mat-form-field class="example-full-width">
               <mat-label>Re-Password</mat-label>
-              <input matInput>
+              <input matInput [type]="showPassword ? 'text' : 'password'" formControlName="confirmarPassword"
+                id="confirmarPassword"  autocomplete="off">
+              <mat-error *ngIf="myError('confirmarPassword', 'required')">confirmarPassword is required</mat-error>
             </mat-form-field>
+          </td>
+        </tr>
+        <tr >
+          <td>
+            <mat-error *ngIf="miFormulario.hasError('coincidenciaPassword')">Password No coincide</mat-error>
           </td>
         </tr>
         <tr>

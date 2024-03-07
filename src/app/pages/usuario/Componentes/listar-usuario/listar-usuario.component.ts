@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { TableConfig } from 'src/app/componentes/tabla/models/table-configs';
+import { BotonesConfig } from 'src/app/componentes/tabla/models/table-configs copy';
 import { Usuario } from 'src/app/models/usuarios/usuario';
 import { TokenService } from 'src/app/services/token.service';
 import Swal from 'sweetalert2';
@@ -13,29 +14,37 @@ import { UsuariosService } from '../../services/usuarios.service';
 })
 export class ListarUsuarioComponent implements OnInit {
   isAdmin: boolean = false;
-  usuarios: Usuario[] = [];
+  usuarios!: any[];
   listaVacia = undefined;
+  filtrado = '';
   tableColumns = [
     {
-      label: 'Nombre',
-      def: 'nombre',
-      dataKey: 'nombre' /*,dataType:'date',formatt:'dd MM yyyy'*/,
+      label: 'UserName',
+      def: 'username',
+      dataKey: 'username' /*,dataType:'date',formatt:'dd MM yyyy'*/,
     },
-    { label: 'UserName', def: 'username', dataKey: 'username' },
-
+    { label: 'Legajo', def: 'NroLega', dataKey: 'NroLega' },
+    { label: 'Descripcion', def: 'Descri', dataKey: 'Descri' },
     { label: 'Email', def: 'email', dataKey: 'email' },
+    { label: 'Estado', def: 'EsatdoH', dataKey: 'EstadoH' },
     // { label: 'entidad', def: 'entidad', dataKey: 'entidad' },
 
     //{label:'domicilio', def:'domicilio', dataKey:'domicilio.name' , dataType:'object'},
   ];
   tableConfig: TableConfig = {
     isSelectable: false, // check de selecionar
-    isNuevo:true,
+    isNuevo:false,
     isSeleccion: true, // boton seleccionar
-    optionsPag: [5, 10, 20],
+    optionsPag: [25, 50, 75, 100],
     isSearch: true,
     isFechaD:true,
     isFechaH:true
+  };
+  botones: BotonesConfig = {
+    isVer: false,
+    isDelete: false,
+    isEdit: true,
+    isApproved: false,
   };
   constructor(
     private usuarioService: UsuariosService,
@@ -50,15 +59,15 @@ export class ListarUsuarioComponent implements OnInit {
   }
 
   cargarUsuarios(): void {
-    console.log('aqi');
 
     let datos = {
-      selects: ['id', 'nombre', 'username', 'email'],
+      selects: ['username', 'email', 'NroLega', 'Descri'],
       // 'limit':5
+      dato: this.filtrado,
     };
     this.usuarioService.lista(datos).subscribe({
       next: (data) => {
-        this.usuarios = data;
+        this.usuarios = data.data;
         console.log(data);
         this.listaVacia = undefined;
       },
@@ -124,9 +133,9 @@ export class ListarUsuarioComponent implements OnInit {
       });
   }
   onSelect(data: any) {
-    console.log(data);
-
+    console.log(data,2);
     if (data.action === 'edit') {
+      //this.router.navigate(['usuarios/password']);
       this.router.navigate(['usuarios/edit', data.id]);
     }
     if (data.action === 'new') this.router.navigate(['usuarios/nuevo']);
@@ -140,5 +149,10 @@ export class ListarUsuarioComponent implements OnInit {
     //alert(data.denominacion);
     //  console.log(data);
     //console.log(data);
+  }
+
+  limpiar() {
+    this.filtrado = '';
+    this.cargarUsuarios();
   }
 }

@@ -1,17 +1,20 @@
  <!-- Content Header (Page header) -->
  <section class="content-header">
-    <div class="container-fluid">
-      <div class="row mb-1">
-        <div class="col-sm-6">
-          <h1>{{ titulo }}</h1>
-        </div>
-        <div class="col-sm-6">
-          <ol class="breadcrumb float-sm-right">
-            <li class="breadcrumb-item"><a routerLink="/">Home</a></li>
-            <li *ngIf="titulo != 'Home'" class="breadcrumb-item active"><a *ngIf="urltitulo != 'no' " routerLink="{{urltitulo}}">{{titulo}}</a><span  *ngIf="urltitulo == 'no' ">{{titulo}}</span></li>
-            <li *ngIf="Subtitulo" class="breadcrumb-item active">{{Subtitulo}}</li>
-          </ol>
-        </div>
-      </div>
-    </div><!-- /.container-fluid -->
-  </section>
+   <div class="container-fluid">
+     <div class="row mb-1">
+       <div class="col-sm-6">
+         <h1 *ngIf="!Subtitulo">{{ titulo }}</h1>
+
+         <h1 *ngIf="Subtitulo">{{ titulo+' - '+Subtitulo }}</h1>
+       </div>
+       <div class="col-sm-6">
+         <ol class="breadcrumb float-sm-right">
+           <li class="breadcrumb-item"><a routerLink="/">Home</a></li>
+           <li *ngIf="titulo != 'Home'" class="breadcrumb-item active"><a *ngIf="urltitulo != 'no' "
+               routerLink="{{ urltitulo }}">{{ titulo }}</a><span *ngIf="urltitulo == 'no' ">{{ titulo }}</span></li>
+           <li *ngIf="Subtitulo" class="breadcrumb-item active">{{ Subtitulo }}</li>
+         </ol>
+       </div>
+     </div>
+   </div><!-- /.container-fluid -->
+ </section>

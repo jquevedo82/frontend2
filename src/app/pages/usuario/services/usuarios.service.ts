@@ -12,9 +12,11 @@ export class UsuariosService {
   usuarioURL = environment.usuURL;
 
   constructor(private httpClient: HttpClient) {}
-  public lista(datos : any): Observable<any[]> {
-
-    return this.httpClient.get<any[]>(`${this.usuarioURL}`, { params : datos });
+  public lista(datos : any): Observable<any> {
+    return this.httpClient.get<any>(`${this.usuarioURL}`, { params : datos });
+  }
+  public alta(datos : any): Observable<any> {
+    return this.httpClient.get<any>(`${this.usuarioURL}alta`, { params : datos });
   }
   public detail(id: number): Observable<any> {
     console.log(`${this.usuarioURL}${id}`);
@@ -29,5 +31,9 @@ export class UsuariosService {
   public updatePass(id: string, usuario: ModPassDto): Observable<any> {
     console.log(`${this.usuarioURL}pass/${id}`);
     return this.httpClient.patch<any>(`${this.usuarioURL}pass/${id}`, usuario);
+  }
+  public register(dto: Usuario): Observable<any> {
+    console.log(dto);
+    return this.httpClient.post<any>(this.usuarioURL,dto);
   }
 }

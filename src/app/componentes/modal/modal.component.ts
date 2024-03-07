@@ -14,14 +14,25 @@ export class ModalComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  async openModal(message: string): Promise<void> {
-    await Swal.fire({
-      title: 'Mensaje',
-      text: message,
-      icon: 'info',
-      showConfirmButton: true,
-      allowOutsideClick: false,
-      allowEscapeKey: false,
-    });
+  async openModal(message: string, tipo = 'info'): Promise<void> {
+    if (tipo == 'error') {
+      await Swal.fire({
+        title: 'Mensaje',
+        text: message,
+        icon: 'error',
+        showConfirmButton: true,
+        allowOutsideClick: false,
+        allowEscapeKey: false,
+      });
+    }else{
+      await Swal.fire({
+        title: 'Mensaje',
+        text: message,
+        icon: 'success',
+        showConfirmButton: true,
+        allowOutsideClick: false,
+        allowEscapeKey: false,
+      });
+    }
   }
 }

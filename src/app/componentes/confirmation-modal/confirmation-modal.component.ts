@@ -25,6 +25,7 @@ async openSwal(): Promise<boolean> {
     },
     buttonsStyling: false,
     allowOutsideClick: false,
+    allowEscapeKey: false,
   });
 
   const result = await swalWithBootstrapButtons.fire({

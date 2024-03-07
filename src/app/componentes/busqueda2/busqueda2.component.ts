@@ -13,8 +13,8 @@ import { BotonesConfig } from '../tabla/models/table-configs copy';
 export class Busqueda2Component implements OnInit {
   filtrado = '';
   nombre = '';
-  fechad !: Date;
-  fechah !: Date;
+  fechad!: Date;
+  fechah!: Date;
 
   cargando = false;
 
@@ -100,7 +100,11 @@ export class Busqueda2Component implements OnInit {
     //   return;
     // }
     console.log(this.fechad);
-    if (this.filtrado.length < 3 && this.fechad === undefined  && this.fechah === undefined ) {
+    if (
+      this.filtrado.length < 3 &&
+      this.fechad === undefined &&
+      this.fechah === undefined
+    ) {
       return;
     }
     let datos = {
@@ -167,7 +171,6 @@ export class Busqueda2Component implements OnInit {
     //console.log(data);
   }
   onFechaD() {
-
     /*let data=this.fechad;
     console.log(data);
     //if (this.fechah != '' && this.fechah < data)
@@ -184,13 +187,11 @@ export class Busqueda2Component implements OnInit {
     this.busqueda();
   }
   limpiar1() {
-   // this.fechad = '';
-    console.log("aqui");
-
+    // this.fechad = '';
+    console.log('aqui');
   }
   limpiar2() {
     //this.fechah = '';
-    console.log("aqui");
-
+    console.log('aqui');
   }
 }

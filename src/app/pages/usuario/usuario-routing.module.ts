@@ -6,13 +6,17 @@ import { RegisterGuard } from './Guards/register.guard';
 import { ListarUsuarioComponent } from './Componentes/listar-usuario/listar-usuario.component';
 import { EditarUsuarioComponent } from './Componentes/editar-usuario/editar-usuario.component';
 import { ModificarUsuarioComponent } from './Componentes/modificar-usuario/modificar-usuario.component';
+import { AltaComponent } from './Componentes/Alta/Alta.component';
 
 
 const routes: Routes = [
-{ path: '', component: ListarUsuarioComponent, canActivate: [RegisterGuard], data: {expectedRol:['admin','user'], titulo: 'Usuarios', urltitulo:'/usuarios', Subtitulo: 'Lista'} },
-{ path: 'nuevo', component: NuevoUsuarioComponent, canActivate: [RegisterGuard], data: {expectedRol:['admin','user'], titulo: 'Usuarios', urltitulo:'/usuarios', Subtitulo: 'Nuevo'} },
-{ path: 'edit/:id', component: EditarUsuarioComponent, canActivate: [RegisterGuard], data: {expectedRol:['admin','user'], titulo: 'Usuarios', urltitulo:'/usuarios', Subtitulo: 'Editar'} },
-{ path: 'password', component: ModificarUsuarioComponent, canActivate: [RegisterGuard], data: {expectedRol:['admin','user'], titulo: 'Usuarios', urltitulo:'/usuarios', Subtitulo: 'Password'} }
+  { path: '', component: ListarUsuarioComponent, canActivate: [RegisterGuard], data: {expectedRol:['admin','user'], titulo: 'Usuarios', urltitulo:'/usuarios', Subtitulo: 'Lista'} },
+  { path: 'nuevo', component: NuevoUsuarioComponent, canActivate: [RegisterGuard], data: {expectedRol:['admin','user'], titulo: 'Usuarios', urltitulo:'/usuarios', Subtitulo: 'Nuevo'} },
+  { path: 'alta', component: AltaComponent, canActivate: [RegisterGuard], data: {expectedRol:['admin','user'], titulo: 'Personal', urltitulo:'/personal', Subtitulo: 'Alta Personal'} },
+  { path: 'edit/:id', component: EditarUsuarioComponent, canActivate: [RegisterGuard], data: {expectedRol:['admin','user'], titulo: 'Usuarios', urltitulo:'/usuarios', Subtitulo: 'Editar'} },
+  { path: 'password', component: ModificarUsuarioComponent, canActivate: [RegisterGuard], data: {expectedRol:['admin','user'], titulo: 'Usuarios', urltitulo:'/usuarios', Subtitulo: 'Password'} },
+  { path: '**', redirectTo:''}
+
 ];
 
 @NgModule({

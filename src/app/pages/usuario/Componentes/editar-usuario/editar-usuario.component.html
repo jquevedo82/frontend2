@@ -7,22 +7,6 @@
         <tr>
           <td>
             <mat-form-field class="example-full-width">
-              <mat-label>Nombre</mat-label>
-              <input matInput formControlName="nombre" id="nombre">
-              <mat-error *ngIf="myError('nombre', 'required')">NOMBRE is required</mat-error>
-            </mat-form-field>
-          </td>
-          <td>
-            <mat-form-field class="example-full-width">
-              <mat-label>Denominacion</mat-label>
-              <input matInput formControlName="denominacion" id="denominacion">
-              <mat-error *ngIf="myError('denominacion', 'required')">La denominacion is required</mat-error>
-            </mat-form-field>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <mat-form-field class="example-full-width">
               <mat-label>User Name</mat-label>
               <input matInput formControlName="username" id="username">
               <mat-error *ngIf="myError('username', 'required')">USERNAME is required</mat-error>
@@ -30,11 +14,24 @@
           </td>
           <td>
             <mat-form-field class="example-full-width">
+              <mat-label>Denominacion</mat-label>
+              <input matInput formControlName="Descri" id="Descri">
+              <mat-error *ngIf="myError('Descri', 'required')">La Descripcion is required</mat-error>
+            </mat-form-field>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <mat-form-field class="example-full-width">
               <mat-label>Email</mat-label>
               <input matInput formControlName="email" id="email">
               <mat-error *ngIf="myError('email', 'required')">Email is required</mat-error>
               <mat-error *ngIf="myError('email', 'email')">Email is Error</mat-error>
             </mat-form-field>
+          </td>
+          <td>
+
+              <mat-slide-toggle matInput formControlName="habilitado">Habilitado</mat-slide-toggle>
           </td>
         </tr>
         <tr>

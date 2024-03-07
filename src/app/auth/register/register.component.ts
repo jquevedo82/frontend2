@@ -30,7 +30,6 @@ export class RegisterComponent implements OnInit {
 
   onRegister(): void {
     this.usuario = new NuevoUsuarioDto(
-      this.nombre,
       this.username,
       this.email,
       this.password,
