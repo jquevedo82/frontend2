@@ -24,11 +24,21 @@ export class ModalComponent implements OnInit {
         allowOutsideClick: false,
         allowEscapeKey: false,
       });
-    }else{
+    }
+    if (tipo == 'success') {
       await Swal.fire({
         title: 'Mensaje',
         text: message,
         icon: 'success',
+        showConfirmButton: true,
+        allowOutsideClick: false,
+        allowEscapeKey: false,
+      });
+    }else{
+      await Swal.fire({
+        title: 'Mensaje',
+        text: message,
+        icon: 'info',
         showConfirmButton: true,
         allowOutsideClick: false,
         allowEscapeKey: false,

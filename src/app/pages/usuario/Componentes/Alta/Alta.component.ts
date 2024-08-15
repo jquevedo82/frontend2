@@ -92,6 +92,7 @@ export class AltaComponent implements OnInit {
   }
   onSelect(data: any) {
     console.log(data);
+    if(data.action=='approved')
     this.DarAlta(data);
   }
 

@@ -53,7 +53,7 @@ export class NuevoUsuarioComponent implements OnInit {
       {
         nombre: ['', Validators.required],
         username: ['', Validators.required],
-        email: ['', [Validators.required, Validators.email]],
+        email: ['', [ Validators.email]],
         password: ['', Validators.required],
         confirmarPassword: ['', Validators.required],
         habilitado: [''],
@@ -75,6 +75,7 @@ export class NuevoUsuarioComponent implements OnInit {
         this.miFormulario.value.password,
         this.miFormulario.value.nombre
       );
+
       this.usuarioService.register(this.usuario).subscribe({
         next: (data) => {
           this.toastrService.success(data.message, 'OK', {

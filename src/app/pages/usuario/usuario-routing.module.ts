@@ -7,6 +7,7 @@ import { ListarUsuarioComponent } from './Componentes/listar-usuario/listar-usua
 import { EditarUsuarioComponent } from './Componentes/editar-usuario/editar-usuario.component';
 import { ModificarUsuarioComponent } from './Componentes/modificar-usuario/modificar-usuario.component';
 import { AltaComponent } from './Componentes/Alta/Alta.component';
+import { MenuComponent } from './Componentes/menu/menu.component';
 
 
 const routes: Routes = [
@@ -15,6 +16,7 @@ const routes: Routes = [
   { path: 'alta', component: AltaComponent, canActivate: [RegisterGuard], data: {expectedRol:['admin','user'], titulo: 'Personal', urltitulo:'/personal', Subtitulo: 'Alta Personal'} },
   { path: 'edit/:id', component: EditarUsuarioComponent, canActivate: [RegisterGuard], data: {expectedRol:['admin','user'], titulo: 'Usuarios', urltitulo:'/usuarios', Subtitulo: 'Editar'} },
   { path: 'password', component: ModificarUsuarioComponent, canActivate: [RegisterGuard], data: {expectedRol:['admin','user'], titulo: 'Usuarios', urltitulo:'/usuarios', Subtitulo: 'Password'} },
+  { path: 'menu', component: MenuComponent, canActivate: [RegisterGuard], data: {expectedRol:['admin','user'], titulo: 'Usuarios', urltitulo:'/usuarios', Subtitulo: 'Menu'} },
   { path: '**', redirectTo:''}
 
 ];

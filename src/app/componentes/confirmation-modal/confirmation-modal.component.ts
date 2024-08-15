@@ -29,27 +29,27 @@ async openSwal(): Promise<boolean> {
   });
 
   const result = await swalWithBootstrapButtons.fire({
-    title: '¿Mantener la Sesión Activa?',
+    title: '¿Desea Continuar con la Accion?',
     text: '¿Estás seguro?',
     icon: 'warning',
     showCancelButton: true,
-    confirmButtonText: '¡Sí, mantenerla!',
-    cancelButtonText: 'No, cerrar sesión',
+    confirmButtonText: '¡Sí, Segui!',
+    cancelButtonText: 'No, Cancela',
     reverseButtons: true,
   });
 
   if (result.isConfirmed) {
     await swalWithBootstrapButtons.fire(
       '¡Ok!',
-      'La sesión continúa.',
+      'Eliminado.',
       'success'
     );
     return true;
   } else if (result.dismiss === Swal.DismissReason.cancel) {
     await swalWithBootstrapButtons.fire(
       'Cancelado',
-      'Sesión finalizada.',
-      'error'
+      'Todo sigue igual.',
+      'info'
     );
     return false;
   }
@@ -69,7 +69,9 @@ async confirm(message: string): Promise<boolean> {
     icon: 'question',
     showCancelButton: true,
     confirmButtonText: 'Aceptar',
-    cancelButtonText: 'Cancelar'
+    cancelButtonText: 'Cancelar',
+    allowOutsideClick: false,
+    allowEscapeKey: false,
   });
   return result.isConfirmed;
 }

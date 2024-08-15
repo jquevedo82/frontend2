@@ -1,0 +1,61 @@
+<div class="container">
+  <h2>Listado de Sectores Menu</h2>
+
+  <div style="display: flex; flex-wrap: wrap;">
+    <div *ngFor="let menu of menus" style="flex: 0 0 25%; margin-left: 10px;">
+      <ng-container *ngIf="!menu.editing; else editMode">
+        <span>{{ menu.Descri }}</span>
+      </ng-container>
+      <ng-template #editMode>
+        <input type="text" [(ngModel)]="menu.Descri" (blur)="onBlur(menu)">
+      </ng-template>
+      <button mat-icon-button (click)="toggleEditMode(menu)">
+        <!-- <mat-icon>{{ menu.editing ? 'done' : 'edit' }}</mat-icon> -->
+      </button>
+      <button mat-icon-button (click)="deleteMenu(menu.id)">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </div>
+  </div>
+  <div>
+    <button mat-raised-button (click)="showInput = true" *ngIf="!showInput">Agregar Menú Nuevo</button>
+    <div *ngIf="showInput">
+      <input type="text" placeholder="Nuevo Menú" [(ngModel)]="newMenuName">
+      <button mat-icon-button (click)="addNewMenu()">
+        <div *ngIf="update">
+          <mat-icon>{{ 'done' }}</mat-icon>
+        </div>
+      </button>
+      <button mat-icon-button (click)="cancelAddMenu()">
+        <mat-icon>{{ 'cancel' }}</mat-icon>
+      </button>
+    </div>
+  </div>
+  <hr>
+  <div>
+    <h2>Opciones por Seccion del Menu</h2>
+    <mat-form-field>
+      <mat-label>Sectores</mat-label>
+      <mat-select [(value)]="selectedData"  (valueChange)="onSelectChange()">
+        <mat-option *ngFor="let menu of menus" [value]="menu.id">
+          <!--<mat-icon style="font-size: 16px;"> <i class="{{ menu.icon }}"></i></mat-icon>  -->{{ menu.Descri }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <div *ngFor="let menu of menus2" style="flex: 0 0 25%; margin-left: 10px;">
+      <ng-container *ngIf="!menu.editing; else editMode">
+        <span>{{ menu.Descri }}</span>
+      </ng-container>
+      <ng-template #editMode>
+        <input type="text" [(ngModel)]="menu.Descri" (blur)="onBlur(menu)">
+      </ng-template>
+      <button mat-icon-button (click)="toggleEditMode(menu)">
+        <!-- <mat-icon>{{ menu.editing ? 'done' : 'edit' }}</mat-icon> -->
+      </button>
+      <button mat-icon-button (click)="deleteMenu(menu.id)">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </div>
+
+  </div>
+</div>

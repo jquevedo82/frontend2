@@ -11,6 +11,7 @@ import { ListarUsuarioComponent } from './Componentes/listar-usuario/listar-usua
 import { EditarUsuarioComponent } from './Componentes/editar-usuario/editar-usuario.component';
 import { ModificarUsuarioComponent } from './Componentes/modificar-usuario/modificar-usuario.component';
 import { AltaComponent } from './Componentes/Alta/Alta.component';
+import { MenuComponent } from './Componentes/menu/menu.component';
 
 
 
@@ -20,7 +21,8 @@ import { AltaComponent } from './Componentes/Alta/Alta.component';
     ListarUsuarioComponent,
     EditarUsuarioComponent,
     ModificarUsuarioComponent,
-    AltaComponent
+    AltaComponent,
+    MenuComponent,
   ],
   imports: [
     CommonModule,

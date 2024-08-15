@@ -50,9 +50,9 @@ export class SidebarService {
   }
   getMenu(id2: string): Observable<any> {
     console.log(id2);
-    let id ;
+    let id;
     if (id2 != undefined) {
-       id = id2.replace('"', '').replace('"', '');
+      id = id2.replace('"', '').replace('"', '');
       console.log(id);
     } else {
       id = id2;
@@ -62,6 +62,33 @@ export class SidebarService {
       params: { id },
     });
 
+    return dato;
+  }
+
+  getPadres(): Observable<any> {
+    const dato = this.httpcClient.get<any>(`${this.menuURL}padres`);
+    return dato;
+  }
+
+  getHijos(id: any): Observable<any> {
+    const dato = this.httpcClient.get<any>(`${this.menuURL}hijos/${id}`);
+    return dato;
+  }
+
+  patchPadre(id: number, datos: any): Observable<any> {
+    const dato = this.httpcClient.patch<any>(`${this.menuURL}padre/${id}`, {
+       datos ,
+    });
+    return dato;
+  }
+  postPadre(datos: any): Observable<any> {
+    const dato = this.httpcClient.post<any>(`${this.menuURL}padre/`, {
+       datos ,
+    });
+    return dato;
+  }
+  deletePadres(id: number): Observable<any> {
+    const dato = this.httpcClient.delete<any>(`${this.menuURL}${id}`);
     return dato;
   }
 }

@@ -90,9 +90,10 @@ export class EditarUsuarioComponent implements OnInit {
     });
   }
   guardarDatos() {
-    console.log('this.miFormulario.valid: ', this.miFormulario.valid);
+
+
     if (this.miFormulario.valid) {
-      let user: Usuario;
+      let user: any;
       user = {
         // nombre: this.miFormulario.value.Descri,
         Descri: this.miFormulario.value.Descri,
@@ -100,6 +101,7 @@ export class EditarUsuarioComponent implements OnInit {
         email: this.miFormulario.value.email,
         Estado: this.miFormulario.value.habilitado,
       };
+
       if (this.mostrarCambiarContrasena) {
         const passControl = this.miFormulario.get('password')!.value;
         user.password = passControl;

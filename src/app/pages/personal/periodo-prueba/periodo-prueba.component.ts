@@ -53,7 +53,7 @@ export class PeriodoPruebaComponent {
     isVer:false,
     isDelete:true,
     isEdit:false,
-    isApproved:true,
+    isApproved:false,
 
   };
   tableConfig: TableConfig = {
