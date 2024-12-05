@@ -49,7 +49,8 @@ export class ProductosComponent implements OnInit {
       }
     }
     async onOpenSwal2() {
-      const result = await this.modal.openModal('HOLA');
+    //  const result = await this.modal.openModal('HOLA');
+      this.onOpenSwal();
 
     }
     async onDelete() {

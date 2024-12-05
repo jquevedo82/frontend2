@@ -14,8 +14,14 @@ export class MenuComponent {
   menus!: any[];
   menus2!: any[];
   showInput: boolean = false;
+  showInput2: boolean = false;
+  showInput3: boolean = false;
+
   newMenuName!: string;
+  newMenuName2!: string;
+
   update = true;
+  update2 = true;
 
   selectedData!: string;
 
@@ -60,6 +66,7 @@ export class MenuComponent {
   loadHMenus() {
     this.menuService.getHijos(this.selectedData).subscribe((data) => {
       this.menus2 = data.data;
+      this.showInput2= true;
       console.log(data.data);
       //this.dataList = data.data;
     });
@@ -109,8 +116,25 @@ export class MenuComponent {
       this.update = true;
       this.showInput = false;
   }
+  addNewMenu2() {
+    this.update = false;
+    if (this.newMenuName == '') {
+      this.modal2.openModal('EL Dato no puede estar Vacio');
+      return;
+    }
+
+    this.menuService.postPadre(this.newMenuName.toUpperCase()).subscribe((data) =>{
+      console.log(data);
+      this.loadMenus();
+      });
+      this.update = true;
+      this.showInput = false;
+  }
 
   cancelAddMenu() {
     this.showInput = false;
+  }
+  cancelAddMenu2() {
+    this.showInput2 = false;
   }
 }

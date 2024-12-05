@@ -16,16 +16,16 @@ export class AuthService {
 
   login(dto: LoginUsuarioDto): Observable<any> {
 
-    return this.httpcClient.post<any>(this.authURL + 'login',dto);
+    return this.httpcClient.post<any>(this.authURL + '/login',dto);
   }
 
   register(dto: NuevoUsuarioDto): Observable<any> {
-    return this.httpcClient.post<any>(this.authURL + 'nuevo',dto);
+    return this.httpcClient.post<any>(this.authURL + '/nuevo',dto);
   }
 
   refresh(dto: TokenDto): Observable<any> {
     // console.log(dto,7);
-    return this.httpcClient.post<any>(this.authURL + 'refresh',dto);
+    return this.httpcClient.post<any>(this.authURL + '/refresh',dto);
   }
 
 

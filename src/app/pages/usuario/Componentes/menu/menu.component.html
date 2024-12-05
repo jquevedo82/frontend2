@@ -42,6 +42,20 @@
         </mat-option>
       </mat-select>
     </mat-form-field>
+    <div>
+      <button  mat-raised-button (click)="showInput3 = true" *ngIf="showInput2">Agregar Nueva Opcion Menú</button>
+      <div *ngIf="showInput3">
+        <input type="text" placeholder="Nuevo Opcion Menu" [(ngModel)]="newMenuName2">
+        <button mat-icon-button (click)="addNewMenu2()">
+          <div *ngIf="update2">
+            <mat-icon>{{ 'done' }}</mat-icon>
+          </div>
+        </button>
+        <button mat-icon-button (click)="cancelAddMenu2()">
+          <mat-icon>{{ 'cancel' }}</mat-icon>
+        </button>
+      </div>
+    </div>
     <div *ngFor="let menu of menus2" style="flex: 0 0 25%; margin-left: 10px;">
       <ng-container *ngIf="!menu.editing; else editMode">
         <span>{{ menu.Descri }}</span>

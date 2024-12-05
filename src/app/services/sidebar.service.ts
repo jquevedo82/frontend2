@@ -66,29 +66,29 @@ export class SidebarService {
   }
 
   getPadres(): Observable<any> {
-    const dato = this.httpcClient.get<any>(`${this.menuURL}padres`);
+    const dato = this.httpcClient.get<any>(`${this.menuURL}/padres`);
     return dato;
   }
 
   getHijos(id: any): Observable<any> {
-    const dato = this.httpcClient.get<any>(`${this.menuURL}hijos/${id}`);
+    const dato = this.httpcClient.get<any>(`${this.menuURL}/hijos/${id}`);
     return dato;
   }
 
   patchPadre(id: number, datos: any): Observable<any> {
-    const dato = this.httpcClient.patch<any>(`${this.menuURL}padre/${id}`, {
+    const dato = this.httpcClient.patch<any>(`${this.menuURL}/padre/${id}`, {
        datos ,
     });
     return dato;
   }
   postPadre(datos: any): Observable<any> {
-    const dato = this.httpcClient.post<any>(`${this.menuURL}padre/`, {
+    const dato = this.httpcClient.post<any>(`${this.menuURL}/padre/`, {
        datos ,
     });
     return dato;
   }
   deletePadres(id: number): Observable<any> {
-    const dato = this.httpcClient.delete<any>(`${this.menuURL}${id}`);
+    const dato = this.httpcClient.delete<any>(`${this.menuURL}/${id}`);
     return dato;
   }
 }
